@@ -78,6 +78,7 @@
         padding: 10px;
         gap: 20px;
         align-items: center;
+        font-weight: 300;
 
         @media (max-width: 512px) {
           flex-direction: column;
@@ -126,7 +127,7 @@
           }
 
           > div:first-child {
-            font-weight: 500; // Medium
+            font-weight: 300; // Medium
 
             @media (max-width: 576px) {
               font-size: 10px;
