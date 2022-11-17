@@ -9,11 +9,18 @@
   text-decoration: none;
   color: #5e5e5e;
   fill: #5e5e5e;
+  font-weight: 100;
   cursor: pointer;
 
+  > span {
+    display: flex;
+    align-items: center;
+  }
+
   &:global(.active) {
-    color: #0077b5;
-    fill: #0077b5;
+    color: #0077b5 !important;
+    fill: #0077b5 !important;
+
     box-shadow: inset -3px -3px 6px #ffffffdb, inset 3px 3px 6px #00000029;
   }
 
@@ -25,6 +32,7 @@
 
   .Text {
     flex: 1;
+    font-weight: 100;
   }
 
   .Arrow {
@@ -32,6 +40,27 @@
 
     @media (min-width: 897px) {
       display: none;
+    }
+  }
+}
+
+.NavLink:global(.active):nth-of-type(1),
+.NavLink:global(.active):nth-of-type(2),
+.NavLink:global(.active):nth-of-type(7) {
+  > span {
+    path {
+      stroke: #0077b5 !important;
+    }
+    rect {
+      stroke: #0077b5 !important;
+    }
+  }
+}
+
+.NavLink:global(.active):nth-of-type(6) {
+  > span {
+    path {
+      fill: #0077b5 !important;
     }
   }
 }

@@ -18,7 +18,9 @@ export default function DashboardNavLinks() {
     <>
       <NavLink href="/dashboard" end>
         <a className={[styles.NavLink, styles.DashboardLink].join(" ")}>
-          <DashboardIcon />
+          <span>
+            <DashboardIcon />
+          </span>
           <div className={styles.Text}>داشبورد</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
@@ -26,8 +28,10 @@ export default function DashboardNavLinks() {
         </a>
       </NavLink>
       <NavLink href="/dashboard/orders">
-        <a className={styles.NavLink}>
-          <OrdersIcon />
+        <a id="activatedpm" className={styles.NavLink}>
+          <span>
+            <OrdersIcon />
+          </span>
           <div className={styles.Text}>سفارش ها من</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
@@ -36,7 +40,9 @@ export default function DashboardNavLinks() {
       </NavLink>
       <NavLink href="/dashboard/addresses">
         <a className={styles.NavLink}>
-          <AddressesIcon />
+          <span>
+            <AddressesIcon />
+          </span>
           <div className={styles.Text}>آدرس ها من</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
@@ -45,7 +51,9 @@ export default function DashboardNavLinks() {
       </NavLink>
       <NavLink href="/dashboard/transactions">
         <a className={styles.NavLink}>
-          <TransactionsIcon />
+          <span>
+            <TransactionsIcon />
+          </span>
           <div className={styles.Text}>تراکنش های انجام شده</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
@@ -54,7 +62,9 @@ export default function DashboardNavLinks() {
       </NavLink>
       <NavLink href="/dashboard/marketing">
         <a className={styles.NavLink}>
-          <MarketingIcon />
+          <span>
+            <MarketingIcon />
+          </span>
           <div className={styles.Text}>پنل بازاریابی</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
@@ -64,7 +74,9 @@ export default function DashboardNavLinks() {
       <div className={styles.Spacer} />
       <NavLink href="/dashboard/profile">
         <a className={styles.NavLink}>
-          <ProfileIcon />
+          <span>
+            <ProfileIcon />
+          </span>
           <div className={styles.Text}>پروفایل</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
