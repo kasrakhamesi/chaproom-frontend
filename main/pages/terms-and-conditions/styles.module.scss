@@ -1,0 +1,63 @@
+.Container {
+  width: 100%;
+  max-width: 896px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 30px;
+
+  .Title {
+    color: #5800b3;
+    font-size: 50px;
+    margin: 0;
+    margin-bottom: 30px;
+
+    @media (max-width: 896px) {
+      font-size: 35px;
+    }
+
+    @media (max-width: 512px) {
+      font-size: 22px;
+    }
+  }
+
+  .OrderedList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      > div:first-child {
+        color: #464646;
+        font-weight: bold;
+        font-size: 22px;
+
+        @media (max-width: 896px) {
+          font-size: 18px;
+        }
+    
+        @media (max-width: 512px) {
+          font-size: 16px;
+        }
+      }
+
+      > div:last-child {
+        margin-top: 4px;
+        color: #464646;
+        text-align: justify;
+        font-size: 18px;
+
+        @media (max-width: 896px) {
+          font-size: 16px;
+        }
+    
+        @media (max-width: 512px) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

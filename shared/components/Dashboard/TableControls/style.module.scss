@@ -1,0 +1,13 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  .ItemPerPageSelect {
+    > div {
+      width: 100px;
+    }
+  }
+}

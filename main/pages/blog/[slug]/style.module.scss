@@ -1,0 +1,93 @@
+.Container {
+  box-sizing: border-box;
+  padding: 0 50px;
+
+  @media (max-width: 896px) {
+    padding: 0 30px;
+  }
+
+  .Post {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+    margin-top: 100px;
+    max-width: 768px;
+    margin: 100px auto 0;
+
+    @media (max-width: 640px) {
+      padding: 40px;
+    }
+
+    @media (max-width: 576px) {
+      padding: 30px;
+    }
+
+    @media (max-width: 480px) {
+      margin-top: 0;
+    }
+
+    .PostThumbnail {
+      display: flex;
+      border-radius: 20px;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+      margin-top: -150px;
+      margin-bottom: 30px;
+
+      > img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+      }
+
+      @media (max-width: 640px) {
+        margin-top: -140px;
+      }
+
+      @media (max-width: 576px) {
+        margin-top: -130px;
+      }
+
+      @media (max-width: 480px) {
+        margin-top: -30px;
+        margin-left: -30px;
+        margin-right: -30px;
+        box-shadow: none;
+      }
+    }
+
+    .PostHeader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      .PostMetaData {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 5px;
+
+          > svg {
+            width: 20px;
+          }
+        }
+      }
+
+      .PostTitle {
+        color: #464646;
+        margin: 0;
+      }
+    }
+
+    .PostContent {
+      margin-top: 20px;
+      line-height: 25px;
+    }
+  }
+}

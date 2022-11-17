@@ -1,0 +1,158 @@
+.Container {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  > .Separator {
+    background-color: #cccccc;
+    width: 100%;
+    height: 1px;
+  }
+
+  .DedicatedLink,
+  .DedicatedDiscountCodes {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    color: #5e5e5e;
+
+    @media (max-width: 896px) {
+      grid-template-columns: 1fr;
+    }
+
+    .Title {
+      font-weight: bold;
+      font-size: 16px;
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+
+    .Description {
+      font-size: 14px;
+
+      @media (max-width: 576px) {
+        font-size: 12px;
+      }
+    }
+
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .LinkIcon,
+      .PercentIcon {
+        width: 72px;
+        height: 72px;
+        padding-bottom: 10px;
+      }
+
+      .LinkIcon {
+        fill: #7d00ff;
+        margin: -21px -6px -21px;
+      }
+
+      .PercentIcon {
+        fill: #5800b3;
+        margin: -12px -12px -12px;
+      }
+    }
+
+    > div:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+
+      @media (max-width: 512px) {
+        align-items: stretch;
+      }
+
+      .DiscountCodes {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        gap: 20px;
+        align-items: center;
+
+        @media (max-width: 512px) {
+          flex-direction: column;
+          width: 100%;
+          align-items: stretch;
+        }
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+
+          @media (max-width: 512px) {
+            align-items: stretch;
+          }
+
+          > span {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .Status {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+
+        @media (max-width: 512px) {
+          justify-content: center;
+        }
+
+        > div:not(.Separator) {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px 20px;
+          text-align: center;
+
+          @media (max-width: 896px) {
+            gap: 5px;
+          }
+
+          @media (max-width: 512px) {
+            padding: 5px 10px;
+          }
+
+          > div:first-child {
+            font-weight: 500; // Medium
+
+            @media (max-width: 576px) {
+              font-size: 10px;
+            }
+          }
+
+          > div:last-child {
+            font-size: 12px;
+            font-weight: 300; // Light
+
+            @media (max-width: 576px) {
+              font-size: 9px;
+            }
+          }
+
+          &:last-child {
+            color: #7d00ff;
+          }
+        }
+
+        > .Separator {
+          background-color: #cccccc;
+          height: 100%;
+          width: 1px;
+        }
+      }
+    }
+  }
+}

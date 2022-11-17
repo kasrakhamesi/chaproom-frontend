@@ -1,0 +1,37 @@
+.SwitchButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  > button {
+    display: flex;
+    height: 36px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    color: #5e5e5e;
+    fill: #5e5e5e;
+    box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+    user-select: none;
+    background: transparent;
+    border: none;
+    padding: 0 15px;
+
+    &[data-current="true"] {
+      color: #0077b5;
+      fill: #0077b5;
+      box-shadow: inset -3px -3px 6px #ffffffdb, inset 3px 3px 6px #00000029;
+    }
+
+    &:not([data-current="true"]) {
+      cursor: pointer;
+    }
+  }
+
+  &[data-nullable="true"] {
+    > button {
+      cursor: pointer;
+    }
+  }
+}

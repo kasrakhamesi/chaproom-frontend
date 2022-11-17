@@ -1,0 +1,137 @@
+.Form {
+  display: grid;
+  grid-template-columns: minmax(100px, 180px) 1fr;
+  gap: 20px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
+  .Label {
+    color: #9c9c9c;
+  }
+
+  .Input {
+    > * {
+      width: 100%;
+      max-width: 300px;
+
+      @media (max-width: 640px) {
+        max-width: unset;
+      }
+    }
+  }
+
+  .BreakpointsInput {
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+
+    .BreakpointInput {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #cccccc;
+      
+      @media (max-width: 512px) {
+        grid-template-columns: 1fr;
+      }
+
+      > div:first-child {
+        grid-column: 1 / span 2;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        @media (max-width: 512px) {
+          grid-column: 1;
+        }
+
+        > div:first-child {
+          flex: 1;
+
+          .EditAtButton,
+          .DoneEditAtButton {
+            margin: -5px;
+          }
+
+          .EditAtButton {
+            fill: #0077b5;
+          }
+
+          .DoneEditAtButton {
+            fill: #14cc9c;
+
+            > button:disabled {
+              fill: #cccccc;
+            }
+          }
+        }
+      }
+
+      .Input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        > div:first-child {
+          max-width: unset;
+        }
+      }
+    }
+
+    .Footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .AddButton,
+    .DeleteButton {
+      display: flex;
+      height: 40px;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+      padding: 0 20px;
+      font-size: 12px;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      border: none;
+
+      > svg {
+        margin: -5px;
+      }
+
+      @media (max-width: 448px) {
+        font-size: 0;
+        width: 40px;
+        gap: 0;
+        padding: 0 5px;
+      }
+    }
+
+    .AddButton {
+      background-color: #0077b5;
+      color: #ffffff;
+      fill: #ffffff;
+    }
+
+    .DeleteButton {
+      background-color: #f20f4b;
+      color: #ffffff;
+      fill: #ffffff;
+    }
+  }
+}

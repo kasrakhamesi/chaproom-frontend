@@ -1,0 +1,136 @@
+.ForgotPassword {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .Header {
+    box-sizing: border-box;
+    padding: 20px 140px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  
+    @media (max-width: 896px) {
+      padding: 20px 30px;
+    }
+  
+    .Logo {
+      display: inline-flex;
+  
+      > svg {
+        width: auto;
+        height: 55px;
+        
+        @media (max-width: 896px) {
+          display: none;
+        }
+      }
+    }
+  
+    .MobileBackButton {
+      background-color: #f5f5f5;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      fill: #9c9c9c;
+      border-radius: 50%;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  
+      @media (min-width: 897px) {
+        display: none;
+      }
+    }
+  }
+
+  .Content {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+
+    @media (max-width: 896px) {
+      grid-template-columns: 1fr;
+    }
+
+    .Form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+
+      > * {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .Column {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .Title {
+        color: #464646;
+        font-size: 22px;
+        font-weight: 500; // Medium
+        text-align: center;
+      }
+
+      .SubTitle {
+        color: #464646;
+        font-size: 16px;
+        font-weight: 300; // Light
+        text-align: center;
+      }
+
+      .BottomNote {
+        color: #464646;
+        text-align: center;
+      }
+
+      .ConfirmCodeActions {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: space-between;
+        
+        > button {
+          color: #0077b5;
+          cursor: pointer;
+          user-select: none;
+          background: transparent;
+          border: none;
+          padding: 0;
+
+          &:disabled {
+            color: #cccccc;
+          }
+        }
+      }
+    }
+
+    .Image {
+      position: relative;
+
+      @media (max-width: 896px) {
+        display: none;
+      }
+
+      svg {
+        width: auto;
+        height: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

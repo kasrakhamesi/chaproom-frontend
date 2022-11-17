@@ -1,0 +1,232 @@
+.SemiCircleProgressBar {
+  width: 40px;
+  height: 40px;
+  position: relative;
+
+  .SemiCircleProgressBarPath {
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease 0s;
+    stroke: #0377a5;
+    transform: rotate(135deg);
+    transform-origin: center;
+  }
+
+  .SemiCircleProgressBarTrail {
+    stroke-linecap: round;
+    stroke: #d8d8d8;
+    transform: rotate(135deg);
+    transform-origin: center;
+  }
+
+  .SemiCircleProgressBarText {
+    color: #6c6c6c;
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.MobileSemiCircleProgressBar .SemiCircleProgressBar {
+  width: 54px;
+  height: 54px;
+
+  .SemiCircleProgressBarText {
+    font-size: 16px;
+    top: 27px;
+    left: 27px;
+  }
+}
+
+.PrintFolder {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.AddressSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &:not(:empty) {
+    margin-bottom: 20px;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    > div:last-child {
+      flex: 1;
+    }
+  }
+}
+
+.Payment {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+
+  .OrderDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @media (min-width: 769px) {
+      flex: 1;
+    }
+
+    .Amount {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      padding: 5px 0;
+      width: 100%;
+      max-width: 250px;
+
+      @media (max-width: 896px) {
+        max-width: unset;
+      }
+
+      > div:first-child {
+        flex: 1;
+      }
+    }
+
+    .FoldersAmount {
+      flex: 1;
+    }
+
+    .DiscountCode {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      width: 100%;
+      max-width: 250px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #9c9c9c;
+
+      > div:first-child {
+        flex: 1;
+        max-width: unset;
+        border-radius: 5px !important;
+      }
+
+      > button {
+        background-color: #7d00ff;
+      }
+    }
+  }
+
+  .PaymentMethod {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    box-shadow: inset -3px -3px 6px #ffffffdb, inset 3px 3px 6px #00000029;
+    border-radius: 20px;
+    padding: 20px;
+    align-items: center;
+    gap: 30px;
+
+    @media (min-width: 769px) {
+      flex: 1;
+      max-width: 400px;
+      height: 200px;
+    }
+
+    .Title {
+      color: #464646;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .List {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      > div:not(.Separator) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        > div {
+          flex: 1;
+          min-width: max-content;
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+
+          &:first-child {
+            user-select: none;
+            color: #9c9c9c;
+          }
+
+          &:last-child {
+            height: 22px;
+            justify-content: flex-end;
+
+            > svg {
+              height: 100%;
+              width: auto;
+            }
+          }
+        }
+      }
+
+      .Separator {
+        border-top: 1px solid #9c9c9c;
+      }
+    }
+  }
+}
+
+.AmountPayableMobileContainer {
+  @media (min-width: 897px) {
+    display: none;
+  }
+}
+
+.AmountPayableContainer {
+  @media (max-width: 896px) {
+    display: none;
+  }
+}
+
+.AmountPayable {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding: 5px 0;
+  width: 100%;
+  max-width: 250px;
+  align-items: center;
+  font-size: 16px;
+
+  @media (max-width: 896px) {
+    max-width: unset;
+  }
+
+  > div:first-child {
+    flex: 1;
+    color: #707070;
+  }
+
+  > div:last-child {
+    color: #2578fA;
+
+    > span:first-child {
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+}

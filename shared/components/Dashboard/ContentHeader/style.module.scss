@@ -1,0 +1,22 @@
+.ContentHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 40px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 15px;
+  gap: 10px;
+
+  @media (max-width: 896px) {
+    display: none;
+  }
+
+  .Title {
+    flex: 1;
+    margin: 0;
+    font-size: 16px;
+    color: #5e5e5e;
+    font-weight: bold;
+  }
+}

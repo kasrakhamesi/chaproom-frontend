@@ -1,0 +1,91 @@
+.PostGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+
+  .Post {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+
+    .PostThumbnail {
+      display: flex;
+      margin-bottom: 10px;
+
+      > img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px 20px 0 0;
+      }
+    }
+
+    .PostTitle {
+      color: #0077b5;
+      font-weight: bold;
+      font-size: 14px;
+      margin: 5px 15px;
+    }
+
+    .PostAuthor,
+    .PostCategories,
+    .PostExcerpt {
+      color: #5d5d5d;
+      font-weight: 300; // Light
+      font-size: 10px;
+      margin: 5px 15px 0;
+    }
+
+    .PostBottom {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      padding: 15px;
+      margin-top: auto;
+
+      .PostMetaData {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        font-size: 10px;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 5px;
+
+          > svg {
+            width: 16px;
+          }
+        }
+      }
+
+      .DeleteButton,
+      .EditButton {
+        display: inline-flex;
+        height: 30px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        font-size: 12px;
+        user-select: none;
+        cursor: pointer;
+        border: none;
+      }
+
+      .DeleteButton {
+        color: #f20f4b;
+      }
+
+      .EditButton {
+        box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+        background-color: #0077b5;
+        color: #ffffff;
+        padding: 0 20px;
+      }
+    }
+  }
+}

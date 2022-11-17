@@ -1,0 +1,98 @@
+@mixin animation() {
+  $animation-name: unique-id();
+  animation-name: $animation-name;
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+.Button {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 15px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  font-size: 16px;
+  font-weight: bold;
+  user-select: none;
+  border: none;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &.Loading {
+    font-size: 0;
+
+    &::after {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top-color: #ffffff;
+      border-left-color: #ffffff;
+      border-right-color: #ffffff;
+      justify-self: flex-end;
+
+      animation: 1s infinite linear;
+      @include animation {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    &.None,
+    &.Outlined {
+      &::after {
+        border-top-color: #2578fa;
+        border-left-color: #2578fa;
+        border-right-color: #2578fa;
+      }
+    }
+  }
+
+  &.Filled {
+    color: #ffffff;
+    fill: #ffffff;
+    background-color: #0077b5;
+
+    &:disabled {
+      background-color: #cccccc;
+    }
+  }
+
+  &.None {
+    color: #0077b5;
+    fill: #0077b5;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.Gradient {
+    color: #ffffff;
+    fill: #ffffff;
+    background: linear-gradient(260deg, #26e0fa 0%, #5869e8 100%);
+
+    &:disabled {
+      background: #cccccc;
+    }
+  }
+
+  &.Outlined {
+    color: #2578fa;
+    fill: #2578fa;
+    background-color: #eeeeee;
+  }
+}

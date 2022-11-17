@@ -1,0 +1,22 @@
+.TariffsTable {
+  width: 100%;
+  border-spacing: 0;
+
+  > thead > tr > th {
+    background-color: #f5f5f5;
+    color: #464646;
+    font-weight: normal;
+    padding: 5px 15px;  
+  }
+
+  > tbody > tr > td {
+    color: #9c9c9c;
+    font-size: 12px;
+    text-align: center;
+    padding: 8px 15px;
+
+    &:first-child {
+      color: #464646;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.Form {
+  display: grid;
+  grid-template-columns: minmax(100px, 180px) 1fr;
+  gap: 20px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
+  .Label {
+    color: #9c9c9c;
+  }
+
+  .Input {
+    > * {
+      width: 100%;
+      max-width: 300px;
+
+      @media (max-width: 640px) {
+        max-width: unset;
+      }
+    }
+  }
+}

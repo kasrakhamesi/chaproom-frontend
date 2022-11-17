@@ -1,0 +1,19 @@
+.Container {
+  > svg {
+    width: 100%;
+    height: auto;
+
+    path {
+      transition: fill 0.2s;
+      stroke: #000;
+      fill: #ddd;
+      stroke-width: 1px;
+      stroke-linejoin: round;
+      cursor: pointer;
+
+      &:hover {
+        fill: #4f46e5;
+      }
+    }
+  }
+}

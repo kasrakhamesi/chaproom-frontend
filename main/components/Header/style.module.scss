@@ -1,0 +1,181 @@
+.Header {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 20px 140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+
+  @media (max-width: 1024px) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  @media (max-width: 960px) {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  @media (max-width: 896px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .Start {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+
+    @media (max-width: 512px) {
+      display: none;
+    }
+
+    .Logo {
+      display: inline-flex;
+
+      > svg {
+        width: auto;
+        height: 55px;
+
+        @media (max-width: 640px) {
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  .Center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media (max-width: 1200px) {
+      display: none;
+    }
+
+    .NavLinks {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+  
+      @media (max-width: 640px) {
+        flex-direction: column;
+        width: 100%;
+      }
+  
+      > a {
+        display: flex;
+        height: 40px;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        padding: 0 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #5e5e5e;
+        fill: #5e5e5e;
+        white-space: nowrap;
+        font-size: 18px;
+  
+        &:global(.active) {
+          color: #0077b5;
+          fill: #0077b5;
+          box-shadow: inset -3px -3px 6px #ffffffdb, inset 3px 3px 6px #00000029;
+        }
+      }
+    }
+  }
+
+  .End {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media (max-width: 512px) {
+      justify-content: flex-start;
+      height: 54px;
+    }
+
+    .UserAuth {
+      @media (max-width: 512px) {
+        display: none;
+      }
+
+      button {
+        white-space: nowrap;
+
+        &:first-child {
+          color: #5800b3;
+          fill: #5800b3;
+          padding: 0;
+          font-size: 18px;
+        }
+
+        &:last-child {
+          background-color: #5800b3;
+          padding: 0 35px;
+          font-size: 18px;
+        }
+      }
+    }
+
+    .UserAuthMobile {
+      @media (min-width: 513px) {
+        display: none;
+      }
+
+      .LoginButton {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        cursor: pointer;
+
+        > button {
+          border-radius: 27px;
+          box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+          
+          > svg {
+            fill: #5d5d5d;
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+    }
+
+    .User {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+
+      .UserAvatar {
+        display: flex;
+        
+        > div {
+          @media (min-width: 513px) {
+            width: 48px;
+            height: 48px;
+          }
+
+          > * {
+            @media (min-width: 513px) {
+              width: 48px;
+              height: 48px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

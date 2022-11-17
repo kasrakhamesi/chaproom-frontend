@@ -1,0 +1,13 @@
+.ProgressBar {
+  display: flex;
+  flex-direction: row;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+
+  >div {
+    background-color: #007bff;
+    transition: width .6s ease;
+  }
+}

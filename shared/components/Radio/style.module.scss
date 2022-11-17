@@ -1,0 +1,35 @@
+.Radio {
+  min-width: 16px;
+  min-height: 16px;
+  width: 16px;
+  height: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  border-radius: 100%;
+  display: inline-flex;
+  position: relative;
+  background: linear-gradient(135deg, #04b2d9 0%, #0487d9 100%);
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  border: none;
+  padding: 0;
+
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background-color: #ffffff;
+  }
+
+  &:not([data-checked="true"]) {
+    background: #ffffff;
+
+    &::before {
+      display: none;
+    }
+  }
+}

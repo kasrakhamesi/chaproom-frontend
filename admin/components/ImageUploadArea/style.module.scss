@@ -1,0 +1,53 @@
+.ImageUploadArea {
+  background: #cccccc26;
+  border: 2px dashed #cccccc;
+  box-sizing: border-box;
+  color: #9c9c9c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  position: relative;
+
+  &[data-drag-active="true"] {
+    background: #2578fa26;
+    border: 2px dashed #2578fa;
+    color: #2578fa;
+  }
+
+  .DropZone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+
+  .Input {
+    display: none;
+  }
+
+  .Image {
+    width: 40px;
+    padding: 20px 20px 0;
+  }
+
+  .Message, .MobileMessage {
+    padding: 10px;
+  }
+
+  .Message {
+    @media (max-width: 896px) {
+      display: none;
+    }
+  }
+
+  .MobileMessage {
+    @media (min-width: 897px) {
+      display: none;
+    }
+  }
+}

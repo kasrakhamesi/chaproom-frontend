@@ -1,0 +1,47 @@
+.SectionHeader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  @media (max-width: 896px) {
+    display: none;
+  }
+
+  .TitleContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .Title {
+      flex: 1;
+      margin: 0;
+      color: #5e5e5e;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .BackToSiteButton {
+      display: flex;
+      height: 40px;
+      flex-direction: row;
+      gap: 25px;
+      align-items: center;
+      padding: 0 10px;
+      border-radius: 20px;
+      color: #5e5e5e;
+      font-weight: 500; // Medium
+      text-decoration: none;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+      user-select: none;
+
+      @media (max-width: 896px) {
+        display: none;
+      }
+    }
+  }
+
+  .Description {
+    margin: 0;
+    color: #9c9c9c;
+  }
+}

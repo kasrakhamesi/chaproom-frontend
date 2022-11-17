@@ -1,0 +1,91 @@
+@media only screen and (min-width: 1360px) {
+  .footer {
+    position: relative;
+    border-radius: 72em/9.9em 9.9em 0em 0px;
+    &__mainlogo {
+      margin-top: -7em;
+    }
+    &__mainlogo__img {
+      margin-top: 1em;
+    }
+    &__table {
+      flex-grow: 0;
+      padding-left: 30px;
+      padding-right: 30px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 0 0px;
+      gap: 6px;
+      margin-bottom: 18px;
+      margin-top: -25px;
+      h5 {
+        font-size: 16px;
+        padding-bottom: 4px;
+        margin-bottom: 0px;
+        font-weight: 400;
+        margin-top: 0px;
+      }
+      .table {
+        &__callus {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          z-index: 4;
+          ul > li > a {
+            font-size: 14px;
+          }
+        }
+        &__guide {
+          grid-column-start: 2;
+          grid-column-end: 3;
+          z-index: 4;
+          ul > li > a {
+            font-size: 14px;
+          }
+        }
+        &__helpfullinks {
+          grid-column-start: 7;
+          grid-column-end: 8;
+          z-index: 4;
+          ul > li > a {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    &__symbols {
+      position: absolute;
+      align-items: center;
+      justify-content: space-between;
+      bottom: 4em;
+      z-index: 1;
+      margin-top: 0;
+      max-width: 1360px;
+      margin: auto;
+    }
+    &__rights {
+      width: 100%;
+      z-index: 3;
+      margin-top: -9em;
+      padding-left: 7em;
+      padding-right: 7em;
+      > h4 {
+        font-weight: 400;
+        color: #ffffff;
+        font-weight: 400;
+      }
+      > h4:nth-of-type(1) {
+        margin-bottom: 0px;
+        font-size: 16px;
+      }
+      > h4:nth-of-type(2) {
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      > ul {
+        margin: 6px 0px;
+        li > a {
+          fill: white;
+        }
+      }
+    }
+  }
+}

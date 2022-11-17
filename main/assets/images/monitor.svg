@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 1440 1164">
+  <defs>
+    <linearGradient id="monitorLinearGradientA" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2578fa"/>
+      <stop offset="1" stop-color="#27ddf8"/>
+    </linearGradient>
+    <linearGradient id="monitorLinearGradientB" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2578fa"/>
+      <stop offset=".8" stop-color="#2578fa"/>
+      <stop offset="1" stop-color="#00deff"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#monitorLinearGradientA)" d="M905 1148v-10l-15-160H560l-15 160v10h360z"/>
+  <path d="M545 1148h360v-10H545v10z" opacity=".1"/>
+  <path fill="#D0D2D5" d="M470 1164v-16h500v16"/>
+  <path fill="url(#monitorLinearGradientB)" d="M30 978c-15 0-30-12-30-30V30C0 15 15 0 30 0h1380c18 0 30 15 30 30v918c0 18-12 30-30 30H30z"/>
+  <path d="m670 978-125 160 15-160h110z" opacity=".1"/>
+  <circle cx="720" cy="893" r="55" fill="#eeeeee"/>
+  <path fill="#FFF" d="M40 40h1360v768H40V40z"/>
+  <g fill="#2578FA">
+    <path d="M751.5 892.5v15.4c0 1.5-.8 3-2.1 3.8l-27.9 16.2c-.5.3-1.3 0-1.3-.8v-31.9c0-1.5.8-3 2.1-3.8l34.7-20.1c1.7-1 1.7-3.5 0-4.5l-28.4-16.3c-5.3-3.1-11.9-3.1-17.3 0l-23.4 13.7c-5.3 3.1-8.6 8.8-8.6 15V906c0 6.1 3.3 11.9 8.6 15l.8.5v-37c0-6.1 3.3-11.9 8.6-14.9l22.8-13.2L742 869l-22.8 13.2c-5.3 3.1-8.6 8.8-8.6 14.9V929c0 3.1 1.7 5.9 4.3 7.4l.8.5c2.6 1.5 5.9 1.5 8.6 0l27.9-16.2c5.3-3.1 8.6-8.8 8.6-14.9V887l-9.3 5.5z"/>
+    <path d="M703.6 929.9v-37.2c0-6.1 3.1-11.7 8.4-14.9l15.9-9.6-8.9-5.3-16.2 9.4c-5.3 3.1-8.6 8.8-8.6 14.9v26.9c0 6.1 3.3 11.7 8.6 14.9l.8.9zm34-27.4v11.9l10.2-5.9v-11.7l-10.2 5.7zm-13.6 7.6v12.1l10.4-6.1V904l-10.4 6.1zm-.1-15.7v12.1l10.6-6.1v-12.1c-.1 0-10.6 6.1-10.6 6.1z"/>
+  </g>
+</svg>

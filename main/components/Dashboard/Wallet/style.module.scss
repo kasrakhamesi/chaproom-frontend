@@ -1,0 +1,97 @@
+.Wallet {
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  transition: height, 0.3s;
+
+  .WalletOverview {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    border-radius: 20px;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: all, 0.3s;
+    font-weight: bold;
+
+    .Spacer {
+      flex: 1;
+      min-width: 10px;
+    }
+
+    .ExpandMoreIcon {
+      transition: all, 0.3s;
+    }
+  }
+
+  .WalletDetails {
+    padding: 0 15px 15px;
+
+    & > div {
+      display: flex;
+      flex-direction: row;
+      padding: 5px 0;
+      color: #5d5d5d;
+      font-size: 12px;
+
+      .Spacer {
+        flex: 1;
+        min-width: 10px;
+      }
+    }
+
+    .IncreasBalance,
+    .WithdrawBalance {
+      height: 40px;
+      width: 100%;
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 20px;
+      margin-top: 10px;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .IncreasBalance {
+      background-color: #0077b5;
+      color: #ffffff;
+    }
+
+    .WithdrawBalance {
+      border: 1px solid #0077b5;
+      color: #0077b5;
+    }
+  }
+
+  &:not(.WalletExpanded) {
+    background: linear-gradient(180deg, #27ddf8 0%, #0077b5 100%);
+
+    .WalletOverview {
+      color: #ffffff;
+      fill: #ffffff;
+    }
+
+    .WalletDetails {
+      display: none;
+    }
+  }
+
+  &.WalletExpanded {
+    .WalletOverview {
+      color: #0077b5;
+      fill: #0077b5;
+    }
+
+    .ExpandMoreIcon {
+      transform: rotateZ(180deg);
+    }
+  }
+}

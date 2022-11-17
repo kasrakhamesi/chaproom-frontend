@@ -1,0 +1,72 @@
+.Container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .NonMobile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 896px) {
+      display: none;
+    }
+
+    .ContentContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      > div:nth-child(1),
+      > div:nth-child(2) {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+      }
+    }
+  }
+
+  .Mobile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 897px) {
+      display: none;
+    }
+
+    .User {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      padding: 10px;
+
+      .Meta {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: #464646;
+        flex: 1;
+
+
+        .UserRole {
+          font-size: 12px;
+          color: #9c9c9c;
+        }
+
+        .Name {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .Welcome {
+      font-size: 16px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

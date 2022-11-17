@@ -1,0 +1,36 @@
+@import "vazirmatn/Vazirmatn-font-face.css";
+@import "@/shared/assets/scss/iransansx.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 14px;
+  font-family: iransansx, sans-serif;
+  background-color: #eeeeee;
+
+  input,
+  textarea,
+  button {
+    font-family: iransansx, sans-serif;
+  }
+
+  a {
+    color: #0487d9;
+    text-decoration: none;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  #__next {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+}

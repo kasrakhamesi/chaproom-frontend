@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1389 243">
+  <defs>
+    <filter id="customersFilterA" width="1382.9" height="236.5" x="6" y="6" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3"/>
+      <feGaussianBlur result="b" stdDeviation="3"/>
+      <feFlood flood-opacity=".2"/>
+      <feComposite in2="b" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="customersFilterB" width="1382.9" height="236.5" x="0" y="0" filterUnits="userSpaceOnUse">
+      <feOffset dx="-3" dy="-3"/>
+      <feGaussianBlur result="e" stdDeviation="3"/>
+      <feFlood flood-color="#fff" flood-opacity=".9"/>
+      <feComposite in2="e" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="customersLinearGradientC" x1="0" x2="0" y1=".2" y2=".7" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f5f5f5"/>
+      <stop offset=".5" stop-color="#fff"/>
+      <stop offset="1" stop-color="#f5f5f5"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#customersFilterA)">
+    <path fill="#efeeee" d="M12 58s468-46 685-46 680 46 680 46v109s-476 63-680 63-685-63-685-63Z"/>
+  </g>
+  <g filter="url(#customersFilterB)">
+    <path fill="url(#customersLinearGradientC)" d="M0 3226s468-46 685-46 680 46 680 46v109s-476 64-680 64-685-64-685-64Z" transform="translate(12 -3168)"/>
+  </g>
+</svg>

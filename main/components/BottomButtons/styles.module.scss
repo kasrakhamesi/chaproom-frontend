@@ -1,0 +1,71 @@
+.Container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px 20px 20px;
+
+  @media (min-width: 897px) {
+    display: none;
+  }
+
+  .BottomButtons {
+    box-sizing: border-box;
+    padding: 5px;
+    height: 64px;
+    border-radius: 20px;
+    background: #eeeeee;
+    box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .NavLink {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+      min-width: 60px;
+      color: #9c9c9c;
+      fill: #9c9c9c;
+      cursor: pointer;
+
+      > svg {
+        width: auto;
+        height: 100%;
+      }
+      
+      > div {
+        font-size: 10px;
+        text-align: center;
+      }
+
+      &:global(.active) {
+        color: #0077b5;
+        fill: #0077b5;
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: -13px;
+          height: 8px;
+          width: 100%;
+          border-radius: 0 0 8px 8px;
+          background-color: #0377a5;
+        }
+      }
+    }
+  }
+}
+
+.Placeholder {
+  margin-top: 10px;
+  height: 64px;
+
+  @media (min-width: 897px) {
+    display: none;
+  }
+}

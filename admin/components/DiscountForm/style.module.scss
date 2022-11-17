@@ -1,0 +1,62 @@
+.Form {
+  display: grid;
+  grid-template-columns: minmax(100px, 180px) 1fr;
+  gap: 20px;
+
+  @media (max-width: 512px) {
+    grid-template-columns: 1fr;
+  }
+
+  .Separator {
+    background-color: #cccccc;
+    height: 1px;
+    grid-column: 1 / span 2;
+  }
+
+  .Label {
+    color: #9c9c9c;
+  }
+
+  .Input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > * {
+      width: 100%;
+      max-width: 300px;
+
+      @media (max-width: 512px) {
+        max-width: unset;
+      }
+    }
+  }
+
+  .OptionalInput {
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .CheckBoxWithLabel {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+
+  .UserModeRadioList {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+.DialogContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 512px) {
+    justify-content: center;
+  }
+
+  > div:nth-child(1) {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500; // Medium
+    color: #464646;
+    margin: -60px 0 50px;
+
+    @media (min-width: 513px) {
+      display: none;
+    }
+  }
+  
+  > div:nth-child(2) {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 512px) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    > div {
+      &.Label {
+        color: #9c9c9c;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media (max-width: 512px) {
+          margin-bottom: 10px;
+        }
+      }
+
+      &.Input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        @media (max-width: 512px) {
+          margin-bottom: 20px;
+        }
+
+        > div:first-child {
+          max-width: unset;
+
+          @media (max-width: 512px) {
+            background-color: #f5f5f5;
+          }
+        }
+      }
+    }
+  }
+
+  > div:nth-child(3) {
+    @media (max-width: 512px) {
+      margin-top: 0;
+
+      > div:first-child {
+        display: none;
+      }
+
+      > div:last-child {
+        flex: 1;
+
+        > button {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

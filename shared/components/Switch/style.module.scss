@@ -1,0 +1,15 @@
+.Switch {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &:not(.Current) {
+      display: none;
+    }
+  }
+}

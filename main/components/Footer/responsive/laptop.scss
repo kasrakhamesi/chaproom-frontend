@@ -1,0 +1,36 @@
+@media only screen and (min-width: 1025px) {
+  .footer {
+    &__table {
+      flex-grow: 0.6;
+
+      h5 {
+        font-size: 16px;
+        padding-bottom: 4px;
+        margin-bottom: 0px;
+        font-weight: 400;
+      }
+      .table {
+        &__callus {
+          grid-column: span 1 / span 1;
+        }
+        &__guide {
+          grid-column: span 1 / span 1;
+        }
+        &__helpfullinks {
+          grid-column: span 2 / span 2;
+        }
+      }
+    }
+    &__symbols {
+      margin-top: 36px;
+      > div:nth-of-type(1) > img {
+        width: 128px;
+        height: 140px;
+      }
+      > div:nth-of-type(2) > img {
+        width: 102px;
+        height: 102px;
+      }
+    }
+  }
+}

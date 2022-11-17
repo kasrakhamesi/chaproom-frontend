@@ -1,0 +1,154 @@
+.DiscountTable {
+  width: 100%;
+  border-spacing: 0;
+
+  > thead {
+    @media (max-width: 800px) {
+      display: none;
+    }
+
+    > tr> th {
+      background-color: #f5f5f5;
+      color: #464646;
+      padding: 5px 15px;
+    }
+  }
+
+  > tbody {
+    color: #9c9c9c;
+    font-size: 12px;
+
+    @media (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    > tr {
+      @media (max-width: 800px) {
+        border-radius: 20px;
+        box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        gap: 10px;
+      }
+
+      > td {
+        text-align: center;
+        padding: 15px;
+
+        @media (max-width: 800px) {
+          padding: 0;
+          text-align: end;
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+
+          &:nth-child(3) {
+            .MobileLabel {
+              display: none;
+            }
+
+            > span:last-child {
+              flex: 1;
+            }
+          }
+        }
+
+        .MobileLabel {
+          flex: 1;
+          text-align: start;
+          white-space: nowrap;
+
+          @media (min-width: 801px) {
+            display: none;
+          }
+        }
+
+        .Code {
+          color: #464646;
+        }
+
+        .DiscountSettings {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          white-space: nowrap;
+
+          > span {
+            display: flex;
+            flex-direction: row;
+            column-gap: 5px;
+          }
+
+          @media (max-width: 800px) {
+            align-items: stretch;
+            gap: 10px;
+            text-align: start;
+
+            > span {
+
+              > span:first-child {
+                flex: 1;
+              }
+            }
+          }
+        }
+
+        .Date {
+          white-space: nowrap;
+          display: flex;
+          flex-direction: column;
+
+          @media (max-width: 800px) {
+            flex-direction: row;
+            column-gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+          }
+        }
+
+        .Active {
+          color: #14cc9c;
+        }
+
+        .Inactive {
+          color: #f20f4b;
+        }
+
+        .OperationButtons {
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+          justify-content: flex-end;
+
+          .ActiveButton {
+            fill: #14cc9c;
+          }
+
+          .InactiveButton {
+            fill: #f20f4b;
+          }
+
+          .EditButton {
+            fill: #0077b5;
+          }
+
+          .DeleteButton {
+            fill: #f20f4b;
+          }
+        }
+      }
+
+      @media (min-width: 801px) {
+        &:not(:first-child) {
+          > td {
+            border-top: 1px solid #cccccc;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+.Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1152px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 50px;
+
+  @media (max-width: 896px) {
+    padding: 0 30px;
+  }
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 897px) {
+    margin-top: -50px;
+  }
+
+  .Title {
+    grid-column: span 2;
+    color: #5800b3;
+    font-size: 50px;
+    margin: 0;
+
+    @media (max-width: 896px) {
+      font-size: 35px;
+    }
+
+    @media (max-width: 512px) {
+      font-size: 22px;
+    }
+  }
+
+  .Form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > h1 {
+      color: #5800b3;
+      margin: 0;
+    }
+
+    .Row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+  
+      @media (max-width: 512px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .NameInputContainer,
+    .PhoneNumberInputContainer,
+    .MessageInputContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      > div:first-child {
+        max-width: unset;
+      }
+    }
+
+    .MessageInputContainer {
+      height: 260px;
+
+      > textarea {
+        height: 100%;
+        resize: none;
+      }
+    }
+
+    .SubmitButtonContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  }
+
+  .Map {
+    > iframe {
+      border: none;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+      border-radius: 20px;
+      width: 100%;
+      height: 320px;
+    }
+  }
+
+  .Details {
+    display: grid;
+    grid-template-columns: 40% 30% 20%;
+    gap: 20px;
+    
+    @media (max-width: 512px) {
+      grid-template-columns: 1fr;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+
+      > h2,
+      > div:first-child > h2 {
+        color: #464646;
+        font-size: 16px;
+        font-weight: 500; // Medium
+        margin: 0;
+      }
+
+      > div:first-child {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+
+        > div:last-child {
+          color: #464646;
+          font-size: 10px;
+          font-weight: 300; // Light
+        }
+      }
+
+      > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+
+        > li {
+          color: #9c9c9c;
+          font-size: 12px;
+          font-weight: 300; // Light
+        }
+      }
+
+      > .SocialMedia {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 5px;
+
+        a {
+          fill: #9c9c9c;
+
+          &:first-child {
+            fill: #2578fa;
+          }
+
+          > svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+}

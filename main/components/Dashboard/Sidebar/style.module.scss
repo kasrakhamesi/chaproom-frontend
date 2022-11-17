@@ -1,0 +1,29 @@
+.Sidebar {
+  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #eeeeee;
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  border-radius: 20px;
+
+  .User {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px;
+
+    .Meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .PhoneNumber {
+        font-size: 10px;
+        font-weight: 300; // Light
+      }
+    }
+  }
+}

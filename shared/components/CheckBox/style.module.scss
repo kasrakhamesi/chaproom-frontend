@@ -1,0 +1,28 @@
+.CheckBox {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: none;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+
+  > svg {
+    width: 16px;
+    height: 16px;
+    fill: #2578fa;
+  }
+
+  &:not([data-checked="true"]) {
+    > svg {
+      display: none;
+    }
+  }
+
+  &:hover {
+    outline: 1px solid #9c9c9c;
+  }
+}

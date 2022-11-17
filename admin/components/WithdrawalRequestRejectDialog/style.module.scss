@@ -1,0 +1,16 @@
+.DialogContent {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  gap: 10px;
+  align-items: center;
+
+  > div:nth-child(even) {
+    display: flex;
+    flex-direction: row;
+    
+    > * {
+      flex: 1;
+      width: unset;
+    }
+  }
+}

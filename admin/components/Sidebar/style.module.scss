@@ -1,0 +1,28 @@
+.Sidebar {
+  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #eeeeee;
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  border-radius: 20px;
+
+  .User {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    .Meta {
+      display: flex;
+      flex-direction: column;
+
+      .UserRole {
+        font-size: 12px;
+        color: #9c9c9c;
+      }
+    }
+  }
+}
