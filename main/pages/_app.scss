@@ -1,5 +1,5 @@
 @import "vazirmatn/Vazirmatn-font-face.css";
-@import "@/shared/assets/scss/iransansx.scss";
+@import "@/shared/assets/scss/iransansWeb.scss";
 
 html,
 body {
@@ -9,13 +9,14 @@ body {
 body {
   margin: 0;
   font-size: 14px;
-  font-family: iransansx, sans-serif;
+  font-family: iransansWeb, sans-serif;
   background-color: #eeeeee;
 
   input,
   textarea,
   button {
-    font-family: iransansx, sans-serif;
+    font-family: iransansWeb, sans-serif;
+    font-weight: 300;
   }
 
   a {
@@ -25,6 +26,10 @@ body {
 
   li {
     list-style-type: none;
+  }
+
+  p {
+    font-weight: 300;
   }
 
   #__next {
