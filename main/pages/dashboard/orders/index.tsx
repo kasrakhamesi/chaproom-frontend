@@ -17,6 +17,8 @@ import DataLoader from "@/shared/components/DataLoader";
 import OrderTable from "@/main/components/Dashboard/OrderTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
+import OrdersIcon from "@/shared/assets/icons/orders.svg";
+import styles from "../style.module.scss";
 
 export default function DashboardOrderList() {
   const router = useRouter();
@@ -51,7 +53,10 @@ export default function DashboardOrderList() {
           end={
             <Link href="/dashboard/orders/new">
               <Button style={{ padding: 0 }}>
-                سفارش جدید <AddIcon />
+                سفارش جدید{" "}
+                <span className={styles.addicon}>
+                  <OrdersIcon />
+                </span>
               </Button>
             </Link>
           }

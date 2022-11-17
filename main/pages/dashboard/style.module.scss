@@ -116,3 +116,19 @@
     }
   }
 }
+
+.addicon {
+  width: 34px;
+  height: 34px;
+  background: rgb(0, 119, 181);
+  border-radius: 25px;
+  box-shadow: -3px -3px 6px rgb(255 255 255 / 86%), 3px 3px 6px rgb(0 0 0 / 16%);
+  display: flex;
+  justify-content: center;
+  > svg {
+    padding-top: 4px;
+    path {
+      stroke: white;
+    }
+  }
+}

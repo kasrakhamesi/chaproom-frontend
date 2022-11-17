@@ -24,7 +24,7 @@ import Avatar from "@/shared/components/Dashboard/Avatar";
 import Wallet from "@/main/components/Dashboard/Wallet";
 import DashboardNavLinks from "@/main/components/Dashboard/NavLinks";
 import BottomButtons from "@/main/components/BottomButtons";
-
+import OrdersIcon from "@/shared/assets/icons/orders.svg";
 export default function DashboardMain() {
   const router = useRouter();
 
@@ -169,7 +169,10 @@ export default function DashboardMain() {
                     style={{ padding: 0 }}
                     onClick={() => router.push("/dashboard/orders/new")}
                   >
-                    سفارش جدید <AddIcon />
+                    سفارش جدید{" "}
+                    <span className={styles.addicon}>
+                      <OrdersIcon />
+                    </span>
                   </Button>
                 }
               />
