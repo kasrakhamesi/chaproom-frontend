@@ -31,7 +31,7 @@
           .WelcomeUser {
             color: #464646;
             font-size: 28px;
-            font-weight: 500; // Medium
+            font-weight: 600; // Medium
           }
 
           .DashboardDescription {
@@ -125,8 +125,8 @@
   box-shadow: -3px -3px 6px rgb(255 255 255 / 86%), 3px 3px 6px rgb(0 0 0 / 16%);
   display: flex;
   justify-content: center;
+  align-items: center;
   > svg {
-    padding-top: 4px;
     path {
       stroke: white;
     }
