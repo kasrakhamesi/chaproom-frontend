@@ -119,7 +119,7 @@
       .Steps {
         width: max-content;
         white-space: nowrap;
-        color: #808080;
+        color: #cccccc;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -130,7 +130,7 @@
 
           @include animation {
             0% {
-              color: #808080;
+              color: #cccccc;
             }
 
             2% {
@@ -142,11 +142,11 @@
             }
 
             25% {
-              color: #808080;
+              color: #cccccc;
             }
 
             100% {
-              color: #808080;
+              color: #cccccc;
             }
           }
 
@@ -384,6 +384,7 @@
       > p {
         margin: 20px 0;
         font-size: 18px;
+        width: 80%;
 
         @media (max-width: 896px) {
           font-size: 16px;
@@ -541,7 +542,7 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
-
+          font-weight: 100;
           @media (max-width: 896px) {
             box-shadow: none;
             padding: 0;
@@ -589,6 +590,10 @@
                 align-items: center;
                 color: #5d5d5d;
                 font-size: 12px;
+                > span:nth-of-type(2) {
+                  font-weight: 300;
+                  font-size: 14px;
+                }
               }
             }
           }
@@ -669,9 +674,12 @@
           margin: 0;
           color: #464646;
           line-height: 1.8;
-          text-align: justify;
+          text-align: center;
           text-align-last: center;
           font-size: 14px;
+          line-height: 35px;
+          width: 90%;
+          font-weight: 200;
 
           @media (max-width: 896px) {
             font-size: 12px;
@@ -777,7 +785,7 @@
       width: 100%;
       max-width: 300px;
       margin: 0 auto;
-
+      font-weight: 100;
       @media (min-width: 897px) {
         transform: translateX(170px);
       }
@@ -890,6 +898,7 @@
 
         > strong {
           font-size: 15px;
+          font-weight: 100;
 
           @media (max-width: 896px) {
             font-size: 13px;
