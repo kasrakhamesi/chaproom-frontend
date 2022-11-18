@@ -34,14 +34,13 @@ export default function DashboardTransactions() {
       <SectionContent>
         <ContentHeader title="کل سوابق مالی" />
         <MobileContentHeader backTo="/dashboard" title="تراکنش ها" />
-        <DataLoader
-          load={() => getTransactions(page)}
-          setData={setData}
-        >
+        <DataLoader load={() => getTransactions(page)} setData={setData}>
           <TransactionTable
             transactions={data.transactions}
             onSeeDetails={(orderId) => {
-              router.push(`/dashboard/orders/${orderId}/details?fromTransactions=true`);
+              router.push(
+                `/dashboard/orders/${orderId}/details?fromTransactions=true`,
+              );
             }}
           />
           {!data.transactions.length && (
