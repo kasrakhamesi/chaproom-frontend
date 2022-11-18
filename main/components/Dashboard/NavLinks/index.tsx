@@ -5,7 +5,7 @@ import NavLink from "@/shared/components/NavLink";
 import NavigateBeforeIcon from "@/shared/assets/icons/navigateBefore.svg";
 import DashboardIcon from "@/shared/assets/icons/dashboard.svg";
 import OrdersIcon from "@/shared/assets/icons/orders.svg";
-import AddressesIcon from "@/main/assets/icons/addresses.svg";
+import AddressesIcon from "@/main/assets/icons/mylocation.svg";
 import TransactionsIcon from "@/main/assets/icons/transactions.svg";
 import MarketingIcon from "@/shared/assets/icons/money.svg";
 import ProfileIcon from "@/shared/assets/icons/profile.svg";
