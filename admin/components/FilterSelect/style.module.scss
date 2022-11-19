@@ -1,0 +1,9 @@
+.FilterSelect {
+  width: 100%;
+  max-width: 100px;
+  font-size: 13px;
+
+  > div {
+    max-width: unset;
+  }
+}

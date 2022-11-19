@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import { ReactElement } from "react";
 import { FormattedNumber } from "react-intl";
 import Layout from "@/main/components/Layout";

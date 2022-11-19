@@ -1,0 +1,26 @@
+.NewCategory {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+
+  > div:first-child {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  > button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    user-select: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #0077b5;
+
+    &:disabled {
+      color: #aaaaaa;
+    }
+  }
+}

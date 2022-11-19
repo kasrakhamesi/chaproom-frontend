@@ -50,7 +50,7 @@ export default function DashboardEditPrintPrices() {
           title="ویرایش کردن تعرفه ها"
           end={
             <Link href="/dashboard/tariffs">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>

@@ -2,5 +2,5 @@
   "i18n-ally.localesPaths": [
     "admin/public/tinymce/langs"
   ],
-  "svg.preview.background": "custom"
+  "svg.preview.background": "editor"
 }

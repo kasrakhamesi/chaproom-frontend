@@ -27,8 +27,9 @@ import DataLoader from "@/shared/components/DataLoader";
 import TextArea from "@/shared/components/TextArea";
 import BottomActions from "@/shared/components/Dashboard/BottomActions";
 import UploadArea from "@/main/components/Dashboard/UploadArea";
-import Radio from "@/shared/components/Radio";
 import ProgressBar from "@/shared/components/ProgressBar";
+import Radio from "@/shared/components/Radio";
+import InfoTooltip from "@/shared/components/InfoTooltip";
 import IconButton from "@/shared/components/IconButton";
 import SmallLoader from "@/shared/components/SmallLoader";
 
@@ -484,6 +485,10 @@ export default function PrintFolderForm({
                               }
                             />
                             همه فایل ها با هم
+                            <InfoTooltip
+                              message="برگه ها به ترتیب نام گذاری فایل ها مرتب شده و در یک جلد صحافی میشود"
+                              iconSize={20}
+                            />
                           </div>
                           <div>
                             <Radio

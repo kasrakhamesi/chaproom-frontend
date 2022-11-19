@@ -189,7 +189,7 @@ export interface Post {
   slug: string;
   pageTitle: string;
   title: string;
-  categories: { id: number; name: string }[];
+  categories: PostCategory[];
   keywords: string;
   metaDescription: string;
   thumbnailUrl: string | null;
@@ -198,6 +198,12 @@ export interface Post {
   body: string;
   createDate: string;
   lastUpdateDate: string;
+}
+
+export interface PostCategory {
+  id: number;
+  name: string;
+  countOfBlogs: number;
 }
 
 export interface DedicatedLinkReport {

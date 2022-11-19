@@ -20,6 +20,7 @@ import ExpandMoreIcon from "@/shared/assets/icons/expandMore.svg";
 import TextInput from "@/shared/components/TextInput";
 import SmallLoader from "@/shared/components/SmallLoader";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Button from "@/shared/components/Button";
 
 type UserSelectProps =
   | {
@@ -45,11 +46,6 @@ export default function UserSelect({
   const listUsersRef = useRef<User[]>([]);
   const [search, setSearch] = useState("");
   const loaderRef = useRef<HTMLDivElement | null>(null);
-
-  const { users, hasMore, loadMore, retry, loading, error } =
-    useUsersSearch(search);
-  listUsersRef.current = users;
-  useEffect(loadMore, []);
 
   const [open, setOpen] = useState(false);
   const selectedIndex = listUsersRef.current.includes(value!)
@@ -107,6 +103,15 @@ export default function UserSelect({
       });
     }
   }, [open, activeIndex, pointer]);
+
+  const { users, page, hasMore, loadMore, retry, loading, error } =
+    useUsersSearch(search);
+  listUsersRef.current = users;
+  useEffect(() => {
+    if (open && page === 0) {
+      loadMore();
+    }
+  }, [open]);
 
   const selectClassName = [styles.Select];
   if (readOnly) {
@@ -171,19 +176,20 @@ export default function UserSelect({
             </div>
             <div
               onScroll={(event) => {
-                if (loading || !hasMore) return;
+                if (loading || error || !hasMore) return;
 
                 const itemsContainer = event.target as HTMLDivElement;
                 if (
                   itemsContainer.scrollHeight -
                     (itemsContainer.clientHeight + itemsContainer.scrollTop) -
-                    (loaderRef.current?.clientHeight || 0) <= 0
+                    (loaderRef.current?.clientHeight || 0) <=
+                  0
                 ) {
                   loadMore();
                 }
               }}
             >
-              {listUsersRef.current.map((user, index) => (
+              {users.map((user, index) => (
                 <div
                   key={user.id}
                   role="option"
@@ -213,7 +219,12 @@ export default function UserSelect({
               ))}
               {hasMore && (
                 <div className={styles.Loader} ref={loaderRef}>
-                  <SmallLoader />
+                  {loading && <SmallLoader />}
+                  {error && (
+                    <Button varient="filled" onClick={retry}>
+                      سعی مجدد
+                    </Button>
+                  )}
                 </div>
               )}
               {!loading && !hasMore && !users.length && (
@@ -247,6 +258,7 @@ function useUsersSearch(searchQuery: string) {
 
     const abortController = new AbortController();
 
+    setError(false);
     setLoading(true);
     request({
       method: "GET",
@@ -260,7 +272,7 @@ function useUsersSearch(searchQuery: string) {
     })
       .then(({ data }) => {
         const ids: string[] = [];
-        setUsers(
+        setUsers((users) =>
           [...users, ...data.users].filter((user) => {
             if (ids.includes(user.id)) return false;
             ids.push(user.id);
@@ -271,6 +283,7 @@ function useUsersSearch(searchQuery: string) {
       })
       .catch((error) => {
         if (axios.isCancel(error)) return;
+        setError(true);
       })
       .finally(() => setLoading(false));
 
@@ -284,12 +297,12 @@ function useUsersSearch(searchQuery: string) {
   }
 
   function retry() {
-    setError(false);
     fetchUsers();
   }
 
   return {
     users,
+    page,
     hasMore,
     loadMore,
     retry,

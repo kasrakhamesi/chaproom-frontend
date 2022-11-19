@@ -32,7 +32,7 @@
         margin-bottom: 50px;
         color: #5800b3;
         font-size: 48px;
-
+    
         @media (max-width: 896px) {
           text-align: center;
           font-size: 32px;
@@ -50,7 +50,7 @@
         line-height: 1.8;
         text-align: justify;
         font-size: 18px;
-
+    
         @media (max-width: 896px) {
           text-align-last: center;
           font-size: 16px;
@@ -66,7 +66,7 @@
       display: flex;
 
       @media (max-width: 896px) {
-        grid-row: 1;
+        grid-row: 1
       }
 
       > svg {
@@ -75,7 +75,7 @@
       }
     }
   }
-
+    
   .ReadMore {
     grid-column: span 3;
     display: flex;
@@ -124,13 +124,7 @@
         color: #464646;
         line-height: 1.8;
         font-size: 16px;
-        > ul {
-          font-weight: 100;
-          > li {
-            list-style-type: disc;
-          }
-        }
-
+  
         @media (max-width: 512px) {
           font-size: 14px;
         }
@@ -140,7 +134,7 @@
         display: flex;
 
         @media (max-width: 896px) {
-          grid-row: 1;
+          grid-row: 1
         }
 
         > svg {
@@ -173,16 +167,17 @@
         column-gap: 10px;
       }
 
+
       @media (min-width: 513px) {
         &::after {
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           top: 27px;
           left: 30px;
           right: 30px;
           z-index: -1;
-          border-bottom: 6px dashed #2578fa;
+          border-bottom: 6px dashed #2578FA;
         }
       }
 
@@ -221,8 +216,7 @@
         > div:last-child {
           color: #464646;
           font-size: 16px;
-          font-weight: 300;
-
+    
           @media (max-width: 512px) {
             font-size: 14px;
           }

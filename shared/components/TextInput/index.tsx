@@ -14,7 +14,7 @@ interface TextInputProps {
   height?: number;
 }
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>(
   (
     {
       prefix,

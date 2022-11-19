@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import ErrorIcon from "@/admin/assets/icons/info.svg";
 
 interface ErrorListProps {

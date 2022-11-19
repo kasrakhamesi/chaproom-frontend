@@ -26,7 +26,7 @@ export default function DashboardFinancialRecordsTotalIncome() {
           title="درامد کل"
           end={
             <Link href="/dashboard/financial-records">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 بازگشت <ArrowBackIcon />
               </Button>
             </Link>

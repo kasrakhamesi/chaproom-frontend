@@ -53,7 +53,11 @@ export default function DiscountTable({
                 </span>
               ) : discount.phoneNumber !== null ? (
                 <span>
-                  <FormattedNumber value={parseInt(discount.phoneNumber)} />
+                  <FormattedNumber
+                    value={parseInt(discount.phoneNumber)}
+                    useGrouping={false}
+                    minimumIntegerDigits={11}
+                  />
                 </span>
               ) : (
                 <span>عمومی</span>

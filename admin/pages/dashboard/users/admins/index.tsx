@@ -15,6 +15,8 @@ import DataLoader from "@/shared/components/DataLoader";
 import IconButton from "@/shared/components/IconButton";
 import ButtonList from "@/shared/components/ButtonList";
 import Button from "@/shared/components/Button";
+import Controls from "@/admin/components/Controls";
+import SearchInput from "@/admin/components/SearchInput";
 import AdminTable from "@/admin/components/AdminTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
@@ -57,10 +59,15 @@ export default function DashboardAdminList() {
           end={
             <ButtonList>
               <Link href="/dashboard/users">
-                <Button varient="filled">کاربران</Button>
+                <Button
+                  varient="content-title-outlined"
+                  style={{ minWidth: 130 }}
+                >
+                  کاربران
+                </Button>
               </Link>
               <Link href="/dashboard/users/admins/new">
-                <Button style={{ padding: 0 }}>
+                <Button varient="content-title-none">
                   افزودن ادمین <AddIcon />
                 </Button>
               </Link>
@@ -76,6 +83,15 @@ export default function DashboardAdminList() {
                 <AddIcon />
               </IconButton>
             </Link>
+          }
+        />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
+              value={search}
+              setValue={setSearch}
+            />
           }
         />
         <DataLoader

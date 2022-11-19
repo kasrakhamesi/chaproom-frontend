@@ -18,11 +18,147 @@
       flex-direction: column;
       gap: 15px;
 
+      .ContentHeader {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+
+          &:first-child {
+            flex: 1;
+
+            > div:first-child {
+              color: #5e5e5e;
+              font-size: 16px;
+              font-weight: bold;
+            }
+          }
+          
+          &:last-child {
+            > div {
+              color: #0377a5;
+              font-size: 12px;
+              display: flex;
+              flex-direction: row;
+              gap: 5px;
+
+              &.UsersOrdersSeeAll {
+                position: relative;
+                text-decoration: underline;
+                user-select: none;
+
+                &:not(:hover) {
+                  > .UsersOrdersSeeAllTooltip {
+                    display: none;
+                  }
+                }
+
+                > .UsersOrdersSeeAllTooltip {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  transform: translateY(-100%);
+                  padding: 15px 20px;
+                  background-color: #f5f5f5;
+                  border-radius: 20px;
+                  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+                  width: 180px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  color: #5d5d5d;
+                  font-size: 12px;
+
+                  > div {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 5px;
+
+                    > div:first-child {
+                      flex: 1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
       > div:nth-child(1),
       > div:nth-child(2) {
         display: flex;
         flex-direction: row;
         gap: 15px;
+        min-height: 283px;
+
+        .SalesTooltip,
+        .UsersTooltip,
+        .OrdersTooltip,
+        .UsersOrdersTooltip {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          transform: translate(-50%, -100%);
+
+          > div {
+            background: #ffffff;
+            border: 1px solid #9c9c9c;
+            padding: 6px 8px;
+            color: #9c9c9c;
+            font-size: 10px;
+            text-align: center;
+          }
+
+          &::after {
+            display: block;
+            content: '';
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent;
+            border-bottom-width: 0;
+            border-top-color: #9c9c9c;
+          }
+        }
+
+        .SalesTooltip {
+          > div {
+            > div {
+              display: flex;
+              flex-direction: row;
+              gap: 5px;
+
+              &:first-child {
+                > div:first-child {
+                  color: #5e5e5e;
+                }
+              }
+
+              &:last-child {
+                > div:first-child {
+                  color: #f20f4b;
+                }
+              }
+
+              > div {
+                display: flex;
+                flex-direction: row;
+                gap: 3px;
+
+                > div:last-child {
+                  color: #9c9c9c;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

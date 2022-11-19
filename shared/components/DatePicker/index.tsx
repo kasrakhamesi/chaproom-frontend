@@ -1,5 +1,11 @@
-import styles from "./styles.module.scss";
-import { InputHTMLAttributes, useEffect, useMemo, useState } from "react";
+import styles from "./style.module.scss";
+import {
+  InputHTMLAttributes,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   autoUpdate,
   flip,
@@ -19,14 +25,17 @@ import NextIcon from "@/shared/assets/icons/navigateNext.svg";
 import TextInput from "@/shared/components/TextInput";
 
 interface DatePickerProps {
-  min?: Moment;
-  max?: Moment;
+  min?: Date | Moment;
+  max?: Date | Moment;
   value: Date | Moment | null;
   onChange: (newValue: Moment) => void;
   inputFormat?: string;
   inputVarient?: "outlined" | "shadow";
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
   setIsValid?: (newValue: boolean) => void;
+  inputHeight?: number;
+  inputPrefix?: ReactNode;
+  inputSuffix?: ReactNode;
 }
 
 export default function DatePicker({
@@ -38,13 +47,29 @@ export default function DatePicker({
   inputVarient,
   inputProps = { placeholder: "1400/01/01" },
   setIsValid,
+  inputPrefix,
+  inputSuffix,
+  inputHeight,
 }: DatePickerProps) {
   const momentValue = useMemo(
     () => (moment.isMoment(value) ? value : value ? moment(value) : null),
     [value]
   );
+  const momentMin = useMemo(
+    () => (moment.isMoment(min) ? min : min ? moment(min) : undefined),
+    [min]
+  );
+  const momentMax = useMemo(
+    () => (moment.isMoment(max) ? max : max ? moment(max) : undefined),
+    [max]
+  );
   const [inputValue, setInputValue] = useState(
     momentValue?.format(inputFormat) || ""
+  );
+
+  useEffect(
+    () => setInputValue(momentValue?.format(inputFormat) || ""),
+    [momentValue]
   );
 
   const [open, setOpen] = useState(false);
@@ -81,6 +106,7 @@ export default function DatePicker({
         ref={reference}
         varient={inputVarient}
         value={inputValue}
+        inputProps={inputProps}
         onChange={(newValue) => {
           setInputValue(newValue);
           try {
@@ -90,7 +116,9 @@ export default function DatePicker({
           } catch {}
         }}
         boxProps={getReferenceProps()}
-        inputProps={inputProps}
+        prefix={inputPrefix}
+        suffix={inputSuffix}
+        height={inputHeight}
       />
       {open && (
         <div
@@ -103,8 +131,8 @@ export default function DatePicker({
           {...getFloatingProps()}
         >
           <Calendar
-            min={min}
-            max={max}
+            min={momentMin}
+            max={momentMax}
             value={momentValue}
             onChange={(newValue) => {
               onChange(newValue);

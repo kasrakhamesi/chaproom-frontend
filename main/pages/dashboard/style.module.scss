@@ -31,7 +31,7 @@
           .WelcomeUser {
             color: #464646;
             font-size: 28px;
-            font-weight: 600; // Medium
+            font-weight: 500; // Medium
           }
 
           .DashboardDescription {
@@ -114,21 +114,11 @@
       justify-content: center;
       align-items: center;
     }
-  }
-}
 
-.addicon {
-  width: 34px;
-  height: 34px;
-  background: rgb(0, 119, 181);
-  border-radius: 25px;
-  box-shadow: -3px -3px 6px rgb(255 255 255 / 86%), 3px 3px 6px rgb(0 0 0 / 16%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  > svg {
-    path {
-      stroke: white;
+    .BottomButtonsPlaceholder {
+      @media (min-width: 897px) {
+        display: none;
+      }
     }
   }
 }

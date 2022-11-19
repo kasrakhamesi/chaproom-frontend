@@ -5,11 +5,14 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   varient?: "filled" | "outlined" | "none";
   size?: number;
   onClick?: () => void;
-  disabled?: boolean;
+  loading?: boolean;
 }
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ varient = "none", size = 54, ...props }: IconButtonProps, ref) => {
+  (
+    { varient = "none", size = 54, loading = false, ...props }: IconButtonProps,
+    ref
+  ) => {
     const className = [styles.IconButton];
     switch (varient) {
       case "outlined":
@@ -21,6 +24,9 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       case "none":
         className.push(styles.None);
         break;
+    }
+    if (loading) {
+      className.push(styles.Loading);
     }
 
     return (

@@ -30,7 +30,7 @@ export default function DashboardNewAddresse() {
           title="افزودن آدرس جدید"
           end={
             <Link href="/dashboard/addresses">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>

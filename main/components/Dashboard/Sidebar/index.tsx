@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 import { useState } from "react";
 import { FormattedNumber } from "react-intl";
-import { getProfile } from "@/main/api";
+import { getDashboard } from "@/main/api";
 import DataLoader from "@/shared/components/DataLoader";
 import DashboardNavLinks from "@/main/components/Dashboard/NavLinks";
 import Wallet from "@/main/components/Dashboard/Wallet";
@@ -24,7 +24,7 @@ export default function DashboardSidebar() {
 
   return (
     <div className={styles.Sidebar}>
-      <DataLoader load={() => getProfile()} setData={setData}>
+      <DataLoader load={() => getDashboard()} setData={setData}>
         <Wallet
           marketingBalance={data.marketingBalance}
           walletBalance={data.walletBalance}

@@ -118,11 +118,13 @@ export default function ContactUs() {
             </div>
             <ul>
               <li>info@chaproom.com</li>
-              <li>
+              <li className={styles.PhoneNumber}>
+                +<FormattedNumber value={98} />{" "}
                 <FormattedNumber value={21} minimumIntegerDigits={3} />-
                 <FormattedNumber value={91090772} useGrouping={false} />
               </li>
-              <li>
+              <li className={styles.PhoneNumber}>
+                +<FormattedNumber value={98} />{" "}
                 <FormattedNumber value={31} minimumIntegerDigits={3} />-
                 <FormattedNumber value={91090414} useGrouping={false} />
               </li>

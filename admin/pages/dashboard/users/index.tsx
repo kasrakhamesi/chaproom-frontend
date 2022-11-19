@@ -10,6 +10,7 @@ import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
 import SectionContent from "@/shared/components/Dashboard/SectionContent";
 import ContentHeader from "@/shared/components/Dashboard/ContentHeader";
 import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHeader";
+import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import IconButton from "@/shared/components/IconButton";
 import Button from "@/shared/components/Button";
@@ -18,11 +19,11 @@ import UserTable from "@/admin/components/UserTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
 import UserMarketingDetailsDialog from "@/admin/components/UserMarketingDetailsDialog";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
+import Controls from "@/admin/components/Controls";
 
 export default function DashboardUserList() {
   const router = useRouter();
 
-  const [showAdminUsers, setShowAdminUsers] = useState<true | null>(null);
   const [showUserMarketingDetails, setShowUserMarketingDetails] = useState<
     number | null
   >(null);
@@ -63,10 +64,15 @@ export default function DashboardUserList() {
           end={
             <ButtonList>
               <Link href="/dashboard/users/admins">
-                <Button varient="filled">ادمین ها</Button>
+                <Button
+                  varient="content-title-outlined"
+                  style={{ minWidth: 130 }}
+                >
+                  ادمین ها
+                </Button>
               </Link>
               <Link href="/dashboard/users/new">
-                <Button style={{ padding: 0 }}>
+                <Button varient="content-title-none">
                   افزودن کاربر <AddIcon />
                 </Button>
               </Link>
@@ -82,6 +88,15 @@ export default function DashboardUserList() {
                 <AddIcon />
               </IconButton>
             </Link>
+          }
+        />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
+              value={search}
+              setValue={setSearch}
+            />
           }
         />
         <DataLoader

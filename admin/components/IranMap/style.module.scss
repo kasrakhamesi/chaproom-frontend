@@ -16,4 +16,45 @@
       }
     }
   }
+
+  .Tooltip {
+    background: #ffffff;
+    border: 1px solid #9C9C9C;
+    padding: 10px;
+    transform: translate(-50%, -110%);
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 10px;
+
+    > div:first-child {
+      color: #5e5e5e;
+    }
+    
+    > div:not(:first-child) {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      &:last-child {
+        > div:first-child,
+        > div:last-child {
+          color: #0077b5;
+        }
+      }
+
+      > div:first-child {
+        flex: 1;
+        color: #5e5e5e;
+      }
+
+      > div:last-child {
+        color: #9c9c9c;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+      }
+    }
+  }
 }

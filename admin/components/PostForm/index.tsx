@@ -1,17 +1,21 @@
 import styles from "./style.module.scss";
 import { useRef, useState } from "react";
+import { PostCategory } from "@/shared/types";
 import TextArea from "@/shared/components/TextArea";
 import TextInput from "@/shared/components/TextInput";
-import Button from "@/shared/components/Button";
-import BottomActions from "@/shared/components/Dashboard/BottomActions";
+import InfoTooltip from "@/shared/components/InfoTooltip";
 import Radio from "@/shared/components/Radio";
 import Editor from "@/admin/components/PostForm/Editor";
+import Button from "@/shared/components/Button";
+import BottomActions from "@/shared/components/Dashboard/BottomActions";
+import PostCategoryMultiSelect from "@/admin/components/PostCategoryMultiSelect";
+import PostThumbnailUpload from "@/admin/components/PostThumbnailUpload";
 
 interface PostFormData {
   slug: string;
   pageTitle: string;
   title: string;
-  categories: { id: number; name: string }[];
+  categories: PostCategory[];
   keywords: string;
   metaDescription: string;
   thumbnailUrl: string | null;
@@ -73,12 +77,35 @@ export default function PostForm({ defaultValues, onSave }: PostFormProps) {
               onChange={setSlug}
             />
           </div>
+          <div className={styles.Label}>دسته بندی ها:</div>
+          <div className={styles.Input}>
+            <PostCategoryMultiSelect
+              value={categories}
+              onSelectCategory={(category) =>
+                setCategories([...categories, category])
+              }
+              onUnSelectCategory={(category) =>
+                setCategories(
+                  categories.filter((item) => item.id !== category.id)
+                )
+              }
+              placeholder="دسته بندی ها"
+            />
+          </div>
           <div className={styles.Label}>کلمات کلیدی:</div>
           <div className={styles.Input}>
             <TextInput
               inputProps={{ placeholder: "کلمات کلیدی" }}
               value={keywords}
               onChange={setKeywords}
+              suffix={
+                <InfoTooltip message="کلمات کلیدی را با استفاده از کاما از هم جدا کنید" />
+              }
+              boxProps={{
+                style: {
+                  paddingLeft: 10,
+                },
+              }}
             />
           </div>
           <div className={styles.Label}>توضیحات متا:</div>
@@ -94,10 +121,9 @@ export default function PostForm({ defaultValues, onSave }: PostFormProps) {
         <div className={styles.Form}>
           <div className={styles.Label}>تصویر:</div>
           <div className={styles.Input}>
-            <TextInput
-              inputProps={{ placeholder: "تصویر" }}
-              value={thumbnailAlt}
-              onChange={setThumbnailAlt}
+            <PostThumbnailUpload
+              value={thumbnailUrl}
+              onChange={setThumbnailUrl}
             />
           </div>
           <div className={styles.Label}>تصویر Alt:</div>

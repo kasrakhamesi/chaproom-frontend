@@ -21,8 +21,10 @@ export default function SwitchButtons({
           key={option.id}
           data-current={value === option.id}
           onClick={() => {
-            if (nullable && value === option.id) {
-              onChange(null);
+            if (value === option.id) {
+              if (nullable) {
+                onChange(null);
+              }
               return;
             }
 

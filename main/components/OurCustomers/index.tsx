@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import { useRef, useEffect } from "react";
 import CustomerList from "@/main/assets/json/customers.json";
 
