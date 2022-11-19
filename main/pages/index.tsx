@@ -163,9 +163,9 @@ export default function Home() {
         <div>
           <h1>هدیه اولین سفارش</h1>
           <p>
-            با ثبت نام در چاپ روم{" "}
-            <span className={styles.Highlight}>30 صفحه پرینت رایگان</span> در
-            اولین سفارش هدیه بگیرید.
+            با ثبت اولین سفارش در چاپ روم{" "}
+            <span className={styles.Highlight}>30 صفحه پرینت رایگان </span>
+            هدیه بگیرید.
           </p>
           <Button varient="gradient">دریافت کد هدیه</Button>
         </div>
@@ -240,7 +240,7 @@ export default function Home() {
                     inputProps={{
                       type: "number",
                       placeholder: "تیراژ (حداقل 50 نسخه)",
-                    }}     
+                    }}
                     height={48}
                     varient="shadow-without-bg"
                   />

@@ -64,12 +64,13 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      
+
       > div {
         flex: 1;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-weight: 400;
 
         &.Placeholder {
           color: #9c9c9c;
@@ -115,7 +116,7 @@
       flex-direction: row;
       align-items: center;
       cursor: pointer;
-      
+
       > div {
         white-space: nowrap;
         text-overflow: ellipsis;

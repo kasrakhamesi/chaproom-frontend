@@ -10,7 +10,7 @@
   @media (max-width: 896px) {
     padding: 0 30px;
   }
-  
+
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
@@ -24,7 +24,8 @@
     color: #5800b3;
     font-size: 50px;
     margin: 0;
-  
+    font-weight: 900;
+
     @media (max-width: 1024px) {
       grid-column: span 1;
     }
@@ -52,7 +53,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-  
+
       @media (max-width: 512px) {
         grid-template-columns: 1fr;
       }
@@ -100,7 +101,7 @@
     display: grid;
     grid-template-columns: 40% 30% 20%;
     gap: 20px;
-    
+
     @media (max-width: 512px) {
       grid-template-columns: 1fr;
     }

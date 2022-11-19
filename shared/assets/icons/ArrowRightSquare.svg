@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <filter id="Rectangle_833" x="6" y="6" width="52" height="52" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_870" x="0" y="0" width="52" height="52" filterUnits="userSpaceOnUse">
+      <feOffset dx="-3" dy="-3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square" transform="translate(46 12) rotate(90)">
+    <g id="Component_30_492" data-name="Component 30 – 492" transform="translate(0 34) rotate(-90)">
+      <g transform="matrix(1, 0, 0, 1, -12, -12)" filter="url(#Rectangle_833)">
+        <rect id="Rectangle_833-2" data-name="Rectangle 833" width="34" height="34" rx="17" transform="translate(12 12)" fill="#efeeee"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -12, -12)" filter="url(#Rectangle_870)">
+        <rect id="Rectangle_870-2" data-name="Rectangle 870" width="34" height="34" rx="17" transform="translate(12 12)" fill="#0077b5"/>
+      </g>
+    </g>
+    <path id="Icon_material-my-location" data-name="Icon material-my-location" d="M10.529,7.246a3.283,3.283,0,1,0,3.283,3.283A3.282,3.282,0,0,0,10.529,7.246Zm7.338,2.462A7.383,7.383,0,0,0,11.35,3.191V1.5H9.708V3.191A7.383,7.383,0,0,0,3.191,9.708H1.5V11.35H3.191a7.383,7.383,0,0,0,6.517,6.517v1.691H11.35V17.867a7.383,7.383,0,0,0,6.517-6.517h1.691V9.708Zm-7.338,6.567a5.746,5.746,0,1,1,5.746-5.746A5.742,5.742,0,0,1,10.529,16.275Z" transform="translate(6.808 27.529) rotate(-90)" fill="#fff"/>
+  </g>
+</svg>
