@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { Order, Tariffs } from "@/shared/types";
 import { cancelOrder, getDashboard } from "@/main/api";
-import AddIcon from "@/shared/assets/icons/add.svg";
+import AddIcon from "@/shared/assets/icons/order.svg";
 import DashboardLayout from "@/main/components/Dashboard/Layout";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
 import SectionContent from "@/shared/components/Dashboard/SectionContent";
@@ -165,7 +165,8 @@ export default function DashboardMain() {
               <ContentHeader
                 title="سفارش های در حال انجام من"
                 end={
-                  <Button varient="content-title-none"
+                  <Button
+                    varient="content-title-none"
                     onClick={() => router.push("/dashboard/orders/new")}
                   >
                     سفارش جدید <AddIcon />
@@ -175,7 +176,9 @@ export default function DashboardMain() {
               <OrderTable
                 orders={data!.inProgressOrders}
                 onSeeOrderDetails={(orderId) =>
-                  router.push(`/dashboard/orders/${orderId}/details?fromDashboard=true`)
+                  router.push(
+                    `/dashboard/orders/${orderId}/details?fromDashboard=true`,
+                  )
                 }
                 onCancelOrder={setPendingOrderCancelRequest}
               />

@@ -42,7 +42,7 @@ export default function PrintPriceCalculator({
       printSize,
       printSide,
       countOfPages,
-    }
+    },
   );
 
   let pagePrice = null;

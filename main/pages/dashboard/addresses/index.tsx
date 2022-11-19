@@ -5,7 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { deleteAddress, getAddresses } from "@/main/api";
 import { Address } from "@/shared/types";
-import AddIcon from "@/shared/assets/icons/add.svg";
+import AddIcon from "@/shared/assets/icons/ArrowRightSquare.svg";
 import DashboardLayout from "@/main/components/Dashboard/Layout";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
 import SectionContent from "@/shared/components/Dashboard/SectionContent";
@@ -49,7 +49,10 @@ export default function DashboardAddresseList() {
           end={
             <Link href="/dashboard/addresses/new">
               <Button varient="content-title-none">
-                افزودن آدرس <AddIcon />
+                افزودن آدرس{" "}
+                <span>
+                  <AddIcon />
+                </span>
               </Button>
             </Link>
           }

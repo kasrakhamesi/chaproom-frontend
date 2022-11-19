@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <filter id="Rectangle_833" x="6" y="6" width="52" height="52" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_870" x="0" y="0" width="52" height="52" filterUnits="userSpaceOnUse">
+      <feOffset dx="-3" dy="-3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Arrow_-_Right_Square" data-name="Arrow - Right Square" transform="translate(46 12) rotate(90)">
+    <g id="Component_30_494" data-name="Component 30 – 494" transform="translate(0 34) rotate(-90)">
+      <g transform="matrix(1, 0, 0, 1, -12, -12)" filter="url(#Rectangle_833)">
+        <rect id="Rectangle_833-2" data-name="Rectangle 833" width="34" height="34" rx="17" transform="translate(12 12)" fill="#efeeee"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -12, -12)" filter="url(#Rectangle_870)">
+        <rect id="Rectangle_870-2" data-name="Rectangle 870" width="34" height="34" rx="17" transform="translate(12 12)" fill="#0077b5"/>
+      </g>
+    </g>
+    <path id="Icon_feather-paperclip" data-name="Icon feather-paperclip" d="M18.992,10.03l-7.56,7.56a4.938,4.938,0,1,1-6.984-6.984l7.56-7.56A3.292,3.292,0,0,1,16.664,7.7L9.1,15.261a1.646,1.646,0,0,1-2.328-2.328l6.984-6.976" transform="translate(5.918 27.997) rotate(-90)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

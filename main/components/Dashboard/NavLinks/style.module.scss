@@ -11,6 +11,12 @@
   fill: #5e5e5e;
   cursor: pointer;
 
+  > span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   &:global(.active) {
     color: #0077b5;
     fill: #0077b5;
@@ -43,4 +49,26 @@
   padding-bottom: 10px;
   border-bottom: 1px solid #cccccc;
   margin-bottom: 10px;
+}
+
+.NavLink:global(.active):nth-of-type(1),
+.NavLink:global(.active):nth-of-type(2),
+.NavLink:global(.active):nth-of-type(7) {
+  > span {
+    path {
+      stroke: #0077b5 !important;
+    }
+    rect {
+      stroke: #0077b5 !important;
+    }
+  }
+}
+
+.NavLink:global(.active):nth-of-type(6),
+.NavLink:global(.active):nth-of-type(3) {
+  > span {
+    path {
+      fill: #0077b5 !important;
+    }
+  }
 }
