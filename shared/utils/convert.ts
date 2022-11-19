@@ -71,6 +71,13 @@ export function convert(
   return result;
 }
 
-export function convertDate(value: string | Date, direction: "a2b" | "b2a") {
-  return direction === "a2b" ? new Date(value) : (value as Date).toISOString();
+export function convertDate(value: any, direction: "a2b" | "b2a") {
+  if (value === null) return value;
+  return direction === "a2b"
+    ? typeof value === "string"
+      ? new Date(value)
+      : value
+    : value.toISOString
+    ? value.toISOString()
+    : value;
 }

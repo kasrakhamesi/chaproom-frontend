@@ -36,7 +36,7 @@ export default function DashboardFinancialRecordEdit() {
           title="ویرایش کردن سند"
           end={
             <Link href="/dashboard/financial-records">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>
@@ -56,7 +56,10 @@ export default function DashboardFinancialRecordEdit() {
           <FinancialRecordForm
             defaultValues={data}
             onSave={(financialRecordData) => {
-              updateFinancialRecord(financialRecordId, financialRecordData)
+              updateFinancialRecord(financialRecordId, {
+                ...financialRecordData,
+                userId: financialRecordData.user.id,
+              })
                 .then((message) => {
                   toast.success(message);
                   router.push("/dashboard/financial-records");

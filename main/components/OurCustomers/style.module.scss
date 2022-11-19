@@ -1,0 +1,41 @@
+.OurCustomers {
+  background-image: url("~@/main/assets/images/customersBG.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 1389px 243px;
+  width: 100%;
+  min-height: 243px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > h1 {
+    margin: 0;
+    color: #5800b3;
+    font-size: 30px;
+    font-weight: 500; // Medium
+    margin: 15px 0;
+  }
+
+  > div {
+    width: 100%;
+    max-width: 1365px;
+    overflow: hidden;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      transition: transform 0.3s;
+
+      > div {
+        display: flex;
+
+        > img {
+          height: 90px;
+          width: auto;
+        }
+      }
+    }
+  }
+}

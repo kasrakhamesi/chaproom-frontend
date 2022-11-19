@@ -11,6 +11,8 @@ import BottomActions from "@/shared/components/Dashboard/BottomActions";
 import Button from "@/shared/components/Button";
 
 interface PrintFoldersStageProps {
+  data: PrintFolder[];
+  setData: (newValue: PrintFolder[]) => void;
   actions: {
     new: () => void;
     edit: (printFolderId: number) => void;
@@ -18,9 +20,11 @@ interface PrintFoldersStageProps {
   };
 }
 
-export default function PrintFoldersStage({ actions }: PrintFoldersStageProps) {
-  const [data, setData] = useState<PrintFolder[]>([]);
-
+export default function PrintFoldersStage({
+  data,
+  setData,
+  actions,
+}: PrintFoldersStageProps) {
   const [pendingPrintFolderDeleteRequest, setPendingPrintFolderDeleteRequest] =
     useState<number | null>(null);
 

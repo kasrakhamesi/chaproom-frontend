@@ -12,6 +12,8 @@ import BottomActions from "@/shared/components/Dashboard/BottomActions";
 import Button from "@/shared/components/Button";
 
 interface AddressStageProps {
+  data: Address[];
+  setData: (newValue: Address[]) => void;
   selectedAddressId: number | null;
   setSelectedAddressId: (addressId: number | null) => void;
   actions: {
@@ -23,12 +25,12 @@ interface AddressStageProps {
 }
 
 export default function AddressStage({
+  data,
+  setData,
   selectedAddressId,
   setSelectedAddressId,
   actions,
 }: AddressStageProps) {
-  const [data, setData] = useState<Address[]>([]);
-
   const [pendingAddressDeleteRequest, setPendingAddressDeleteRequest] =
     useState<number | null>(null);
 

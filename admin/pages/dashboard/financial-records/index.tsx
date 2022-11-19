@@ -1,5 +1,6 @@
 import { ReactElement, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 import Head from "next/head";
 import Link from "next/link";
 import { FinancialRecord } from "@/shared/types";
@@ -13,11 +14,15 @@ import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHead
 import IconButton from "@/shared/components/IconButton";
 import ButtonList from "@/shared/components/ButtonList";
 import Button from "@/shared/components/Button";
+import Controls from "@/admin/components/Controls";
+import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import FinancialRecordTable from "@/admin/components/FinancialRecordTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
-import toast from "react-hot-toast";
+import Filters from "@/admin/components/Filters";
+import FilterSelect from "@/admin/components/FilterSelect";
+import FilterDate from "@/admin/components/FilterDate";
 
 export default function DashboardFinancialRecordList() {
   const router = useRouter();
@@ -31,6 +36,11 @@ export default function DashboardFinancialRecordList() {
   });
 
   const [search, setSearch] = useState("");
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [paymentStatus, setPaymentStatus] = useState<
+    "successful" | "unsuccessful" | null
+  >(null);
   const [page, setPage] = useState(1);
 
   const [
@@ -56,10 +66,15 @@ export default function DashboardFinancialRecordList() {
           end={
             <ButtonList>
               <Link href="/dashboard/financial-records/total-income">
-                <Button varient="filled">کل درآمد</Button>
+                <Button
+                  varient="content-title-outlined"
+                  style={{ minWidth: 130 }}
+                >
+                  کل درآمد
+                </Button>
               </Link>
               <Link href="/dashboard/financial-records/new">
-                <Button style={{ padding: 0 }}>
+                <Button varient="content-title-none">
                   ایجاد سند <AddIcon />
                 </Button>
               </Link>
@@ -77,9 +92,56 @@ export default function DashboardFinancialRecordList() {
             </Link>
           }
         />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
+              value={search}
+              setValue={setSearch}
+            />
+          }
+          end={
+            <Filters
+              removeFilters={() => {
+                setStartDate(null);
+                setEndDate(null);
+                setPaymentStatus(null);
+              }}
+              rows={[
+                [
+                  <FilterDate
+                    value={startDate}
+                    onChange={setStartDate}
+                    width={140}
+                    maxWidth={140}
+                  />,
+                  <FilterDate
+                    value={endDate}
+                    onChange={setEndDate}
+                    width={140}
+                    maxWidth={140}
+                  />,
+                  <FilterSelect
+                    placeholder="وضعیت پرداخت"
+                    options={{
+                      successful: "موفق",
+                      unsuccessful: "ناموفق",
+                    }}
+                    value={paymentStatus}
+                    onChange={setPaymentStatus}
+                    width={150}
+                    maxWidth={150}
+                  />,
+                ],
+              ]}
+            />
+          }
+        />
         <DataLoader
-          load={() => getFinancialRecords(search, page, null)}
-          deps={[search, page]}
+          load={() =>
+            getFinancialRecords(search, startDate, endDate, paymentStatus, page)
+          }
+          deps={[search, startDate, endDate, paymentStatus, page]}
           setData={setData}
           reloadRef={reloadRef}
         >

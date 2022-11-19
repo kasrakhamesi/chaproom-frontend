@@ -69,10 +69,20 @@ export default function WithdrawalRequestTable({
               <span className={styles.MobileLabel}>شماره شبا:</span>
               <div>
                 IR
+                {/* The 24-character number format is not supported */}
                 <FormattedNumber
-                  value={withdrawalRequest.iban}
+                  value={parseInt(
+                    withdrawalRequest.iban.toString().substring(0, 12)
+                  )}
                   useGrouping={false}
-                  minimumIntegerDigits={24}
+                  minimumIntegerDigits={12}
+                />
+                <FormattedNumber
+                  value={parseInt(
+                    withdrawalRequest.iban.toString().substring(12, 24)
+                  )}
+                  useGrouping={false}
+                  minimumIntegerDigits={12}
                 />
               </div>
             </td>

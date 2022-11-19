@@ -32,7 +32,7 @@ export default function DashboardBindingPrices() {
           title="صحافی"
           end={
             <Link href="/dashboard/tariffs">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>

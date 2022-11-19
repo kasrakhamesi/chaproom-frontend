@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import { useEffect, useState } from "react";
 import { FormattedNumber } from "react-intl";
 import Link from "next/link";
@@ -92,21 +92,6 @@ export default function PrintPriceCalculator({
           varient="shadow-without-bg"
           placeholder="سیاه و سفید / رنگی "
           options={{
-            a4: "A4",
-            a5: "A5",
-            a3: "A3",
-          }}
-          value={printSize}
-          onChange={setPrintSize}
-          height={48}
-        />
-        <ErrorList errors={formValidation.errors.printSize} />
-      </div>
-      <div className={styles.Input}>
-        <Select
-          varient="shadow-without-bg"
-          placeholder="اندازه کاغذ"
-          options={{
             blackAndWhite: "سیاه و سفید",
             normalColor: "رنگی معمولی",
             fullColor: "تمام رنگی",
@@ -116,6 +101,21 @@ export default function PrintPriceCalculator({
           height={48}
         />
         <ErrorList errors={formValidation.errors.printColor} />
+      </div>
+      <div className={styles.Input}>
+        <Select
+          varient="shadow-without-bg"
+          placeholder="اندازه کاغذ"
+          options={{
+            a4: "A4",
+            a5: "A5",
+            a3: "A3",
+          }}
+          value={printSize}
+          onChange={setPrintSize}
+          height={48}
+        />
+        <ErrorList errors={formValidation.errors.printSize} />
       </div>
       <div className={styles.Input}>
         <Select

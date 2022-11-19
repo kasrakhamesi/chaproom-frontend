@@ -19,7 +19,7 @@ export default function DashboardNewDiscount() {
   return (
     <>
       <Head>
-        <title>داشبورد - ایجاد بلاگ</title>
+        <title>داشبورد - ایجاد کد تخفیف</title>
       </Head>
       <SectionHeader
         title="کدهای تخفیف"
@@ -28,10 +28,10 @@ export default function DashboardNewDiscount() {
       />
       <SectionContent>
         <ContentHeader
-          title="ایجاد بلاگ جدید"
+          title="ایجاد کد تخفیف جدید"
           end={
             <Link href="/dashboard/discounts">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>
@@ -43,7 +43,10 @@ export default function DashboardNewDiscount() {
         />
         <DiscountForm
           onSave={(discountData) =>
-            newDiscount(discountData)
+            newDiscount({
+              ...discountData,
+              userId: discountData.user?.id || null,
+            })
               .then((message) => {
                 toast.success(message);
                 router.push("/dashboard/discounts");

@@ -2,6 +2,7 @@ import {
   Address,
   BindingOptions,
   Order,
+  Post,
   PrintFile,
   PrintFolder,
   Tariffs,
@@ -11,6 +12,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import Router from "next/router";
 import { convert } from "@/shared/utils/convert";
 import { orderConvertMap, printFoldersConvertMap } from "@/main/convertMaps";
+import { blogPostConvertMap } from "@/admin/convertMaps";
 
 function getAccessToken() {
   return localStorage.getItem("userAccessToken");
@@ -127,11 +129,53 @@ export function submitContactUs(
   }).then(({ data }) => data.message);
 }
 
+export function getBlogPosts(page: number) {
+  return request({
+    method: "GET",
+    url: "/public/blogs",
+    needAuth: true,
+    params: {
+      page,
+    },
+  }).then(({ data }) => ({
+    countOfItems: data.totalCount,
+    pageSize: data.pageSize,
+    posts: data.blogs.map((item: any) =>
+      convert(blogPostConvertMap, item, "a2b")
+    ) as Post[],
+  }));
+}
+
+export function getBlogPost(slug: string) {
+  return request({
+    method: "GET",
+    url: `/public/blogs/slug/${slug}`,
+    needAuth: true,
+  }).then(({ data }) => convert(blogPostConvertMap, data, "a2b") as Post);
+}
+
 export function getBlogCategories() {
   return request({
     method: "GET",
     url: "/public/blogs/categories",
   }).then(({ data }) => data);
+}
+
+export function getBlogPostsByCategory(categoryId: number, page: number) {
+  return request({
+    method: "GET",
+    url: `/public/blogs/category-id/${categoryId}`,
+    needAuth: true,
+    params: {
+      page,
+    },
+  }).then(({ data }) => ({
+    countOfItems: data.totalCount,
+    pageSize: data.pageSize,
+    posts: data.blogs.map((item: any) =>
+      convert(blogPostConvertMap, item, "a2b")
+    ) as Post[],
+  }));
 }
 
 export function login(phoneNumber: string, password: string) {

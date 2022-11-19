@@ -16,6 +16,7 @@ interface DataLoaderProps<DT> {
   deps?: unknown[];
   size?: "small" | "larg";
   reloadRef?: MutableRefObject<(() => void) | null>;
+  initialFetch?: boolean;
 }
 
 export default function DataLoader<DT>({
@@ -25,18 +26,19 @@ export default function DataLoader<DT>({
   size = "larg",
   reloadRef,
   children,
+  initialFetch = true,
 }: PropsWithChildren<DataLoaderProps<DT>>) {
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(initialFetch);
   const [isError, setIsError] = useState(false);
 
-  function fetchData() {
-    if (!isFirstRender && isLoading) {
-      return;
-    } else {
-      if (isFirstRender) setIsFirstRender(false);
+  const fetchData = () => {
+    if (isLoading && !isFirstRender) return;
+    else if (isFirstRender) {
+      setIsFirstRender(false);
+      if (!initialFetch) return;
     }
-    
+
     const funcReturn = load();
     if (funcReturn) {
       setIsLoading(true);
@@ -59,7 +61,7 @@ export default function DataLoader<DT>({
         funcReturn[1].abort();
       }
     };
-  }
+  };
 
   useEffect(fetchData, deps);
 

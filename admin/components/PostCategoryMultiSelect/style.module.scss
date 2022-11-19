@@ -1,0 +1,149 @@
+@mixin animation() {
+  $animation-name: unique-id();
+  animation-name: $animation-name;
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+.Select {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  padding: 0 15px 0 10px;
+  align-items: center;
+  border-radius: 20px;
+  color: #000000;
+  cursor: pointer;
+  user-select: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+
+  &.ReadOnly {
+    background-color: #eeeeee;
+  }
+
+  > div {
+    flex: 1;
+    padding: 5px 0;
+    box-sizing: border-box;
+    min-height: 38px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .Placeholder {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #9c9c9c;
+    }
+  
+    .Categories {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+  
+      > div {
+        border-radius: 5px;
+        background-color: #dddddd;
+        padding: 3px 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        cursor: auto;
+  
+        .UnSelectButton {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #d0d0d0;
+          border: none;
+          padding: 0;
+          width: 16px;
+          height: 16px;
+          border-radius: 8px;
+          cursor: pointer;
+  
+          > svg {
+            width: 12px;
+            height: 12px;
+            fill: #5d5d5d;
+          }
+        }
+      }
+    }
+  }
+
+  .ExpandMore {
+    fill: #2578fa;
+  }
+}
+
+.Dropdown {
+  box-sizing: border-box;
+  outline: none;
+  user-select: none;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+
+  > div {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    > div:not(:first-child) {
+      border-top: 1px solid #dddddd;
+    }
+    
+    > div:not(.Loader) {
+      box-sizing: border-box;
+      padding: 0 15px;
+      height: 40px;
+      min-height: 40px;
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      align-items: center;
+      cursor: pointer;
+      
+      > div {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &:not(:first-child) {
+        border-top: 1px solid #dddddd;
+      }
+
+      &[data-selected="true"] {
+        background-color: #e0e0e0;
+      }
+
+      &[aria-selected="true"] {
+        background-color: #d0d0d0;
+      }
+    }
+
+    .Loader {
+      flex: 1;
+      min-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

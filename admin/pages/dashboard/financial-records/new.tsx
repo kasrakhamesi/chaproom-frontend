@@ -1,7 +1,9 @@
 import { ReactElement } from "react";
-import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { newFinancialRecord } from "@/admin/api";
 import ArrowBackIcon from "@/shared/assets/icons/arrowBack.svg";
 import DashboardLayout from "@/admin/components/Layout";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
@@ -29,7 +31,7 @@ export default function DashboardNewFinancialRecord() {
           title="ایجاد سند جدید"
           end={
             <Link href="/dashboard/financial-records">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>
@@ -40,16 +42,17 @@ export default function DashboardNewFinancialRecord() {
           title="ایجاد سند جدید"
         />
         <FinancialRecordForm
-          onSave={(financialRecordData) => {
-            // data.dispatch({
-            //   type: "DISCOUNT_CODES:PUSH",
-            //   payload: {
-            //     id: uuidv4(),
-            //     ...discountCodeData,
-            //   },
-            // });
-            router.push("/dashboard/financial-records");
-          }}
+          onSave={(financialRecordData) =>
+            newFinancialRecord({
+              ...financialRecordData,
+              userId: financialRecordData.user.id,
+            })
+              .then((message) => {
+                toast.success(message);
+                router.push("/dashboard/financial-records");
+              })
+              .catch(toast.error)
+          }
         />
       </SectionContent>
     </>

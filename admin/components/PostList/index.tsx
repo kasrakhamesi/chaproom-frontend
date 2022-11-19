@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import { FormattedNumber } from "react-intl";
 import { Post } from "@/shared/types";
 import ViewIcon from "@/shared/assets/icons/view.svg";

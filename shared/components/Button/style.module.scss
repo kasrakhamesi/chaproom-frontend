@@ -10,7 +10,7 @@
 .Button {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 5px;
   height: 40px;
   border-radius: 20px;
   padding: 0 15px;
@@ -18,9 +18,9 @@
   align-items: center;
   box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
   font-size: 16px;
+  font-weight: bold;
   user-select: none;
   border: none;
-  font-weight: 100;
 
   &:not(:disabled) {
     cursor: pointer;
@@ -30,7 +30,7 @@
     font-size: 0;
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       border-radius: 50%;
       width: 20px;
@@ -42,6 +42,7 @@
       justify-self: flex-end;
 
       animation: 1s infinite linear;
+
       @include animation {
         0% {
           transform: rotate(0deg);
@@ -83,6 +84,7 @@
   &.Gradient {
     color: #ffffff;
     fill: #ffffff;
+    font-weight: normal;
     background: linear-gradient(260deg, #26e0fa 0%, #5869e8 100%);
 
     &:disabled {
@@ -94,5 +96,40 @@
     color: #2578fa;
     fill: #2578fa;
     background-color: #eeeeee;
+  }
+
+  &.ContentTitleOutlined {
+    height: 34px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #0077b5;
+    fill: #0077b5;
+    background-color: #eeeeee;
+    border: 1px solid #0077b5;
+  }
+
+  &.ContentTitleNone {
+    height: 34px;
+    font-size: 14px;
+    font-weight: 500; // Medium
+    color: #0077b5;
+    fill: #0077b5;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+
+    &.Loading {
+      font-size: 0;
+
+      > svg {
+        display: none;
+      }
+  
+      &::after {
+        border-top-color: #0077b5;
+        border-left-color: #0077b5;
+        border-right-color: #0077b5;
+      }
+    }
   }
 }

@@ -1,0 +1,108 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  
+  .ImageSelect {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    color: #9c9c9c;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    position: relative;
+  
+    &[data-drag-active="true"] {
+      background: #2578fa26;
+      border: 1px solid #2578fa;
+      color: #2578fa;
+    }
+
+    .DropZone {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .Input {
+      display: none;
+    }
+
+    .Image {
+      width: 40px;
+      height: 40px;
+      padding: 30px 20px 0;
+      display: flex;
+    }
+
+    .Message {
+      padding: 15px 10px 30px 10px;
+      font-size: 13px;
+
+      > span {
+        color: #2578fA;
+      }
+    }
+  }
+
+  .ImageUpload {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 5px;
+
+    > div:first-child {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      > div:first-child {
+        flex: 1;
+        padding: 0 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .CencelIcon {
+        fill: #f20f4b;
+      }
+    }
+
+    > div:last-child {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      padding: 5px 10px;
+
+      > div:last-child {
+        flex: 1;
+      }
+    }
+  }
+
+  .ImagePreview {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > img {
+      border-radius: 20px;
+      width: 100%;
+      height: auto;
+    }
+  }
+}

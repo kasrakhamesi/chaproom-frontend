@@ -24,19 +24,19 @@ export default function DashboardEditUser() {
   return (
     <>
       <Head>
-        <title>داشبورد - ویرایش بلاگ</title>
+        <title>داشبورد - ویرایش کد تخفیف</title>
       </Head>
       <SectionHeader
-        title="وبلاگ"
-        description="وبلاگ را از این بخش مدیریت کنید"
+        title="کدهای تخفیف"
+        description="کدهای تخفیف را از این بخش مدیریت کنید"
         hideBackToSiteButton
       />
       <SectionContent>
         <ContentHeader
-          title="ویرایش کردن بلاگ"
+          title="ویرایش کردن کد تخفیف"
           end={
             <Link href="/dashboard/discounts">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>
@@ -56,7 +56,10 @@ export default function DashboardEditUser() {
           <DiscountForm
             defaultValues={data}
             onSave={(discountData) =>
-              updateDiscount(discountId, discountData)
+              updateDiscount(discountId, {
+                ...discountData,
+                userId: discountData.user?.id || null,
+              })
                 .then((message) => {
                   toast.success(message);
                   router.push("/dashboard/discounts");

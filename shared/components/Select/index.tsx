@@ -21,6 +21,7 @@ import {
   size,
 } from "@floating-ui/react-dom-interactions";
 import ExpandMoreIcon from "@/shared/assets/icons/expandMore.svg";
+
 interface SelectProps {
   placeholder?: string;
   options: Record<string, string>;

@@ -1,0 +1,35 @@
+.Reference {
+  user-select: none;
+  cursor: pointer;
+}
+
+.Tooltip {
+  z-index: 9;
+  background: #0487d9;
+  color: white;
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+
+  .Message {
+    z-index: 9;
+    position: relative;
+  }
+
+  .Arrow {
+    position: absolute;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent;
+
+    &[data-static-side="top"] {
+      border-top-width: 0;
+      border-bottom-color: #0487d9;
+    }
+
+    &[data-static-side="bottom"] {
+      border-bottom-width: 0;
+      border-top-color: #0487d9;
+    }
+  }
+}

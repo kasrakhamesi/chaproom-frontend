@@ -1,6 +1,7 @@
 import { ReactElement, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { Post } from "@/shared/types";
 import { deleteBlogPost, getBlogPosts } from "@/admin/api";
@@ -11,12 +12,14 @@ import SectionContent from "@/shared/components/Dashboard/SectionContent";
 import ContentHeader from "@/shared/components/Dashboard/ContentHeader";
 import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHeader";
 import IconButton from "@/shared/components/IconButton";
+import ButtonList from "@/shared/components/ButtonList";
 import Button from "@/shared/components/Button";
+import Controls from "@/admin/components/Controls";
+import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import PostGrid from "@/admin/components/PostList";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
-import Link from "next/link";
 
 export default function DashboardBlog() {
   const router = useRouter();
@@ -26,6 +29,7 @@ export default function DashboardBlog() {
     posts: Post[];
   }>({ countOfItems: 0, posts: [] });
 
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
   const [pendingDeleteRequest, setPendingDeleteRequest] = useState<
@@ -48,27 +52,46 @@ export default function DashboardBlog() {
         <ContentHeader
           title="همه وبلاگ ها"
           end={
-            <Link href="/dashboard/blog/new">
-              <Button style={{ padding: 0 }}>
-                ایجاد وبلاگ <AddIcon />
-              </Button>
-            </Link>
+            <ButtonList>
+              <Link href="/dashboard/blog/categories">
+                <Button
+                  varient="content-title-outlined"
+                  style={{ minWidth: 170 }}
+                >
+                  مدیریت دسته بندی ها
+                </Button>
+              </Link>
+              <Link href="/dashboard/blog/posts/new">
+                <Button varient="content-title-none">
+                  ایجاد وبلاگ <AddIcon />
+                </Button>
+              </Link>
+            </ButtonList>
           }
         />
         <MobileContentHeader
           backTo="/dashboard"
           title="همه وبلاگ ها"
           end={
-            <Link href="/dashboard/blog/new">
+            <Link href="/dashboard/blog/posts/new">
               <IconButton varient="filled">
                 <AddIcon />
               </IconButton>
             </Link>
           }
         />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو بلاگ با عنوان" }}
+              value={search}
+              setValue={setSearch}
+            />
+          }
+        />
         <DataLoader
-          load={() => getBlogPosts(page)}
-          deps={[page]}
+          load={() => getBlogPosts(search, page)}
+          deps={[search, page]}
           setData={setData}
           reloadRef={reloadRef}
         >
@@ -76,7 +99,7 @@ export default function DashboardBlog() {
             posts={data.posts}
             onDeletePost={setPendingDeleteRequest}
             onEditPost={(postId) =>
-              router.push(`/dashboard/blog/${postId}/edit`)
+              router.push(`/dashboard/blog/posts/${postId}/edit`)
             }
           />
           {!data.posts.length && <EmptyNote>هیچ بلاگی وجود ندارید</EmptyNote>}
@@ -94,7 +117,7 @@ export default function DashboardBlog() {
                 })
                 .catch(toast.error)
             }
-            message="از حذف این کد تخفیف مطمئن هستید؟"
+            message="از حذف این بلاگ مطمئن هستید؟"
             confirmButtonText="حذف"
           />
         </DataLoader>

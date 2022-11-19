@@ -14,6 +14,8 @@ import SectionContent from "@/shared/components/Dashboard/SectionContent";
 import ContentHeader from "@/shared/components/Dashboard/ContentHeader";
 import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHeader";
 import SwitchButtons from "@/shared/components/SwitchButtons";
+import Controls from "@/admin/components/Controls";
+import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import DedicatedLinkReportTable from "@/admin/components/DedicatedLinkReportTable";
 import DedicatedDiscountCodeReportTable from "@/admin/components/DedicatedDiscountCodeReportTable";
@@ -27,16 +29,13 @@ export default function DashboardMarketingReport() {
     reports: DedicatedLinkReport[];
   }>({ countOfItems: 0, reports: [] });
 
-  const [dedicatedLinkSearch, setDedicatedLinkSearch] = useState("");
-  const [dedicatedLinkPage, setDedicatedLinkPage] = useState(1);
-
   const [dedicatedDiscountCodeData, setDedicatedDiscountCodeData] = useState<{
     countOfItems: number;
     reports: DedicatedDiscountCodeReport[];
   }>({ countOfItems: 0, reports: [] });
 
-  const [dedicatedDiscountSearch, setDedicatedDiscountSearch] = useState("");
-  const [dedicatedDiscountPage, setDedicatedDiscountPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
 
   return (
     <>
@@ -64,16 +63,30 @@ export default function DashboardMarketingReport() {
                 },
               ]}
               value={tab}
-              onChange={setTab}
+              onChange={(newTab) => {
+                setTab(newTab);
+                setPage(1);
+              }}
+            />
+          }
+        />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
+              value={search}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
         <MobileContentHeader backTo="/dashboard" title="همه گزارش ها" />
         {tab === "link" && (
           <DataLoader
-            load={() =>
-              getDedicatedLinkReports(dedicatedLinkSearch, dedicatedLinkPage)
-            }
+            load={() => getDedicatedLinkReports(search, page)}
+            deps={[search, page]}
             setData={setDedicatedLinkData}
           >
             <DedicatedLinkReportTable
@@ -86,12 +99,8 @@ export default function DashboardMarketingReport() {
         )}
         {tab === "discount-code" && (
           <DataLoader
-            load={() =>
-              getDedicatedDiscountCodeReports(
-                dedicatedDiscountSearch,
-                dedicatedDiscountPage
-              )
-            }
+            load={() => getDedicatedDiscountCodeReports(search, page)}
+            deps={[search, page]}
             setData={setDedicatedDiscountCodeData}
           >
             <DedicatedDiscountCodeReportTable

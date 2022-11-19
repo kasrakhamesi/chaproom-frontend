@@ -1,0 +1,23 @@
+.ErrorList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &:empty {
+    display: none;
+  }
+  
+  > div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 12px;
+    align-items: center;
+
+    > svg {
+      width: 20px;
+      height: 20px;
+      fill: #f20f4b;
+    }
+  }
+}

@@ -91,11 +91,11 @@ export default function PaymentStage({ actions }: PaymentStageProps) {
             <TextInput
               inputProps={{
                 placeholder: "کد تخفیف",
-                readOnly: discountCode !== null,
               }}
               varient="shadow"
               value={discountCodeInputText}
               onChange={setDiscountCodeInputText}
+              readOnly={discountCode !== null}
             />
             <Button
               varient="filled"

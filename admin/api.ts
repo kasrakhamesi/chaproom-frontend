@@ -9,6 +9,7 @@ import {
 } from "./convertMaps";
 import {
   Address,
+  AdminUserRole,
   BindingTariffs,
   CooperationRequest,
   CustomerReport,
@@ -18,6 +19,7 @@ import {
   FinancialRecord,
   Order,
   Post,
+  PostCategory,
   PrintTariffs,
   WithdrawalRequest,
 } from "@/shared/types";
@@ -227,13 +229,63 @@ export function getDashboard() {
     method: "GET",
     url: "/admins/dashboard",
     needAuth: true,
-  }).then(({ data }) => ({
-    marketingBalance: data.marketingBalance,
-    walletBalance: data.walletBalance,
-    avatar: data.avatar,
-    name: data.name,
-    phoneNumber: data.name,
-  }));
+  }).then(
+    ({ data }) =>
+      data as {
+        admin: {
+          marketingBalance: number;
+          walletBalance: number;
+          avatar: string | null;
+          name: string;
+          phoneNumber: string;
+          role: AdminUserRole;
+        };
+        sidebarData: {
+          countOfInProgressOrders: number;
+          countOfPendingCooperations: number;
+          countOfPendingWithdrawals: number;
+        };
+        sales: {
+          totalSales: number;
+          chart: {
+            time: string;
+            debtor: number;
+            creditor: number;
+          }[];
+        };
+        users: {
+          totalUsers: number;
+          chart: {
+            time: string;
+            count: number;
+          }[];
+        };
+        orders: {
+          totalOrders: number;
+          chart: {
+            time: string;
+            count: number;
+          }[];
+        };
+        usersOrders: {
+          totalUsersWithOneOrder: number;
+          totalUsersWithTwoOrder: number;
+          totalUsersWithThreeOrder: number;
+          chart: {
+            time: string;
+            count: number;
+          }[];
+        };
+        provincesOrders: Record<
+          string,
+          {
+            sale: number;
+            totalOrders: number;
+            totalUsers: number;
+          }
+        >;
+      }
+  );
 }
 
 export function getUsers(search: string, page: number) {
@@ -554,11 +606,7 @@ export function newDiscount(data: {
   active: boolean;
   code: string;
   description: string;
-  user: {
-    id: number;
-    name: string;
-    phoneNumber: string;
-  } | null;
+  userId: number | null;
   phoneNumber: string | null;
   type: "fixed" | "percentage" | "page";
   value: number;
@@ -587,11 +635,7 @@ export function updateDiscount(
     active: boolean;
     code: string;
     description: string;
-    user: {
-      id: number;
-      name: string;
-      phoneNumber: string;
-    } | null;
+    userId: number | null;
     phoneNumber: string | null;
     type: "fixed" | "percentage" | "page";
     value: number;
@@ -651,8 +695,10 @@ export function updateCooperationRequest(
 
 export function getFinancialRecords(
   search: string,
-  page: number,
-  status: "successful" | "unsuccessful" | null
+  startDate: Date | null,
+  endDate: Date | null,
+  paymentStatus: "successful" | "unsuccessful" | null,
+  page: number
 ) {
   return request({
     method: "GET",
@@ -660,8 +706,10 @@ export function getFinancialRecords(
     needAuth: true,
     params: {
       search,
+      startAt: startDate ? startDate.toISOString() : undefined,
+      endAt: endDate ? endDate.toISOString() : undefined,
+      status: paymentStatus || undefined,
       page,
-      status: status || "null",
     },
   }).then(({ data }) => ({
     countOfItems: data.totalCount,
@@ -670,6 +718,20 @@ export function getFinancialRecords(
       convert(financialRecordConvertMap, item, "a2b")
     ) as FinancialRecord[],
   }));
+}
+
+export function newFinancialRecord(data: {
+  userId: number;
+  type: "debtor" | "creditor";
+  amount: number;
+  description: string;
+}) {
+  return request({
+    method: "POST",
+    url: "/admins/transactions",
+    needAuth: true,
+    data: convert(financialRecordConvertMap, data, "b2a"),
+  }).then(({ data }) => data.message);
 }
 
 export function getFinancialRecord(financialRecordId: number) {
@@ -708,7 +770,11 @@ export function deleteFinancialRecord(financialRecordId: number) {
   }).then(({ data }) => data.message);
 }
 
-export function getWithdrawalRequests(search: string, page: number) {
+export function getWithdrawalRequests(
+  search: string,
+  page: number,
+  status: "pending" | "rejected" | "done"
+) {
   return request({
     method: "GET",
     url: "/admins/withdrawals",
@@ -716,6 +782,7 @@ export function getWithdrawalRequests(search: string, page: number) {
     params: {
       search,
       page,
+      status,
     },
   }).then(({ data }) => ({
     countOfItems: data.totalCount,
@@ -790,12 +857,13 @@ export function updateBindingTariffs(data: BindingTariffs) {
   }).then(({ data }) => data.message);
 }
 
-export function getBlogPosts(page: number) {
+export function getBlogPosts(search: string, page: number) {
   return request({
     method: "GET",
     url: "/admins/blogs",
     needAuth: true,
     params: {
+      search,
       page,
     },
   }).then(({ data }) => ({
@@ -819,7 +887,7 @@ export function newBlogPost(data: {
   slug: string;
   pageTitle: string;
   title: string;
-  categories: { id: number; name: string }[];
+  categories: PostCategory[];
   keywords: string;
   metaDescription: string;
   thumbnailUrl: string | null;
@@ -866,6 +934,38 @@ export function deleteBlogPost(postId: number) {
   }).then(({ data }) => data.message);
 }
 
+export function getBlogCategories(page: number) {
+  return request({
+    method: "GET",
+    url: "/admins/blogs/categories",
+    needAuth: true,
+    params: {
+      page,
+    },
+  }).then(({ data }) => ({
+    countOfItems: data.totalCount,
+    pageSize: data.pageSize,
+    categories: data.categories as PostCategory[],
+  }));
+}
+
+export function newBlogCategory(data: { name: string }) {
+  return request({
+    method: "POST",
+    url: "/admins/blogs/categories",
+    needAuth: true,
+    data,
+  }).then(({ data }) => data.message);
+}
+
+export function deleteBlogCategory(categoryId: number) {
+  return request({
+    method: "DELETE",
+    url: `/admins/blogs/categories/id/${categoryId}`,
+    needAuth: true,
+  }).then(({ data }) => data.message);
+}
+
 export function getDedicatedDiscountCodeReports(search: string, page: number) {
   return request({
     method: "GET",
@@ -902,13 +1002,58 @@ export function getDedicatedLinkReports(search: string, page: number) {
   }));
 }
 
-export function getCustomerReports(search: string, page: number) {
+export function getCustomerReports(
+  search: string,
+  paperSize: "a4" | "a5" | "a3" | null,
+  paperColor: "blackAndWhite" | "fullColor" | "normalColor" | null,
+  paperSide: "singleSided" | "doubleSided" | null,
+  sortOrder:
+    | "withoutOrder"
+    | "oneOrder"
+    | "twoOrder"
+    | "threeAndMoreOrder"
+    | "mostToLowestOrder"
+    | "lowestToMostOrder"
+    | "mostToLowestBalance"
+    | "lowestToMostBalance"
+    | "mostToLowestPayment"
+    | "lowestToMostPayment",
+  page: number
+) {
   return request({
     method: "GET",
     url: "/admins/customers-report",
     needAuth: true,
     params: {
       search,
+      paperSize: paperSize !== null ? paperSize : undefined,
+      paperColor:
+        paperColor !== null
+          ? {
+              blackAndWhite: "black_and_white",
+              fullColor: "full_color",
+              normalColor: "normal_color",
+            }[paperColor]
+          : undefined,
+      paperSide:
+        paperSide !== null
+          ? {
+              singleSided: "single_sided",
+              doubleSided: "double_sided",
+            }[paperSide]
+          : undefined,
+      sortOrder: {
+        withoutOrder: "without_order",
+        oneOrder: "one_order",
+        twoOrder: "two_order",
+        threeAndMoreOrder: "three_and_more_order",
+        mostToLowestOrder: "most_to_lowest_order",
+        lowestToMostOrder: "lowest_to_most_order",
+        mostToLowestBalance: "most_to_lowest_balance",
+        lowestToMostBalance: "lowest_to_most_balance",
+        mostToLowestPayment: "most_to_lowest_payment",
+        lowestToMostPayment: "lowest_to_most_payment",
+      }[sortOrder],
       page,
     },
   }).then(({ data }) => ({
@@ -920,13 +1065,57 @@ export function getCustomerReports(search: string, page: number) {
   }));
 }
 
-export function getCustomerReportsExcel(search: string) {
+export function getCustomerReportsExcel(
+  search: string,
+  paperSize: "a4" | "a5" | "a3" | null,
+  paperColor: "blackAndWhite" | "fullColor" | "normalColor" | null,
+  paperSide: "singleSided" | "doubleSided" | null,
+  sortOrder:
+    | "withoutOrder"
+    | "oneOrder"
+    | "twoOrder"
+    | "threeAndMoreOrder"
+    | "mostToLowestOrder"
+    | "lowestToMostOrder"
+    | "mostToLowestBalance"
+    | "lowestToMostBalance"
+    | "mostToLowestPayment"
+    | "lowestToMostPayment"
+) {
   return request({
     method: "POST",
     url: "/admins/customers-report/excel",
     needAuth: true,
     params: {
       search,
+      paperSize: paperSize !== null ? paperSize : undefined,
+      paperColor:
+        paperColor !== null
+          ? {
+              blackAndWhite: "black_and_white",
+              fullColor: "full_color",
+              normalColor: "normal_color",
+            }[paperColor]
+          : undefined,
+      paperSide:
+        paperSide !== null
+          ? {
+              singleSided: "single_sided",
+              doubleSided: "double_sided",
+            }[paperSide]
+          : undefined,
+      sortOrder: {
+        withoutOrder: "without_order",
+        oneOrder: "one_order",
+        twoOrder: "two_order",
+        threeAndMoreOrder: "three_and_more_order",
+        mostToLowestOrder: "most_to_lowest_order",
+        lowestToMostOrder: "lowest_to_most_order",
+        mostToLowestBalance: "most_to_lowest_balance",
+        lowestToMostBalance: "lowest_to_most_balance",
+        mostToLowestPayment: "most_to_lowest_payment",
+        lowestToMostPayment: "lowest_to_most_payment",
+      }[sortOrder],
     },
   }).then(({ data }) => data.url);
 }

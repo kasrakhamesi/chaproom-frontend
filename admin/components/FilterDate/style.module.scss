@@ -1,0 +1,15 @@
+.FilterDate {
+  width: 100%;
+  max-width: 100px;
+  font-size: 13px;
+
+  > div {
+    max-width: unset;
+    padding-left: 10px;
+
+    .DateIcon {
+      display: flex;
+      fill: #9c9c9c;
+    }
+  }
+}

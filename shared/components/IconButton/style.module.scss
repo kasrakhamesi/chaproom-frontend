@@ -1,3 +1,12 @@
+@mixin animation() {
+  $animation-name: unique-id();
+  animation-name: $animation-name;
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
 .IconButton {
   display: flex;
   border-radius: 100%;
@@ -10,6 +19,37 @@
 
   &:not(:disabled) {
     cursor: pointer;
+  }
+
+  &.Loading {
+    > svg  {
+      display: none;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top-color: #ffffff;
+      border-left-color: #ffffff;
+      border-right-color: #ffffff;
+      justify-self: flex-end;
+
+      animation: 1s infinite linear;
+
+      @include animation {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
   }
 
   &.Filled {
@@ -26,11 +66,27 @@
     background-color: transparent;
     box-shadow: none;
     border-radius: unset;
+
+    &.Loading {
+      &::after {
+        border-top-color: #0077b5;
+        border-left-color: #0077b5;
+        border-right-color: #0077b5;
+      }
+    }
   }
 
   &.Outlined {
     color: #9c9c9c;
     fill: #9c9c9c;
     background-color: #eeeeee;
+
+    &.Loading {
+      &::after {
+        border-top-color: #0077b5;
+        border-left-color: #0077b5;
+        border-right-color: #0077b5;
+      }
+    }
   }
 }

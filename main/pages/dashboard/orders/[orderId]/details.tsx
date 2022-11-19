@@ -1,4 +1,5 @@
 import { ReactElement, useState } from "react";
+import { useIntl } from "react-intl";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { Order } from "@/shared/types";
@@ -16,6 +17,7 @@ import BottomActions from "@/shared/components/Dashboard/BottomActions";
 import Link from "next/link";
 
 export default function DashboardOrderDetails() {
+  const intl = useIntl();
   const router = useRouter();
   const orderId = parseInt(router.query.orderId as string);
 
@@ -32,16 +34,20 @@ export default function DashboardOrderDetails() {
       />
       <SectionContent>
         <ContentHeader
-          title="جزئیات سفارش"
+          title={`شماره سفارش: ${intl.formatNumber(orderId, {
+            useGrouping: false,
+          })}`}
           end={
             <Link
               href={
                 router.query.fromTransactions === "true"
                   ? "/dashboard/transactions"
+                  : router.query.fromDashboard === "true"
+                  ? "/dashboard"
                   : "/dashboard/orders"
               }
             >
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>
@@ -51,9 +57,13 @@ export default function DashboardOrderDetails() {
           backTo={
             router.query.fromTransactions === "true"
               ? "/dashboard/transactions"
+              : router.query.fromDashboard === "true"
+              ? "/dashboard"
               : "/dashboard/orders"
           }
-          title="جزئیات سفارش"
+          title={`شماره سفارش: ${intl.formatNumber(orderId, {
+            useGrouping: false,
+          })}`}
         />
         <DataLoader
           load={() => {

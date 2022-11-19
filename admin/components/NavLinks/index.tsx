@@ -16,8 +16,19 @@ import MarketingReportIcon from "@/admin/assets/icons/marketingReport.svg";
 import CustomerReportIcon from "@/admin/assets/icons/customerReport.svg";
 import ProfileIcon from "@/shared/assets/icons/profile.svg";
 import LogoutIcon from "@/shared/assets/icons/logout.svg";
+import { FormattedNumber } from "react-intl";
 
-export default function DashboardNavLinks() {
+interface DashboardNavLinksProps {
+  sidebarData: {
+    countOfInProgressOrders: number;
+    countOfPendingCooperations: number;
+    countOfPendingWithdrawals: number;
+  };
+}
+
+export default function DashboardNavLinks({
+  sidebarData,
+}: DashboardNavLinksProps) {
   const router = useRouter();
 
   return (
@@ -44,6 +55,11 @@ export default function DashboardNavLinks() {
         <a className={styles.NavLink}>
           <OrdersIcon />
           <div className={styles.Text}>سفارش ها</div>
+          {sidebarData.countOfInProgressOrders > 0 && (
+            <div className={styles.Count}>
+              <FormattedNumber value={sidebarData.countOfInProgressOrders} />
+            </div>
+          )}
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
           </div>
@@ -62,6 +78,11 @@ export default function DashboardNavLinks() {
         <a className={styles.NavLink}>
           <CooperationRequestsIcon />
           <div className={styles.Text}>درخواست های همکاری</div>
+          {sidebarData.countOfPendingCooperations > 0 && (
+            <div className={styles.Count}>
+              <FormattedNumber value={sidebarData.countOfPendingCooperations} />
+            </div>
+          )}
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
           </div>
@@ -80,6 +101,11 @@ export default function DashboardNavLinks() {
         <a className={styles.NavLink}>
           <WithdrawalRequestsIcon />
           <div className={styles.Text}>درخواست های برداشت</div>
+          {sidebarData.countOfPendingWithdrawals > 0 && (
+            <div className={styles.Count}>
+              <FormattedNumber value={sidebarData.countOfPendingWithdrawals} />
+            </div>
+          )}
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
           </div>

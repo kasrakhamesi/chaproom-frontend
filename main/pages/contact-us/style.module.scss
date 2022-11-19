@@ -24,6 +24,10 @@
     color: #5800b3;
     font-size: 50px;
     margin: 0;
+  
+    @media (max-width: 1024px) {
+      grid-column: span 1;
+    }
 
     @media (max-width: 896px) {
       font-size: 35px;
@@ -137,6 +141,11 @@
           color: #9c9c9c;
           font-size: 12px;
           font-weight: 300; // Light
+
+          &.PhoneNumber {
+            direction: ltr;
+            letter-spacing: 1.5px;
+          }
         }
       }
 

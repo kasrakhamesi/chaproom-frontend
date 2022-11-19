@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import { ReactElement, useState } from "react";
 import ExpandMoreIcon from "@/shared/assets/icons/expandMore.svg";
 import Layout from "@/main/components/Layout";

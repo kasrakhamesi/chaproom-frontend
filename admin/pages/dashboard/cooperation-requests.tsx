@@ -9,6 +9,8 @@ import SectionContent from "@/shared/components/Dashboard/SectionContent";
 import ContentHeader from "@/shared/components/Dashboard/ContentHeader";
 import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHeader";
 import SwitchButtons from "@/shared/components/SwitchButtons";
+import Controls from "@/admin/components/Controls";
+import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import CooperationRequestTable from "@/admin/components/CooperationRequestTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
@@ -74,6 +76,15 @@ export default function DashboardCooperationRequests() {
           }
         />
         <MobileContentHeader backTo="/dashboard" title="همه درخواست ها" />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو شماره موبایل" }}
+              value={search}
+              setValue={setSearch}
+            />
+          }
+        />
         <DataLoader
           load={() => getCooperationRequests(search, page)}
           deps={[search, page]}

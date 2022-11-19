@@ -46,7 +46,7 @@ export default function DashboardUserAddressList() {
           title="آدرس ها"
           end={
             <Link href="/dashboard/users">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 انصراف و بازگشت <ArrowBackIcon />
               </Button>
             </Link>

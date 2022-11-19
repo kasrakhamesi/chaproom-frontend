@@ -13,6 +13,8 @@ import ContentHeader from "@/shared/components/Dashboard/ContentHeader";
 import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHeader";
 import IconButton from "@/shared/components/IconButton";
 import Button from "@/shared/components/Button";
+import Controls from "@/admin/components/Controls";
+import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import DiscountTable from "@/admin/components/DiscountTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
@@ -50,7 +52,7 @@ export default function DashboardDiscountList() {
           title="همه کدهای تخفیف"
           end={
             <Link href="/dashboard/discounts/new">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 ایجاد کد تخفیف <AddIcon />
               </Button>
             </Link>
@@ -65,6 +67,15 @@ export default function DashboardDiscountList() {
                 <AddIcon />
               </IconButton>
             </Link>
+          }
+        />
+        <Controls
+          start={
+            <SearchInput
+              inputProps={{ placeholder: "جستجو با کد" }}
+              value={search}
+              setValue={setSearch}
+            />
           }
         />
         <DataLoader

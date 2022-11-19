@@ -47,18 +47,12 @@ export default function Wallet({
         <div>
           موجودی کیف پول:
           <div className={styles.Spacer} />
-          <span>
-            <FormattedNumber value={walletBalance} />
-          </span>{" "}
-          تومان
+          <FormattedNumber value={walletBalance} /> تومان
         </div>
         <div>
           موجودی فروش بازاریابی:
           <div className={styles.Spacer} />
-          <span>
-            <FormattedNumber value={marketingBalance} />
-          </span>{" "}
-          تومان
+          <FormattedNumber value={marketingBalance} /> تومان
         </div>
         <button
           className={styles.IncreasBalance}

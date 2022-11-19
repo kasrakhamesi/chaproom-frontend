@@ -48,7 +48,7 @@ export default function DashboardAddresseList() {
           title="کل آدرس های من"
           end={
             <Link href="/dashboard/addresses/new">
-              <Button style={{ padding: 0 }}>
+              <Button varient="content-title-none">
                 افزودن آدرس <AddIcon />
               </Button>
             </Link>

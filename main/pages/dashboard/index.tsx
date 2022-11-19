@@ -24,7 +24,7 @@ import Avatar from "@/shared/components/Dashboard/Avatar";
 import Wallet from "@/main/components/Dashboard/Wallet";
 import DashboardNavLinks from "@/main/components/Dashboard/NavLinks";
 import BottomButtons from "@/main/components/BottomButtons";
-import OrdersIcon from "@/shared/assets/icons/orders.svg";
+
 export default function DashboardMain() {
   const router = useRouter();
 
@@ -165,21 +165,17 @@ export default function DashboardMain() {
               <ContentHeader
                 title="سفارش های در حال انجام من"
                 end={
-                  <Button
-                    style={{ padding: 0 }}
+                  <Button varient="content-title-none"
                     onClick={() => router.push("/dashboard/orders/new")}
                   >
-                    سفارش جدید{" "}
-                    <span className={styles.addicon}>
-                      <OrdersIcon />
-                    </span>
+                    سفارش جدید <AddIcon />
                   </Button>
                 }
               />
               <OrderTable
                 orders={data!.inProgressOrders}
                 onSeeOrderDetails={(orderId) =>
-                  router.push(`/dashboard/orders/${orderId}/details`)
+                  router.push(`/dashboard/orders/${orderId}/details?fromDashboard=true`)
                 }
                 onCancelOrder={setPendingOrderCancelRequest}
               />
@@ -233,7 +229,9 @@ export default function DashboardMain() {
             }}
           />
           <DashboardNavLinks />
-          <BottomButtons />
+          <div className={styles.BottomButtonsPlaceholder}>
+            <BottomButtons />
+          </div>
         </div>
       </DataLoader>
     </div>
