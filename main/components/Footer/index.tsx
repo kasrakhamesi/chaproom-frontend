@@ -1,6 +1,6 @@
 import styles from "./style.module.scss";
 import Link from "next/link";
-import AddressesIcon from "@/main/assets/icons/addresses.svg";
+import AddressesIcon from "@/main/assets/icons/location.svg";
 import CaillIcon from "@/main/assets/icons/call.svg";
 import MailIcon from "@/main/assets/icons/mail.svg";
 import AparatIcon from "@/main/assets/icons/aparat.svg";

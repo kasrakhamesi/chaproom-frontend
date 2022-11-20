@@ -12,7 +12,8 @@ import IconButton from "@/shared/components/IconButton";
 import Avatar from "@/shared/components/Dashboard/Avatar";
 import DashboardIcon from "@/shared/assets/icons/dashboard.svg";
 import LogoutIcon from "@/shared/assets/icons/logout.svg";
-import ProfileIcon from "@/shared/assets/icons/profile.svg";
+import ArrowUp from "@/shared/assets/icons/arrowUp.svg";
+import ArrowDown from "@/shared/assets/icons/arrowDown.svg";
 import { logout } from "@/main/api";
 import { useRouter } from "next/router";
 export default function Header() {
@@ -113,17 +114,15 @@ export default function Header() {
                   <div
                     style={
                       showMenu
-                        ? { borderRadius: "15px 15px 0 0" }
-                        : { borderRadius: "15px" }
+                        ? { borderRadius: "20px 20px 0 0" }
+                        : { borderRadius: "20px" }
                     }
                   >
                     <button
                       className={styles.toggleMenu}
                       onClick={() => toggleMenu(!showMenu)}
                     >
-                      <span>
-                        <ProfileIcon />
-                      </span>
+                      <span>{showMenu ? <ArrowUp /> : <ArrowDown />}</span>
                       <span>{user.name}</span>
                     </button>
                   </div>
