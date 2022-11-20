@@ -111,14 +111,13 @@ export default function Header() {
                   <Avatar user={user} />
                 </div>
                 <div className={styles.userMenu}>
-                  <div
-                    style={
-                      showMenu
-                        ? { borderRadius: "20px 20px 0 0" }
-                        : { borderRadius: "20px" }
-                    }
-                  >
+                  <div>
                     <button
+                      style={
+                        showMenu
+                          ? { borderRadius: "20px 20px 0 0" }
+                          : { borderRadius: "20px" }
+                      }
                       className={styles.toggleMenu}
                       onClick={() => toggleMenu(!showMenu)}
                     >

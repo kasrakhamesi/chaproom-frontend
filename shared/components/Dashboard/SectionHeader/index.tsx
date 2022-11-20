@@ -26,7 +26,7 @@ export default function SectionHeader({
           </Link>
         )}
       </div>
-      {description && <p className={styles.Description}>{description}</p>}
+      {description && <p className={styles.Description}>__ {description}</p>}
     </div>
   );
 }
