@@ -10,10 +10,16 @@ import NavLink from "@/shared/components/NavLink";
 import SmallLoader from "@/shared/components/SmallLoader";
 import IconButton from "@/shared/components/IconButton";
 import Avatar from "@/shared/components/Dashboard/Avatar";
-
+import DashboardIcon from "@/shared/assets/icons/dashboard.svg";
+import LogoutIcon from "@/shared/assets/icons/logout.svg";
+import ProfileIcon from "@/shared/assets/icons/profile.svg";
+import { logout } from "@/main/api";
+import { useRouter } from "next/router";
 export default function Header() {
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [isLoadingUser, setIsLoadingUser] = useState(true);
+  const [showMenu, toggleMenu] = useState(false);
+  const router = useRouter();
   const [user, setUser] = useState<{
     avatar: string | null;
     name: string;
@@ -98,14 +104,58 @@ export default function Header() {
               </div>
             </>
           ) : (
-            <Link href="/dashboard">
+            <div>
               <div className={styles.User}>
                 <div className={styles.UserAvatar}>
                   <Avatar user={user} />
                 </div>
-                <div>{user.name}</div>
+                <div className={styles.userMenu}>
+                  <div
+                    style={
+                      showMenu
+                        ? { borderRadius: "15px 15px 0 0" }
+                        : { borderRadius: "15px" }
+                    }
+                  >
+                    <button
+                      className={styles.toggleMenu}
+                      onClick={() => toggleMenu(!showMenu)}
+                    >
+                      <span>
+                        <ProfileIcon />
+                      </span>
+                      <span>{user.name}</span>
+                    </button>
+                  </div>
+                  {showMenu && (
+                    <>
+                      <div>
+                        <div>
+                          <span>
+                            <DashboardIcon />
+                          </span>
+                          <Link href="/dashboard"> مشاهده حساب کاربری</Link>
+                        </div>
+                        <div>
+                          <span>
+                            <LogoutIcon />
+                          </span>
+                          <a
+                            onClick={() => {
+                              logout();
+                              router.push("/login");
+                            }}
+                          >
+                            {" "}
+                            خروج
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
-            </Link>
+            </div>
           )}
         </div>
       </div>
