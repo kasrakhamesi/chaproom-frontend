@@ -347,7 +347,7 @@
     gap: 0px;
 
     @media (max-width: 896px) {
-      flex-direction: column;
+      flex-direction: column-reverse;
       text-align: center;
     }
 
@@ -357,9 +357,10 @@
       transform: translateX(80px);
 
       @media (max-width: 896px) {
-        width: 100%;
-        max-width: 640px;
-        padding: 0 30px;
+        width: 410px;
+        height: 220px;
+        margin-top: 18px;
+        margin-right: 123px;
       }
     }
 
@@ -396,6 +397,8 @@
 
         @media (max-width: 896px) {
           font-size: 16px;
+          text-align: right;
+          width: 300px;
         }
 
         @media (max-width: 512px) {
@@ -411,6 +414,11 @@
         width: 100%;
         max-width: 221px;
         font-size: 18px;
+        @media (max-width: 896px) {
+          width: 100%;
+          max-width: 285px;
+          height: 40px;
+        }
       }
     }
   }
@@ -713,8 +721,13 @@
     padding: 0 50px;
 
     @media (max-width: 896px) {
+      display: grid;
+      grid-template-rows: repeat(1, minmax(0, 1fr));
       grid-template-columns: 1fr;
       padding: 0 30px;
+      grid-gap: 0px;
+      gap: 0px;
+      z-index: 2;
     }
 
     > h1 {
@@ -728,6 +741,11 @@
       @media (max-width: 896px) {
         grid-column: unset;
         font-size: 22px;
+        z-index: 2;
+        padding: 0px;
+        margin-bottom: 17px;
+        margin-top: 0;
+        grid-column: unset;
       }
     }
 
@@ -745,7 +763,13 @@
         height: auto;
 
         @media (max-width: 512px) {
-          display: none;
+          position: absolute;
+          display: block;
+          top: -57%;
+          right: -53%;
+          width: 520px;
+          height: 420px;
+          z-index: 1;
         }
       }
 
@@ -758,10 +782,12 @@
         left: 10%;
         right: 30%;
         width: 60%;
+        z-index: 2;
 
         @media (max-width: 512px) {
           position: static;
           width: 100%;
+          z-index: 2;
         }
 
         > div {
@@ -797,6 +823,12 @@
 
       @media (min-width: 897px) {
         transform: translateX(170px);
+      }
+
+      @media (max-width: 896px) {
+        z-index: 2;
+        grid-row-start: 2;
+        margin-bottom: 43px;
       }
 
       > div {
