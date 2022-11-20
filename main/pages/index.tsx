@@ -14,7 +14,6 @@ import {
 } from "@/main/api";
 import ExpandMoreIcon from "@/shared/assets/icons/expandMore.svg";
 import GiftImage from "@/main/assets/images/gift.svg";
-import CalculatorImage from "@/main/assets/images/calculator.svg";
 import DataLoader from "@/shared/components/DataLoader";
 import PrintPriceCalculator from "@/main/components/PrintPriceCalculator";
 import BookPrintingImage from "@/main/assets/images/bookPrinting.svg";
@@ -179,7 +178,7 @@ export default function Home() {
             </DataLoader>
           </div>
           <div>
-            <CalculatorImage />
+            <img src="/assets/images/callculator.svg" alt="calculator" />
           </div>
         </div>
       </div>
