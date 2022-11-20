@@ -57,7 +57,7 @@ export default function DashboardMarketing() {
         title="پنل بازاریابی"
         description="با استفاده از این سیستم می توانید به راحتی برای خود درآمدزایی کنید"
       />
-      <SectionContent>
+      <SectionContent marketingpage>
         <MobileContentHeader backTo="/dashboard" title="بازاریابی" />
         <DataLoader load={() => getMarketing()} setData={setData}>
           <div className={styles.Container}>
