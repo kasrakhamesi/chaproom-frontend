@@ -100,7 +100,6 @@
     .User {
       display: flex;
       flex-direction: row;
-      justify-content: center;
       gap: 10px;
       padding: 10px;
       > div:nth-of-type(1) {
@@ -118,6 +117,7 @@
       .Meta {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 5px;
         color: #464646;
         flex: 1;
