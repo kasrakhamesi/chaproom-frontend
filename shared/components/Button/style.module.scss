@@ -21,11 +21,7 @@
   font-weight: bold;
   user-select: none;
   border: none;
-<<<<<<< HEAD
-
-=======
   font-weight: 300;
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
   &:not(:disabled) {
     cursor: pointer;
   }
@@ -128,11 +124,6 @@
       > svg {
         display: none;
       }
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
       &::after {
         border-top-color: #0077b5;
         border-left-color: #0077b5;
@@ -140,8 +131,4 @@
       }
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b

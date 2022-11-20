@@ -27,13 +27,9 @@ export default function DashboardNavLinks() {
       </NavLink>
       <NavLink href="/dashboard/orders">
         <a className={styles.NavLink}>
-<<<<<<< HEAD
-          <OrdersIcon />
-=======
           <span>
             <OrdersIcon />
           </span>
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
           <div className={styles.Text}>سفارش ها من</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />
@@ -42,13 +38,9 @@ export default function DashboardNavLinks() {
       </NavLink>
       <NavLink href="/dashboard/addresses">
         <a className={styles.NavLink}>
-<<<<<<< HEAD
-          <AddressesIcon />
-=======
           <span>
             <AddressesIcon />
           </span>
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
           <div className={styles.Text}>آدرس ها من</div>
           <div className={styles.Arrow}>
             <NavigateBeforeIcon />

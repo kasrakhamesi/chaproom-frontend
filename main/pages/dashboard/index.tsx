@@ -165,12 +165,8 @@ export default function DashboardMain() {
               <ContentHeader
                 title="سفارش های در حال انجام من"
                 end={
-<<<<<<< HEAD
-                  <Button varient="content-title-none"
-=======
                   <Button
                     varient="content-title-none"
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
                     onClick={() => router.push("/dashboard/orders/new")}
                   >
                     سفارش جدید <AddIcon />
@@ -180,13 +176,9 @@ export default function DashboardMain() {
               <OrderTable
                 orders={data!.inProgressOrders}
                 onSeeOrderDetails={(orderId) =>
-<<<<<<< HEAD
-                  router.push(`/dashboard/orders/${orderId}/details?fromDashboard=true`)
-=======
                   router.push(
                     `/dashboard/orders/${orderId}/details?fromDashboard=true`,
                   )
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
                 }
                 onCancelOrder={setPendingOrderCancelRequest}
               />

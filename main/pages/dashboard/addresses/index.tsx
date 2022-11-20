@@ -49,14 +49,10 @@ export default function DashboardAddresseList() {
           end={
             <Link href="/dashboard/addresses/new">
               <Button varient="content-title-none">
-<<<<<<< HEAD
-                افزودن آدرس <AddIcon />
-=======
                 افزودن آدرس{" "}
                 <span>
                   <AddIcon />
                 </span>
->>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
               </Button>
             </Link>
           }
