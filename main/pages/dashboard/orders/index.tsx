@@ -5,7 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { Order } from "@/shared/types";
 import { cancelOrder, getOrders } from "@/main/api";
-import AddIcon from "@/shared/assets/icons/add.svg";
+import AddIcon from "@/shared/assets/icons/order.svg";
 import DashboardLayout from "@/main/components/Dashboard/Layout";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
 import SectionContent from "@/shared/components/Dashboard/SectionContent";

@@ -3,7 +3,7 @@ import { ReactElement, useState } from "react";
 import { FormattedNumber } from "react-intl";
 import Head from "next/head";
 import { getMarketing } from "@/main/api";
-import LinkIcon from "@/main/assets/icons/link.svg";
+import LinkIcon from "@/main/assets/icons/path.svg";
 import PercentIcon from "@/main/assets/icons/percent.svg";
 import DashboardLayout from "@/main/components/Dashboard/Layout";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
@@ -69,9 +69,12 @@ export default function DashboardMarketing() {
                   شما می‌توانید با اشتراک گذاری <u>لینک اختصاصی خودتان</u> خود
                   کسب درآمد کنید. لازم به ذکر است پس از اولین بازدید از طریق
                   لینک شما تا یک ماه بعد (حتی اگر کاربر شما توسط لینک‌های دیگر
-                  وارد سایت چاپ روم شود) کاربر خریدی انجام دهد،{" "}
-                  {<FormattedNumber value={data!.referral.commission} />} درصد
-                  از خرید آن مشتری در پنل بازاریابی شما لحاظ می‌شود.
+                  وارد سایت چاپ روم شود){" "}
+                  <span>
+                    کاربر خریدی انجام دهد،{" "}
+                    {<FormattedNumber value={data!.referral.commission} />} درصد
+                    از خرید آن مشتری در پنل بازاریابی شما لحاظ می‌شود.
+                  </span>
                 </div>
               </div>
               <div>

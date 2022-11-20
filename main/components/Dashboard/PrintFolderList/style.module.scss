@@ -12,12 +12,14 @@
     border: 1px solid #cccccc;
     padding: 15px;
     color: #9c9c9c;
-
+    div:nth-of-type(1) {
+      padding: 0px 0px;
+    }
     .Header {
       display: flex;
       flex-direction: row;
       gap: 15px;
-
+      padding: 5px 0px;
       .Label {
         flex: 1;
         display: flex;
@@ -47,11 +49,11 @@
           margin: 0;
           cursor: pointer;
         }
-  
+
         .EditButton {
           fill: #9c9c9c;
         }
-  
+
         .DeleteButton {
           fill: #f20f4b;
         }

@@ -42,7 +42,11 @@
         padding-bottom: 4px;
         font-size: 14px;
         margin-bottom: 0px;
+<<<<<<< HEAD
         font-weight: 50;
+=======
+        font-weight: 500;
+>>>>>>> 05d494beee4c80d2d6754db91345894d3445c16b
       }
       .table {
         &__callus {
@@ -56,6 +60,8 @@
               font-size: 12px;
               overflow: hidden;
               fill: white;
+              font-weight: 300;
+
               > span {
                 padding-left: 0.5rem;
               }
@@ -73,6 +79,7 @@
               font-size: 12px;
               line-height: 30px;
               overflow: hidden;
+              font-weight: 300;
             }
           }
         }
@@ -90,6 +97,7 @@
               font-size: 12px;
               line-height: 30px;
               overflow: hidden;
+              font-weight: 300;
             }
           }
         }
@@ -113,6 +121,7 @@
         font-size: 16px;
         font-weight: 50;
         color: #ffffff;
+        font-weight: 400;
       }
       > h4:nth-of-type(2) {
         border-top: 1px solid white;
@@ -131,6 +140,7 @@
           padding: 0 8px;
           a > {
             fill: white;
+            font-weight: 300;
           }
         }
       }

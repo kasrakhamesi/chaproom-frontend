@@ -25,7 +25,7 @@ export default function OurCustomers() {
       startCloneItems.reduce(
         (result, child, index) =>
           index === 0 ? result : result + child.clientWidth + 50,
-        0
+        0,
       ) < 682.5 &&
       currentCloneIndex >= 0
     );
@@ -42,7 +42,7 @@ export default function OurCustomers() {
       endCloneItems.reduce(
         (result, child, index) =>
           index === 0 ? result : result + child.clientWidth + 50,
-        0
+        0,
       ) < 682.5 &&
       currentCloneIndex < customerListItems.length
     );

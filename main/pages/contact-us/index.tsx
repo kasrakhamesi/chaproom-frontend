@@ -35,7 +35,7 @@ export default function ContactUs() {
       name,
       phoneNumber,
       message,
-    }
+    },
   );
 
   return (
@@ -104,8 +104,7 @@ export default function ContactUs() {
           <div>
             <h2>نشانی</h2>
             <ul>
-              <li>شعبه 1: تهران، خیابان فخر راضی</li>
-              <li>شعبه 2: اصفهان، خیابان پروین</li>
+              <li>تهران، میدان انقلاب، خ فخر راضی، خ نظری</li>
             </ul>
           </div>
           <div>
