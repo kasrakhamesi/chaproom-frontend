@@ -44,7 +44,7 @@ export default function AddressView({
       </div>
       <div className={styles.descrep}>
         نشانی: استان {address.recipientDeliveryProvince} / شهر{" "}
-        {address.recipientDeliveryCity} / {address.recipientDeliveryAddress} /
+        {address.recipientDeliveryCity} / {address.recipientDeliveryAddress}
       </div>
     </div>
   );
