@@ -18,7 +18,7 @@ export default function NotFound() {
         </Link>
       </div>
       <div className={styles.Content}>
-        <div className={styles.ErrorNumber}>404</div>
+        <div className={styles.ErrorNumber}>۴۰۴</div>
         <h1>این صفحه در دسترس نیست</h1>
         <p>
           این صفحه موجود نیست یا پاک شده است!

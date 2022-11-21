@@ -7,10 +7,9 @@
   margin: 0 auto;
   padding-bottom: 180px;
   background-repeat: no-repeat;
-  background-image: url("~@/shared/assets/images/notFoundBackgroundBottom.svg"),
-    url("~@/shared/assets/images/notFoundBackgroundTop.svg");
-  background-position: bottom left, top left;
-  background-size: auto 400px, 425px auto;
+  background-image: url("~@/shared/assets/images/notFoundBackgroundBottom.svg");
+  background-position: bottom left;
+  background-size: auto 500px;
 
   @media (max-width: 1148px) {
     background-size: auto 350px, 375px auto;
@@ -31,31 +30,37 @@
     background-position: bottom center, top left;
     background-size: auto 330px, 350px auto;
     padding-bottom: 330px;
+    text-align: center;
   }
 
   @media (max-width: 768px) {
     background-size: auto 270px, 300px auto;
     padding-bottom: 270px;
+    text-align: center;
   }
 
   @media (max-width: 640px) {
     background-size: auto 220px, 260px auto;
     padding-bottom: 220px;
+    text-align: center;
   }
 
   @media (max-width: 576px) {
     background-size: auto 170px, 220px auto;
     padding-bottom: 170px;
+    text-align: center;
   }
 
   @media (max-width: 512px) {
     background-size: auto 150px, 180px auto;
     padding-bottom: 150px;
+    text-align: center;
   }
 
   @media (max-width: 448px) {
-    background-size: auto 130px, 150px auto;
+    background-size: auto 150px;
     padding-bottom: 130px;
+    text-align: center;
   }
 
   .Header {
@@ -73,7 +78,7 @@
 
     .Logo {
       display: inline-flex;
-      
+
       > svg {
         width: auto;
         height: 70px;
@@ -102,7 +107,8 @@
   }
 
   .Content {
-    padding: 0 140px;
+    padding: 0 105px;
+    margin-top: 55px;
 
     @media (max-width: 896px) {
       margin: 40px auto;
@@ -111,12 +117,12 @@
     }
 
     .ErrorNumber {
-      font-size: 72px;
+      font-size: 100px;
       font-weight: bold;
       color: #5800b3;
 
       @media (max-width: 896px) {
-        font-size: 64px;
+        font-size: 60px;
       }
     }
 
@@ -124,16 +130,17 @@
       margin-top: 0;
       margin-bottom: 30px;
       font-size: 40px;
-      font-weight: bold;
+      font-weight: 900;
       color: #5800b3;
 
       @media (max-width: 896px) {
-        font-size: 30px;
+        font-size: 22px;
       }
     }
 
     p {
       font-size: 16px;
+      line-height: 27px;
       margin: 0;
 
       @media (max-width: 896px) {
@@ -146,11 +153,27 @@
       display: flex;
       flex-direction: row;
       gap: 20px;
+      > button:nth-of-type(1) {
+        padding: 17px 23px;
+        font-weight: 300;
+      }
+      > button:nth-of-type(2) {
+        padding: 17px 51px;
+        font-weight: 300;
+      }
 
       @media (max-width: 896px) {
         flex-direction: column;
         align-items: center;
+        > button:nth-of-type(1) {
+          padding: 20px 76px;
 
+          font-weight: 300;
+        }
+        > button:nth-of-type(2) {
+          padding: 20px 104px;
+          font-weight: 300;
+        }
         > a {
           min-width: unset;
           width: 100%;
@@ -160,7 +183,7 @@
 
       > a {
         text-decoration: none;
-        
+
         > button {
           min-width: 170px;
           width: 100%;
