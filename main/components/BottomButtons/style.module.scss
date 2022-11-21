@@ -6,6 +6,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 10px 20px 20px 20px;
+  z-index: 999;
 
   @media (min-width: 1201px) {
     display: none;
@@ -36,7 +37,7 @@
         width: auto;
         height: 100%;
       }
-      
+
       > div {
         font-size: 10px;
         text-align: center;
@@ -47,7 +48,7 @@
         fill: #0077b5;
 
         &::after {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
           bottom: -13px;
