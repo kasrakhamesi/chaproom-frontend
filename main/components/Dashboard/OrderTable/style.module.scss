@@ -76,12 +76,13 @@
           flex: 1;
           text-align: start;
           white-space: nowrap;
+          font-weight: 500;
 
           @media (min-width: 801px) {
             display: none;
           }
         }
-        
+
         .Date {
           white-space: nowrap;
           display: flex;
@@ -119,16 +120,19 @@
           user-select: none;
           cursor: pointer;
           border: none;
+          font-weight: 500;
         }
 
         .SeeDetailsButton {
           background-color: #ffffff;
           color: #464646;
+          padding: 0 26px !important;
         }
 
         .CancelButton {
           background-color: #f20f4b;
           color: #ffffff;
+          padding: 0 19px !important;
         }
 
         .CancelButton:disabled {

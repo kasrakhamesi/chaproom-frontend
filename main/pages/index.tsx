@@ -14,7 +14,6 @@ import {
 } from "@/main/api";
 import ExpandMoreIcon from "@/shared/assets/icons/expandMore.svg";
 import GiftImage from "@/main/assets/images/gift.svg";
-import CalculatorImage from "@/main/assets/images/calculator.svg";
 import DataLoader from "@/shared/components/DataLoader";
 import PrintPriceCalculator from "@/main/components/PrintPriceCalculator";
 import BookPrintingImage from "@/main/assets/images/bookPrinting.svg";
@@ -163,9 +162,9 @@ export default function Home() {
         <div>
           <h1>هدیه اولین سفارش</h1>
           <p>
-            با ثبت نام در چاپ روم{" "}
-            <span className={styles.Highlight}>30 صفحه پرینت رایگان</span> در
-            اولین سفارش هدیه بگیرید.
+            با ثبت اولین سفارش در چاپ روم{" "}
+            <span className={styles.Highlight}>30 صفحه پرینت رایگان </span>
+            هدیه بگیرید.
           </p>
           <Button varient="gradient">دریافت کد هدیه</Button>
         </div>
@@ -179,7 +178,7 @@ export default function Home() {
             </DataLoader>
           </div>
           <div>
-            <CalculatorImage />
+            <img src="/assets/images/callculator.svg" alt="calculator" />
           </div>
         </div>
       </div>
@@ -240,7 +239,7 @@ export default function Home() {
                     inputProps={{
                       type: "number",
                       placeholder: "تیراژ (حداقل 50 نسخه)",
-                    }}     
+                    }}
                     height={48}
                     varient="shadow-without-bg"
                   />

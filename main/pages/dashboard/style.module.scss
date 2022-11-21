@@ -36,6 +36,9 @@
 
           .DashboardDescription {
             color: #464646;
+            padding: 10px 0px;
+            line-height: 27px;
+            font-weight: 500;
           }
 
           .Printing {
@@ -64,8 +67,17 @@
                 }
 
                 &:last-child {
-                  width: unset;
+                  width: 81px;
+                  height: 30px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
                   padding: 0 10px;
+                  border-radius: 20px;
+                  font-weight: 500;
+                  text-decoration: none;
+                  box-shadow: -3px -3px 6px rgb(255 255 255 / 86%),
+                    3px 3px 6px rgb(0 0 0 / 16%);
                 }
               }
             }
