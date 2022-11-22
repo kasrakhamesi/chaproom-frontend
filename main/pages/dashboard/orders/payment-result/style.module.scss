@@ -6,7 +6,7 @@
   align-items: center;
   text-align: center;
   gap: 20px;
-    
+
   @media (max-width: 896px) {
     justify-content: space-between;
   }
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     @media (min-width: 897px) {
       display: none;
     }
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     @media (min-width: 897px) {
       margin-top: 10px;
     }
@@ -45,29 +45,34 @@
     }
   }
 
-  > h2 {
+  .SuccessfulTitle {
     margin: 0;
     color: #0077b5;
     font-size: 22px;
   }
 
-  > p {
+  .SuccessfulOrderId {
     margin: 0;
     font-size: 18px;
     font-weight: 500; // Medium
     color: #9c9c9c;
   }
 
-  .ButtonList {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    column-gap: 10px;
-    row-gap: 20px;
-    width: 100%;
-    
-    @media (max-width: 896px) {
-      flex-direction: column;
-    }
+  .UnsuccessfulTitle {
+    margin: 0;
+    color: #f20f4b;
+    font-size: 32px;
+  }
+
+  .UnsuccessfulSubtitle {
+    margin: 0;
+    color: #464646;
+    font-size: 20px;
+  }
+
+  .UnsuccessfulMessage {
+    margin: 0;
+    color: #9c9c9c;
+    max-width: 400px;
   }
 }

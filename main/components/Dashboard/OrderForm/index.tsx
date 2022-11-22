@@ -205,12 +205,15 @@ export default function OrderForm() {
             back: () => setCurrentStage(OrderFormStages.address),
             finish: (discountCode, paidWithWallet) =>
               newOrder(addressId!, discountCode, paidWithWallet)
-                .then(({ message, paymentUrl }) => {
-                  if (message) {
-                    toast.success(message);
-                    router.push("/dashboard/orders", undefined, {
-                      unstable_skipClientCache: true,
-                    });
+                .then(({ orderId, paymentUrl }) => {
+                  if (orderId) {
+                    router.push(
+                      `/dashboard/orders/payment-result?isSuccessful=true&orderId=${orderId}`,
+                      undefined,
+                      {
+                        unstable_skipClientCache: true,
+                      }
+                    );
                   }
                   if (paymentUrl) window.location.href = paymentUrl;
                 })

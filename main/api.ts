@@ -14,11 +14,11 @@ import { convert } from "@/shared/utils/convert";
 import { orderConvertMap, printFoldersConvertMap } from "@/main/convertMaps";
 import { blogPostConvertMap } from "@/admin/convertMaps";
 
-function getAccessToken() {
+export function getAccessToken() {
   return localStorage.getItem("userAccessToken");
 }
 
-function setAccessToken(token: string) {
+export function setAccessToken(token: string) {
   localStorage.setItem("userAccessToken", token);
 }
 
@@ -28,7 +28,7 @@ export function logout() {
 }
 
 const api = axios.create({
-  baseURL: "http://78.157.34.146:3000/v1",
+  baseURL: "http://localhost:3000/v1",
   headers: {
     "Content-Type": "application/json",
   },
@@ -40,11 +40,11 @@ interface requestConfig extends AxiosRequestConfig<any> {
   redirectIfNotLogin?: boolean;
 }
 
-const request = async ({
+export async function request({
   needAuth,
   redirectIfNotLogin = true,
   ...config
-}: requestConfig) => {
+}: requestConfig) {
   return new Promise<any>((resolve, reject) => {
     if (needAuth && !getAccessToken()) {
       reject("لطفا دوباره وارد شوید");
@@ -56,7 +56,6 @@ const request = async ({
     api({
       ...config,
       headers: {
-        "Content-Type": "application/json",
         ...(needAuth ? { authorization: `Bearer ${getAccessToken()}` } : {}),
         ...config.headers,
       },
@@ -84,7 +83,7 @@ const request = async ({
         reject(response?.data?.error?.message || message || "");
       });
   });
-};
+}
 
 export function reportReferralView(slug: string) {
   return request({
@@ -129,16 +128,17 @@ export function submitContactUs(
   }).then(({ data }) => data.message);
 }
 
-export function getBlogPosts(page: number) {
+export function getBlogPosts(page: number, blogType?: "popular") {
   return request({
     method: "GET",
     url: "/public/blogs",
     needAuth: true,
     params: {
       page,
+      blogType,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     posts: data.blogs.map((item: any) =>
       convert(blogPostConvertMap, item, "a2b")
@@ -170,7 +170,7 @@ export function getBlogPostsByCategory(categoryId: number, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     posts: data.blogs.map((item: any) =>
       convert(blogPostConvertMap, item, "a2b")
@@ -345,7 +345,7 @@ export function getOrders(page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     orders: data.orders.map((item: any) => ({
       id: item.id,
@@ -530,7 +530,7 @@ export function newOrder(
     },
   }).then(({ data }) => ({
     paymentUrl: data.paymentUrl,
-    message: data.message,
+    orderId: data.id,
   }));
 }
 
@@ -543,7 +543,7 @@ export function getAddresses(page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     addresses: data.addresses as Address[],
   }));
@@ -631,7 +631,7 @@ export function getTransactions(page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     transactions: data.transactions.map((item: any) => ({
       id: item.id,

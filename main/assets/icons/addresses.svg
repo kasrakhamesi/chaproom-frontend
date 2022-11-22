@@ -1,3 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 18.058 18.058">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g transform="translate(2,3)">
+
   <path id="Icon_material-my-location" data-name="Icon material-my-location" d="M10.529,7.246a3.283,3.283,0,1,0,3.283,3.283A3.282,3.282,0,0,0,10.529,7.246Zm7.338,2.462A7.383,7.383,0,0,0,11.35,3.191V1.5H9.708V3.191A7.383,7.383,0,0,0,3.191,9.708H1.5V11.35H3.191a7.383,7.383,0,0,0,6.517,6.517v1.691H11.35V17.867a7.383,7.383,0,0,0,6.517-6.517h1.691V9.708Zm-7.338,6.567a5.746,5.746,0,1,1,5.746-5.746A5.742,5.742,0,0,1,10.529,16.275Z" transform="translate(-1.5 -1.5)" fill="#5d5d5d"/>
+</g>
 </svg>

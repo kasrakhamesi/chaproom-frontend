@@ -30,12 +30,12 @@ interface DatePickerProps {
   value: Date | Moment | null;
   onChange: (newValue: Moment) => void;
   inputFormat?: string;
-  inputVarient?: "outlined" | "shadow";
-  inputProps?: InputHTMLAttributes<HTMLInputElement>;
   setIsValid?: (newValue: boolean) => void;
-  inputHeight?: number;
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  inputVarient?: "outlined" | "shadow";
   inputPrefix?: ReactNode;
   inputSuffix?: ReactNode;
+  inputHeight?: number;
 }
 
 export default function DatePicker({
@@ -44,9 +44,9 @@ export default function DatePicker({
   value,
   onChange,
   inputFormat = "jYYYY/jMM/jDD",
-  inputVarient,
-  inputProps = { placeholder: "1400/01/01" },
+  inputProps = {},
   setIsValid,
+  inputVarient,
   inputPrefix,
   inputSuffix,
   inputHeight,
@@ -106,7 +106,10 @@ export default function DatePicker({
         ref={reference}
         varient={inputVarient}
         value={inputValue}
-        inputProps={inputProps}
+        inputProps={{
+          placeholder: "1400/01/01",
+          ...inputProps,
+        }}
         onChange={(newValue) => {
           setInputValue(newValue);
           try {

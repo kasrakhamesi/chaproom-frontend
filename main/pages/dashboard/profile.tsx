@@ -28,7 +28,7 @@ export default function DashboardProfile() {
       </Head>
       <SectionHeader
         title="پروفایل"
-        description="تنظیمات پروفایل خود را از این بخش تغییر دهید"
+        description="_ تنظیمات حساب خود را از این قسمت انجام دهید"
       />
       <SectionContent>
         <ContentHeader title="اطلاعات من" />

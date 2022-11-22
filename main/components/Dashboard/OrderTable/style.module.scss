@@ -97,17 +97,20 @@
         }
 
         .Sent {
+          font-size: 12px;
+          font-weight: 500;
           color: #14cc9c;
         }
 
         .Canceled,
         .Pending,
         .Preparing {
+          font-size: 12px;
+          font-weight: 500;
           color: #f20f4b;
         }
 
-        .SeeDetailsButton,
-        .CancelButton {
+        .SeeDetailsButton {
           display: inline-flex;
           height: 30px;
           flex-direction: row;
@@ -121,6 +124,22 @@
           cursor: pointer;
           border: none;
           font-weight: 500;
+        }
+        
+        .CancelButton {
+          display: inline-flex;
+          height: 30px;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+          box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+          padding: 0 20px;
+          font-size: 12px;
+          user-select: none;
+          cursor: pointer;
+          border: none;
+          font-weight: 400;
         }
 
         .SeeDetailsButton {

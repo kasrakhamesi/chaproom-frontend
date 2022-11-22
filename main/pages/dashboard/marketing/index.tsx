@@ -55,7 +55,7 @@ export default function DashboardMarketing() {
       </Head>
       <SectionHeader
         title="پنل بازاریابی"
-        description="با استفاده از این سیستم می توانید به راحتی برای خود درآمدزایی کنید"
+        description="_ با استفاده از این سیستم میتوانید به راحتی برای خود درآمدزایی کنید"
       />
       <SectionContent marketingpage>
         <MobileContentHeader backTo="/dashboard" title="بازاریابی" />
@@ -66,7 +66,7 @@ export default function DashboardMarketing() {
                 <LinkIcon className={styles.LinkIcon} />
                 <div className={styles.Title}>درباره لینک اختصاصی</div>
                 <div className={styles.Description}>
-                  شما می‌توانید با اشتراک گذاری <u>لینک اختصاصی خودتان</u> خود
+                  شما می‌توانید با اشتراک گذاری لینک اختصاصی خودتان خود
                   کسب درآمد کنید. لازم به ذکر است پس از اولین بازدید از طریق
                   لینک شما تا یک ماه بعد (حتی اگر کاربر شما توسط لینک‌های دیگر
                   وارد سایت چاپ روم شود){" "}

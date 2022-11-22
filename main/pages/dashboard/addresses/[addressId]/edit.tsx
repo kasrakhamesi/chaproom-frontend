@@ -28,7 +28,7 @@ export default function DashboardEditAddresse() {
       </Head>
       <SectionHeader
           title="کل آدرس های من"
-          description="آدرس های خود را از این قسمت مدیریت کنید"
+          description="_ آدرس های خود را از این قسمت مدیریت کنید"
       />
       <SectionContent>
         <ContentHeader

@@ -107,11 +107,15 @@
     .DiscountCode {
       display: flex;
       flex-direction: row;
-      gap: 10px;
+      gap: 20px;
       width: 100%;
       max-width: 250px;
       padding-bottom: 15px;
       border-bottom: 1px solid #9c9c9c;
+
+      @media (max-width: 896px) {
+        max-width: unset;
+      }
 
       > div:first-child {
         flex: 1;
@@ -205,24 +209,24 @@
 .AmountPayable {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 30px;
   padding: 5px 0;
   width: 100%;
-  max-width: 250px;
   align-items: center;
   font-size: 16px;
 
   @media (max-width: 896px) {
-    max-width: unset;
+    > div:first-child {
+      flex: 1;
+    }
   }
 
   > div:first-child {
-    flex: 1;
     color: #707070;
   }
 
   > div:last-child {
-    color: #2578fA;
+    color: #2578fa;
 
     > span:first-child {
       font-size: 22px;

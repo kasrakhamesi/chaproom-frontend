@@ -30,7 +30,7 @@ export default function DashboardOrderDetails() {
       </Head>
       <SectionHeader
         title="سفارش های من"
-        description="تاریخچه سفارشات خود را از این بخش مشاهده کنید"
+        description="_ تاریخچه سفارشات خود را از این قسمت مشاهده کنید"
       />
       <SectionContent>
         <ContentHeader

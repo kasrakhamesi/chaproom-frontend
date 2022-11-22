@@ -23,7 +23,7 @@ export default function PrintFolderList({
         <div className={styles.PrintFolder} key={printFolder.id}>
           <div className={styles.Header}>
             <div className={styles.Label}>
-              <span>پوشه {index + 1}</span>
+              <span>پوشه <FormattedNumber value={index + 1} /></span>
               <span>
                 (<FormattedNumber value={printFolder.amount} /> تومان)
               </span>

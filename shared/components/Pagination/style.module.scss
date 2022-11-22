@@ -1,0 +1,53 @@
+.Pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+  
+    .Dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+    }
+  
+    .Item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+      font-size: 13px;
+      padding: 0;
+      border: none;
+      background-color: #f5f5ff;
+      color: #464646;
+      fill: #464646;
+      box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  
+      &:disabled {
+        pointer-events: none;
+        background-color: #cccccc;
+        fill: #ffffff;
+      }
+  
+      &[data-selected="true"] {
+        background-color: #0077b5;
+        color: #ffffff;
+        fill: #ffffff;
+      }
+  
+      &:not([data-selected="true"]) {
+        &:not(:disabled) {
+          cursor: pointer;
+  
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+          }
+        }
+      }
+    }
+  }

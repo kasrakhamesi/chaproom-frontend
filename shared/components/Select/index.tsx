@@ -25,7 +25,7 @@ import ExpandMoreIcon from "@/shared/assets/icons/expandMore.svg";
 interface SelectProps {
   placeholder?: string;
   options: Record<string, string>;
-  value: string | null;
+  value: any;
   onChange: (newValue: any) => void;
   varient?:
     | "outlined"

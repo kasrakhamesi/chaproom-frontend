@@ -72,7 +72,6 @@ export default function OurCustomers() {
     }
     customerListContainer.style.transition = "none";
     setCurrentItem(0);
-    console.log(setCurrentItem);
     setTimeout(() => customerListContainer.style.removeProperty("transition"));
 
     const interval = setInterval(() => {

@@ -7,12 +7,15 @@ import SectionContent from "@/shared/components/Dashboard/SectionContent";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
 import LogoWithName from "@/shared/assets/images/logoWithName.svg";
 import SuccessfulOrderImage from "@/main/assets/images/successfulOrder.svg";
+import UnuccessfulOrderImage from "@/main/assets/images/unsuccessfulOrder.svg";
 import Button from "@/shared/components/Button";
 import Link from "next/link";
+import { FormattedNumber } from "react-intl";
 
 export default function DashboardOrderPaymentResult() {
   const router = useRouter();
-  const { isSuccessful, orderId } = router.query;
+  const isSuccessful = router.query.isSuccessful as string;
+  const orderId = router.query.orderId as string;
 
   return (
     <>
@@ -22,35 +25,60 @@ export default function DashboardOrderPaymentResult() {
         </title>
       </Head>
       <SectionHeader
-          title="کل سفارشات من"
-          description="تاریخچه سفارشات خود را از این قسمت مشاهده کنید"
+        title="سفارش ها"
+        description="_ تاریخچه سفارشات خود را از این قسمت مشاهده کنید"
       />
       <SectionContent>
         <div className={styles.Container}>
           <div className={styles.SiteLogo}>
             <LogoWithName />
           </div>
-          <div className={styles.Image}>
-            {isSuccessful === "true" ? (
-              <SuccessfulOrderImage />
-            ) : (
-              <SuccessfulOrderImage />
-            )}
-          </div>
-          <h2>
-            {isSuccessful === "true"
-              ? "سفارش شما با موفقیت تکمیل شد"
-              : "سفارش شما با موفقیت تکمیل نشد"}
-          </h2>
-          <p>شماره سفارش: {orderId}</p>
-          <div className={styles.ButtonList}>
-            <Link href={`/dashboard/orders/${orderId}/details`}>
-              <Button varient="gradient">مشاهده جزئیات سفارش</Button>
-            </Link>
-            <Link href="/dashboard/orders">
-              <Button varient="outlined">بازگشت به سفارش ها</Button>
-            </Link>
-          </div>
+          {!router.isReady ? (
+            <></>
+          ) : isSuccessful === "true" ? (
+            <>
+              <div className={styles.Image}>
+                <SuccessfulOrderImage />
+              </div>
+              <h2 className={styles.SuccessfulTitle}>
+                سفارش شما با موفقیت تکمیل شد
+              </h2>
+              <p className={styles.SuccessfulOrderId}>
+                شماره سفارش:{" "}
+                <FormattedNumber
+                  value={parseInt(orderId)}
+                  useGrouping={false}
+                />
+              </p>
+              <Link href="/dashboard/orders">
+                <Button varient="gradient" style={{ minWidth: 300 }}>
+                  بازگشت به سفارش های من
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className={styles.Image}>
+                <UnuccessfulOrderImage />
+              </div>
+              <h1 className={styles.UnsuccessfulTitle}>پرداخت ناموفق!</h1>
+              <h2 className={styles.UnsuccessfulSubtitle}>
+                متاسفانه پرداخت اخیر شما انجام نشد
+              </h2>
+              <p className={styles.UnsuccessfulMessage}>
+                در صورت کسر موجودی از حساب شما تا <FormattedNumber value={72} />{" "}
+                ساعت به حساب شما باز می‌گردد، در غیر این صورت با ما تماس بگیرید{" "}
+                <Link href="/contact-us">
+                  <a>[ تماس با ما ]</a>
+                </Link>
+              </p>
+              <Link href="/dashboard/orders">
+                <Button varient="gradient" style={{ minWidth: 300 }}>
+                  بازگشت به سفارش های من
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </SectionContent>
     </>

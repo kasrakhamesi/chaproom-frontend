@@ -163,7 +163,7 @@ export default function PaymentStage({ actions }: PaymentStageProps) {
                 <ZarinpalLogo />
               </div>
             </div>
-            <div className={styles.Separator}></div>
+            <div className={styles.Separator} />
             <div>
               <div>
                 <CheckBox
@@ -176,7 +176,6 @@ export default function PaymentStage({ actions }: PaymentStageProps) {
                 موجودی: <FormattedNumber value={data.userBalance} /> تومان
               </div>
             </div>
-            <div className={styles.Separator}></div>
           </div>
         </div>
       </div>

@@ -16,15 +16,17 @@ import Button from "@/shared/components/Button";
 import DataLoader from "@/shared/components/DataLoader";
 import AddressList from "@/shared/components/Dashboard/AddressList";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 
 export default function DashboardAddresseList() {
   const router = useRouter();
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     addresses: Address[];
-  }>({ countOfItems: 0, addresses: [] });
+  }>({ totalCount: 0, pageSize: 0, addresses: [] });
 
   const [page, setPage] = useState(1);
 
@@ -41,25 +43,22 @@ export default function DashboardAddresseList() {
       </Head>
       <SectionHeader
         title="آدرس های من"
-        description="آدرس های خود را از این بخش مدیریت کنید"
+        description="_ آدرس های خود را از این قسمت مدیریت کنید"
       />
       <SectionContent>
         <ContentHeader
-          title="کل آدرس های من"
+          title="آدرس های من"
           end={
             <Link href="/dashboard/addresses/new">
               <Button varient="content-title-none">
-                افزودن آدرس{" "}
-                <span>
-                  <AddIcon />
-                </span>
+                افزودن آدرس <AddIcon />
               </Button>
             </Link>
           }
         />
         <MobileContentHeader
           backTo="/dashboard"
-          title="کل آدرس های من"
+          title="آدرس های من"
           end={
             <Link href="/dashboard/addresses/new">
               <IconButton varient="filled">
@@ -84,6 +83,12 @@ export default function DashboardAddresseList() {
           {!data.addresses.length && (
             <EmptyNote>شما هیچ آدرسی ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
         </DataLoader>
         <WarningConfirmDialog
           open={pendingDeleteRequest !== null}

@@ -16,8 +16,8 @@ export default function DashboardNewOrder() {
       </Head>
       <SectionHeader
           title="کل سفارشات من"
-          description="تاریخچه سفارشات خود را از این قسمت مشاهده کنید"
-      />
+          description="_ تاریخچه سفارشات خود را از این قسمت مشاهده کنید"
+          />
       <SectionContent>
         <OrderForm />
       </SectionContent>
