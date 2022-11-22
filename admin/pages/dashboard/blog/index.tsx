@@ -19,15 +19,17 @@ import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import PostGrid from "@/admin/components/PostList";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 
 export default function DashboardBlog() {
   const router = useRouter();
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     posts: Post[];
-  }>({ countOfItems: 0, posts: [] });
+  }>({ totalCount: 0, pageSize: 0, posts: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -45,8 +47,8 @@ export default function DashboardBlog() {
       </Head>
       <SectionHeader
         title="وبلاگ"
-        description="وبلاگ را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- وبلاگ را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -85,7 +87,10 @@ export default function DashboardBlog() {
             <SearchInput
               inputProps={{ placeholder: "جستجو بلاگ با عنوان" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -103,6 +108,12 @@ export default function DashboardBlog() {
             }
           />
           {!data.posts.length && <EmptyNote>هیچ بلاگی وجود ندارید</EmptyNote>}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WarningConfirmDialog
             open={pendingDeleteRequest !== null}
             onClose={() => {

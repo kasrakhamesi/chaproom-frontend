@@ -1,0 +1,82 @@
+.TickerSelect {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  row-gap: 10px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    @media (max-width: 640px) {
+      justify-content: stretch;
+
+      > div {
+        flex: 1;
+        max-width: unset !important;
+      }
+    }
+  }
+}
+
+.Tooltip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -100%);
+
+  > div {
+    background: #ffffff;
+    border: 1px solid #9c9c9c;
+    padding: 6px 8px;
+    color: #9c9c9c;
+    font-size: 10px;
+    text-align: center;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+
+      &:first-child {
+        > div:first-child {
+          color: #5e5e5e;
+        }
+      }
+
+      &:last-child {
+        > div:first-child {
+          color: #f20f4b;
+        }
+      }
+
+      > div {
+        display: flex;
+        flex-direction: row;
+        gap: 3px;
+
+        > div:last-child {
+          color: #9c9c9c;
+        }
+      }
+    }
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-width: 0;
+    border-top-color: #9c9c9c;
+  }
+}

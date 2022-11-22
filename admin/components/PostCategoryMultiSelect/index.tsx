@@ -261,8 +261,6 @@ function useCategories() {
   function fetchCategories() {
     if (page === 0) return;
 
-    const abortController = new AbortController();
-
     setError(false);
     setLoading(true);
     request({
@@ -272,7 +270,6 @@ function useCategories() {
       params: {
         page,
       },
-      signal: abortController.signal,
     })
       .then(({ data }) => {
         const ids: string[] = [];
@@ -290,8 +287,6 @@ function useCategories() {
         setError(true);
       })
       .finally(() => setLoading(false));
-
-    return () => abortController.abort();
   }
 
   useEffect(fetchCategories, [page]);

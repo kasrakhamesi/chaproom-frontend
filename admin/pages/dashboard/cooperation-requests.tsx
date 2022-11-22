@@ -14,6 +14,7 @@ import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import CooperationRequestTable from "@/admin/components/CooperationRequestTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import CooperationRequestAcceptDialog from "@/admin/components/CooperationRequestAcceptDialog";
 import CooperationRequestRejectDialog from "@/admin/components/CooperationRequestRejectDialog";
 
@@ -23,9 +24,10 @@ export default function DashboardCooperationRequests() {
   >("pending");
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     cooperations: CooperationRequest[];
-  }>({ countOfItems: 0, cooperations: [] });
+  }>({ totalCount: 0, pageSize: 0, cooperations: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -48,8 +50,8 @@ export default function DashboardCooperationRequests() {
       </Head>
       <SectionHeader
         title="درخواست های همکاری"
-        description="از این بخش درخواست های همکاری را مدیریت کنید"
-        hideBackToSiteButton
+        description="- از این بخش درخواست های همکاری را مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -71,7 +73,10 @@ export default function DashboardCooperationRequests() {
                 },
               ]}
               value={itemsStatus}
-              onChange={setItemsStatus}
+              onChange={(newValue) => {
+                setItemsStatus(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -81,7 +86,10 @@ export default function DashboardCooperationRequests() {
             <SearchInput
               inputProps={{ placeholder: "جستجو شماره موبایل" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -117,6 +125,12 @@ export default function DashboardCooperationRequests() {
           {!data.cooperations.length && (
             <EmptyNote>هیچ درخواست همکاری ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <CooperationRequestAcceptDialog
             open={pendingCooperationRequestAcceptRequest !== null}
             onClose={() => {

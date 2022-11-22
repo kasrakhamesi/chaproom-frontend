@@ -18,15 +18,17 @@ import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import DiscountTable from "@/admin/components/DiscountTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 
 export default function DashboardDiscountList() {
   const router = useRouter();
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     discounts: Discount[];
-  }>({ countOfItems: 0, discounts: [] });
+  }>({ totalCount: 0, pageSize: 0, discounts: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -44,8 +46,8 @@ export default function DashboardDiscountList() {
       </Head>
       <SectionHeader
         title="کدهای تخفیف"
-        description="کدهای تخفیف را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- کدهای تخفیف را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -74,7 +76,10 @@ export default function DashboardDiscountList() {
             <SearchInput
               inputProps={{ placeholder: "جستجو با کد" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -94,6 +99,12 @@ export default function DashboardDiscountList() {
           {!data.discounts.length && (
             <EmptyNote>هیچ کد تخفیفی وجود ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WarningConfirmDialog
             open={pendingDeleteRequest !== null}
             onClose={() => {

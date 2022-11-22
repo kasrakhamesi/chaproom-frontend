@@ -1,7 +1,9 @@
 import { MutableRefObject, useRef } from "react";
 import { Editor as TinymceEditor } from "tinymce";
 import { Editor as TinymceReact } from "@tinymce/tinymce-react";
+// @ts-ignore
 import VazirMatnFontFace from "!!css-loader!vazirmatn/Vazirmatn-font-face.css";
+// @ts-ignore
 import IransansxFontFace from "!!css-loader!@/shared/assets/scss/iransansx.scss";
 import { request } from "@/admin/api";
 

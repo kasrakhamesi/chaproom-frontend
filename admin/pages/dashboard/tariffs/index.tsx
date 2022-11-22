@@ -25,17 +25,15 @@ export default function DashboardPrintPricesList() {
       </Head>
       <SectionHeader
         title="تعرفه ها"
-        description="تعرفه های چاپ را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- تعرفه های چاپ را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
           title="لیست تعرفه ها"
           end={
             <Link href="/dashboard/tariffs/binding">
-              <Button varient="content-title-none">
-                صحافی
-              </Button>
+              <Button varient="content-title-none">صحافی</Button>
             </Link>
           }
         />

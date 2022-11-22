@@ -13,12 +13,12 @@
       padding: 5px 15px;
     }
   }
-  
+
   &[data-items-status="sent"] > thead > tr > th {
     background-color: #14cc9c;
     color: #ffffff;
   }
-  
+
   &[data-items-status="canceled"] > thead > tr > th {
     background-color: #f20f4b;
     color: #ffffff;
@@ -71,7 +71,7 @@
             display: none;
           }
         }
-        
+
         .Date {
           white-space: nowrap;
           display: flex;
@@ -116,7 +116,7 @@
             flex: 1;
           }
         }
-        
+
         .SeeDetailsButton {
           background-color: #ffffff;
         }

@@ -7,11 +7,13 @@ import IconButton from "@/shared/components/IconButton";
 interface PostCategoryTableProps {
   categories: PostCategory[];
   onDeletePostCategory: (categoryId: number) => void;
+  startCountFrom?: number;
 }
 
 export default function PostCategoryTable({
   categories,
   onDeletePostCategory,
+  startCountFrom = 1,
 }: PostCategoryTableProps) {
   return (
     <table className={styles.PostCategoryTable}>
@@ -29,7 +31,10 @@ export default function PostCategoryTable({
             <td>
               <span className={styles.MobileLabel}>#:</span>
               <div>
-                <FormattedNumber value={index + 1} useGrouping={false} />
+                <FormattedNumber
+                  value={startCountFrom + index}
+                  useGrouping={false}
+                />
               </div>
             </td>
             <td>

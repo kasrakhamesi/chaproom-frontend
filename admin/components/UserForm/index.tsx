@@ -27,7 +27,11 @@ interface UserFormProps {
   onSave: (data: UserFormData) => Promise<any>;
 }
 
-export default function UserForm({ defaultValues, isEdit, onSave }: UserFormProps) {
+export default function UserForm({
+  defaultValues,
+  isEdit,
+  onSave,
+}: UserFormProps) {
   const [phoneNumber, setPhoneNumber] = useState(
     defaultValues?.phoneNumber || ""
   );

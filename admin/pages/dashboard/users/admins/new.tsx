@@ -23,8 +23,8 @@ export default function DashboardNewAdmin() {
       </Head>
       <SectionHeader
         title="ادمین ها"
-        description="ادمین ها را از این بخش اضافه و ویرایش کنید"
-        hideBackToSiteButton
+        description="- ادمین ها را از این بخش اضافه و ویرایش کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader

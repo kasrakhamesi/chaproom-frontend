@@ -1,7 +1,7 @@
 .Container {
   display: flex;
   flex-direction: column;
-  
+
   .ImageSelect {
     background: #ffffff;
     border: 1px solid #cccccc;
@@ -12,7 +12,7 @@
     align-items: center;
     user-select: none;
     position: relative;
-  
+
     &[data-drag-active="true"] {
       background: #2578fa26;
       border: 1px solid #2578fa;
@@ -46,7 +46,7 @@
       font-size: 13px;
 
       > span {
-        color: #2578fA;
+        color: #2578fa;
       }
     }
   }

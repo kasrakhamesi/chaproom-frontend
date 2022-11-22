@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 interface FilterSelectProps {
   placeholder?: string;
   options: Record<string, string>;
-  value: string | null;
+  value: any;
   onChange: (newValue: any) => void;
   maxWidth?: number;
   width?: number;

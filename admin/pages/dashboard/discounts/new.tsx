@@ -23,8 +23,8 @@ export default function DashboardNewDiscount() {
       </Head>
       <SectionHeader
         title="کدهای تخفیف"
-        description="کدهای تخفیف را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- کدهای تخفیف را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader

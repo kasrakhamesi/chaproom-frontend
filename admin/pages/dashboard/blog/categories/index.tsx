@@ -22,14 +22,15 @@ import SmallLoader from "@/shared/components/SmallLoader";
 import DataLoader from "@/shared/components/DataLoader";
 import PostCategoryTable from "@/admin/components/PostCategoryTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 
 export default function DashboardBlogCategories() {
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
     pageSize: number;
     categories: PostCategory[];
-  }>({ countOfItems: 0, pageSize: 0, categories: [] });
+  }>({ totalCount: 0, pageSize: 0, categories: [] });
 
   const [page, setPage] = useState(1);
 
@@ -48,8 +49,8 @@ export default function DashboardBlogCategories() {
       </Head>
       <SectionHeader
         title="وبلاگ"
-        description="وبلاگ را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- وبلاگ را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -106,10 +107,17 @@ export default function DashboardBlogCategories() {
           <PostCategoryTable
             categories={data.categories}
             onDeletePostCategory={setPendingDeleteRequest}
+            startCountFrom={(page - 1) * data.pageSize + 1}
           />
           {!data.categories.length && (
             <EmptyNote>هیچ دسته بندی وجود ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WarningConfirmDialog
             open={pendingDeleteRequest !== null}
             onClose={() => {

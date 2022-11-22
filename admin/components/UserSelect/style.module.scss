@@ -64,7 +64,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
         }
-        
+
         > div:last-child {
           font-size: 12px;
           color: #707070;
@@ -104,7 +104,7 @@
     > div:not(:first-child) {
       border-top: 1px solid #dddddd;
     }
-    
+
     > div:not(.Loader) {
       height: 60px;
       min-height: 60px;

@@ -30,8 +30,8 @@ export default function DashboardOrderDetails() {
       </Head>
       <SectionHeader
         title="سفارش ها"
-        description="سفارشات را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- سفارشات را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader

@@ -28,11 +28,11 @@ import axios, { AxiosRequestConfig } from "axios";
 import Router from "next/router";
 import { orderConvertMap } from "@/main/convertMaps";
 
-function getAccessToken() {
+export function getAccessToken() {
   return localStorage.getItem("adminAccessToken");
 }
 
-function setAccessToken(token: string) {
+export function setAccessToken(token: string) {
   localStorage.setItem("adminAccessToken", token);
 }
 
@@ -42,7 +42,7 @@ export function logout() {
 }
 
 const api = axios.create({
-  baseURL: "http://78.157.34.146:3000/v1",
+  baseURL: "http://localhost:3000/v1",
   headers: {
     "Content-Type": "application/json",
   },
@@ -54,11 +54,11 @@ interface requestConfig extends AxiosRequestConfig<any> {
   redirectIfNotLogin?: boolean;
 }
 
-export const request = async ({
+export async function request({
   needAuth,
   redirectIfNotLogin = true,
   ...config
-}: requestConfig) => {
+}: requestConfig) {
   return new Promise<any>((resolve, reject) => {
     if (needAuth && !getAccessToken()) {
       reject("لطفا دوباره وارد شوید");
@@ -70,7 +70,6 @@ export const request = async ({
     api({
       ...config,
       headers: {
-        "Content-Type": "application/json",
         ...(needAuth ? { authorization: `Bearer ${getAccessToken()}` } : {}),
         ...config.headers,
       },
@@ -98,7 +97,7 @@ export const request = async ({
         reject(response?.data?.error?.message || message || "");
       });
   });
-};
+}
 
 export function isLoggedIn() {
   return request({
@@ -298,7 +297,7 @@ export function getUsers(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     users: data.users,
   }));
@@ -372,17 +371,16 @@ export function getUserMarketing(userId: number) {
   }).then(({ data }) => data);
 }
 
-export function getUserOrders(userId: number, search: string, page: number) {
+export function getUserOrders(userId: number, page: number) {
   return request({
     method: "GET",
     url: `/admins/orders/user-id/${userId}`,
     needAuth: true,
     params: {
-      search,
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     orders: data.orders.map((item: any) => ({
       id: item.id,
@@ -403,7 +401,7 @@ export function getUserAddresses(userId: number, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     addresses: data.addresses as Address[],
   }));
@@ -467,7 +465,7 @@ export function getAdmins(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     admins: data.admins,
   }));
@@ -522,14 +520,18 @@ export function deleteAdmin(adminId: number) {
   }).then(({ data }) => data.message);
 }
 
-export function getOrders(search: string, page: number) {
+export function getOrders(
+  search: string,
+  page: number,
+  status: "canceled" | "pending" | "preparing" | "sent" | null
+) {
   return request({
     method: "GET",
     url: "/admins/orders",
     needAuth: true,
-    params: { search, page },
+    params: { search, page, status: status !== null ? status : undefined },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     orders: data.orders.map((item: any) => ({
       id: item.id,
@@ -594,7 +596,7 @@ export function getDiscounts(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     discounts: data.discounts.map((item: any) =>
       convert(discountConvertMap, item, "a2b")
@@ -669,7 +671,7 @@ export function getCooperationRequests(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     cooperations: data.cooperations.map((item: any) =>
       convert(cooperationRequestConvertMap, item, "a2b")
@@ -712,7 +714,7 @@ export function getFinancialRecords(
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     records: data.transactions.map((item: any) =>
       convert(financialRecordConvertMap, item, "a2b")
@@ -785,7 +787,7 @@ export function getWithdrawalRequests(
       status,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     withdrawals: data.withdrawals.map((item: any) =>
       convert(cooperationRequestConvertMap, item, "a2b")
@@ -867,7 +869,7 @@ export function getBlogPosts(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     posts: data.blogs.map((item: any) =>
       convert(blogPostConvertMap, item, "a2b")
@@ -943,7 +945,7 @@ export function getBlogCategories(page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     categories: data.categories as PostCategory[],
   }));
@@ -976,7 +978,7 @@ export function getDedicatedDiscountCodeReports(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     reports: data.marketings.map((item: any) =>
       convert(dedicatedDiscountCodeReportConvertMap, item, "a2b")
@@ -994,7 +996,7 @@ export function getDedicatedLinkReports(search: string, page: number) {
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     reports: data.marketings.map((item: any) =>
       convert(dedicatedLinkReportConvertMap, item, "a2b")
@@ -1057,7 +1059,7 @@ export function getCustomerReports(
       page,
     },
   }).then(({ data }) => ({
-    countOfItems: data.totalCount,
+    totalCount: data.totalCount,
     pageSize: data.pageSize,
     reports: data.customersReport.map((item: any) =>
       convert(customerReportConvertMap, item, "a2b")

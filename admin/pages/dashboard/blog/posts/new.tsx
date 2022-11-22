@@ -23,8 +23,8 @@ export default function DashboardNewPost() {
       </Head>
       <SectionHeader
         title="وبلاگ"
-        description="وبلاگ را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- وبلاگ را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader

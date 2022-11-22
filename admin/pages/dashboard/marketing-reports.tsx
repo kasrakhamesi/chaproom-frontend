@@ -20,19 +20,22 @@ import DataLoader from "@/shared/components/DataLoader";
 import DedicatedLinkReportTable from "@/admin/components/DedicatedLinkReportTable";
 import DedicatedDiscountCodeReportTable from "@/admin/components/DedicatedDiscountCodeReportTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 
 export default function DashboardMarketingReport() {
   const [tab, setTab] = useState<"link" | "discount-code">("link");
 
   const [dedicatedLinkData, setDedicatedLinkData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     reports: DedicatedLinkReport[];
-  }>({ countOfItems: 0, reports: [] });
+  }>({ totalCount: 0, pageSize: 0, reports: [] });
 
   const [dedicatedDiscountCodeData, setDedicatedDiscountCodeData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     reports: DedicatedDiscountCodeReport[];
-  }>({ countOfItems: 0, reports: [] });
+  }>({ totalCount: 0, pageSize: 0, reports: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -44,8 +47,8 @@ export default function DashboardMarketingReport() {
       </Head>
       <SectionHeader
         title="گزارش بازاریابی"
-        description="گزارش بازاریابی را از این بخش مشاهده کنید"
-        hideBackToSiteButton
+        description="- گزارش بازاریابی را از این بخش مشاهده کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -95,6 +98,12 @@ export default function DashboardMarketingReport() {
             {!dedicatedLinkData.reports.length && (
               <EmptyNote>هیچ گزارشی وجود ندارید</EmptyNote>
             )}
+            <Pagination
+              currentPage={page}
+              totalCount={dedicatedLinkData.totalCount}
+              pageSize={dedicatedLinkData.pageSize}
+              onPageChange={setPage}
+            />
           </DataLoader>
         )}
         {tab === "discount-code" && (
@@ -109,6 +118,12 @@ export default function DashboardMarketingReport() {
             {!dedicatedDiscountCodeData.reports.length && (
               <EmptyNote>هیچ گزارشی وجود ندارید</EmptyNote>
             )}
+            <Pagination
+              currentPage={page}
+              totalCount={dedicatedDiscountCodeData.totalCount}
+              pageSize={dedicatedDiscountCodeData.pageSize}
+              onPageChange={setPage}
+            />
           </DataLoader>
         )}
       </SectionContent>

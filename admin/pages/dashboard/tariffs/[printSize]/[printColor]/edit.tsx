@@ -42,8 +42,8 @@ export default function DashboardEditPrintPrices() {
       </Head>
       <SectionHeader
         title="تعرفه ها"
-        description="تعرفه های چاپ را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- تعرفه های چاپ را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader

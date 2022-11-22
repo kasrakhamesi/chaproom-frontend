@@ -20,6 +20,7 @@ import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import OrderTable from "@/admin/components/OrderTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import OrderCancelDialog from "@/admin/components/OrderCancelDialog";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 import OrderSentDialog from "@/admin/components/OrderSentDialog";
@@ -28,9 +29,10 @@ export default function DashboardOrderList() {
   const router = useRouter();
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     orders: Order[];
-  }>({ countOfItems: 0, orders: [] });
+  }>({ totalCount: 0, pageSize: 0, orders: [] });
 
   const [itemsStatus, setItemsStatus] = useState<
     "canceled" | "pending" | "preparing" | "sent" | null
@@ -56,8 +58,8 @@ export default function DashboardOrderList() {
       </Head>
       <SectionHeader
         title="سفارش ها"
-        description="سفارشات را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- سفارشات را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -83,7 +85,10 @@ export default function DashboardOrderList() {
                 },
               ]}
               value={itemsStatus}
-              onChange={setItemsStatus}
+              onChange={(newValue) => {
+                setItemsStatus(newValue);
+                setPage(1);
+              }}
               nullable
             />
           }
@@ -94,13 +99,16 @@ export default function DashboardOrderList() {
             <SearchInput
               inputProps={{ placeholder: "جستجو کد سفارش" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
         <DataLoader
-          load={() => getOrders(search, page)}
-          deps={[search, page]}
+          load={() => getOrders(search, page, itemsStatus)}
+          deps={[search, page, itemsStatus]}
           setData={setData}
           reloadRef={reloadRef}
         >
@@ -115,6 +123,12 @@ export default function DashboardOrderList() {
             itemsStatus={itemsStatus}
           />
           {!data.orders.length && <EmptyNote>هیچ سفارشی وجود ندارید</EmptyNote>}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <OrderCancelDialog
             open={pendingOrderCancelRequest !== null}
             onClose={() => {

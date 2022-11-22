@@ -16,22 +16,25 @@ import ButtonList from "@/shared/components/ButtonList";
 import Button from "@/shared/components/Button";
 import Controls from "@/admin/components/Controls";
 import SearchInput from "@/admin/components/SearchInput";
+import Filters from "@/admin/components/Filters";
+import FilterDate from "@/admin/components/FilterDate";
+import FilterSelect from "@/admin/components/FilterSelect";
 import DataLoader from "@/shared/components/DataLoader";
 import FinancialRecordTable from "@/admin/components/FinancialRecordTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
-import Filters from "@/admin/components/Filters";
-import FilterSelect from "@/admin/components/FilterSelect";
-import FilterDate from "@/admin/components/FilterDate";
 
 export default function DashboardFinancialRecordList() {
   const router = useRouter();
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     records: FinancialRecord[];
   }>({
-    countOfItems: 0,
+    totalCount: 0,
+    pageSize: 0,
     records: [],
   });
 
@@ -57,8 +60,8 @@ export default function DashboardFinancialRecordList() {
       </Head>
       <SectionHeader
         title="سوابق مالی"
-        description="سوابق مالی را از این بخش مدیریت کنید"
-        hideBackToSiteButton
+        description="- سوابق مالی را از این بخش مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -97,7 +100,10 @@ export default function DashboardFinancialRecordList() {
             <SearchInput
               inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
           end={
@@ -106,20 +112,29 @@ export default function DashboardFinancialRecordList() {
                 setStartDate(null);
                 setEndDate(null);
                 setPaymentStatus(null);
+                setPage(1);
               }}
               rows={[
                 [
                   <FilterDate
                     value={startDate}
-                    onChange={setStartDate}
+                    onChange={(newValue) => {
+                      setStartDate(newValue);
+                      setPage(1);
+                    }}
                     width={140}
                     maxWidth={140}
+                    placeholder="از تاریخ"
                   />,
                   <FilterDate
                     value={endDate}
-                    onChange={setEndDate}
+                    onChange={(newValue) => {
+                      setEndDate(newValue);
+                      setPage(1);
+                    }}
                     width={140}
                     maxWidth={140}
+                    placeholder="تا تاریخ"
                   />,
                   <FilterSelect
                     placeholder="وضعیت پرداخت"
@@ -128,7 +143,10 @@ export default function DashboardFinancialRecordList() {
                       unsuccessful: "ناموفق",
                     }}
                     value={paymentStatus}
-                    onChange={setPaymentStatus}
+                    onChange={(newValue) => {
+                      setPaymentStatus(newValue);
+                      setPage(1);
+                    }}
                     width={150}
                     maxWidth={150}
                   />,
@@ -158,6 +176,12 @@ export default function DashboardFinancialRecordList() {
             onDeleteFinancialRecord={setPendingFinancialRecordCodeDeleteRequest}
           />
           {!data.records.length && <EmptyNote>هیچ سندی وجود ندارید</EmptyNote>}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WarningConfirmDialog
             open={pendingFinancialRecordCodeDeleteRequest !== null}
             onClose={() => {

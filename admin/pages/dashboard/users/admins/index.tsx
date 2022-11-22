@@ -19,6 +19,7 @@ import Controls from "@/admin/components/Controls";
 import SearchInput from "@/admin/components/SearchInput";
 import AdminTable from "@/admin/components/AdminTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 
 export default function DashboardAdminList() {
@@ -29,14 +30,15 @@ export default function DashboardAdminList() {
   >(null);
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     admins: {
       id: number;
       name: string;
       phoneNumber: string;
       role: AdminUserRole;
     }[];
-  }>({ countOfItems: 0, admins: [] });
+  }>({ totalCount: 0, pageSize: 0, admins: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -50,8 +52,8 @@ export default function DashboardAdminList() {
       </Head>
       <SectionHeader
         title="ادمین ها"
-        description="ادمین ها را از این بخش اضافه و ویرایش کنید"
-        hideBackToSiteButton
+        description="- ادمین ها را از این بخش اضافه و ویرایش کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -90,7 +92,10 @@ export default function DashboardAdminList() {
             <SearchInput
               inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -108,6 +113,12 @@ export default function DashboardAdminList() {
             }
           />
           {!data.admins.length && <EmptyNote>هیچ ادمینی وجود ندارید</EmptyNote>}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WarningConfirmDialog
             open={pendingAdminDeleteRequest !== null}
             onClose={() => {

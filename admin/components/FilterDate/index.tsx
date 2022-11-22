@@ -9,6 +9,7 @@ interface FilterDateProps {
   onChange: (newValue: Date | null) => void;
   maxWidth?: number;
   width?: number;
+  placeholder: string;
 }
 
 export default function FilterDate({
@@ -18,6 +19,7 @@ export default function FilterDate({
   onChange,
   maxWidth = 100,
   width,
+  placeholder,
 }: FilterDateProps) {
   return (
     <div className={styles.FilterDate} style={{ maxWidth, width }}>
@@ -27,6 +29,7 @@ export default function FilterDate({
         value={value}
         onChange={(moment) => onChange(moment.toDate())}
         inputHeight={36}
+        inputProps={{ placeholder }}
         inputSuffix={
           <div className={styles.DateIcon}>
             <DateIcon />

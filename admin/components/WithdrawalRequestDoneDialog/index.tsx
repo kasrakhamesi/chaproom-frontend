@@ -20,24 +20,24 @@ export default function WithdrawalRequestDoneDialog({
   onClose,
   onDoneWithdrawalRequest,
 }: WithdrawalRequestDoneDialogProps) {
-  const jaliliMoment = moment().locale("fa");
+  const jaliliMoment = moment();
   const [transactionDateDay, setTransactionDateDay] = useState(
-    jaliliMoment.day().toString()
+    jaliliMoment.jDate().toString()
   );
   const [transactionDateMonth, setTransactionDateMonth] = useState(
-    jaliliMoment.month().toString()
+    (jaliliMoment.jMonth() + 1).toString()
   );
   const [transactionDateYear, setTransactionDateYear] = useState(
-    jaliliMoment.year().toString()
+    jaliliMoment.jYear().toString()
   );
   const [trackingCode, setTrackingCode] = useState("");
 
   useEffect(() => {
     if (open) {
-      const jaliliMoment = moment().locale("fa");
-      setTransactionDateDay(jaliliMoment.day().toString());
-      setTransactionDateMonth(jaliliMoment.month().toString());
-      setTransactionDateYear(jaliliMoment.year().toString());
+      const jaliliMoment = moment();
+      setTransactionDateDay(jaliliMoment.jDate().toString());
+      setTransactionDateMonth((jaliliMoment.jMonth() + 1).toString());
+      setTransactionDateYear(jaliliMoment.jYear().toString());
       setTrackingCode("");
     }
   }, [open]);

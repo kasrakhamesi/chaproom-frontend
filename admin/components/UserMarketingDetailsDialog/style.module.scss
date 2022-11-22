@@ -18,6 +18,10 @@
     gap: 10px;
     align-items: center;
 
+    @media (max-width: 512px) {
+      align-items: stretch;
+    }
+
     .Title {
       font-weight: bold;
       font-size: 16px;
@@ -34,11 +38,21 @@
       gap: 20px;
       align-items: center;
 
+      @media (max-width: 512px) {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+      }
+
       > div {
         display: flex;
         flex-direction: column;
         gap: 10px;
         align-items: center;
+
+        @media (max-width: 512px) {
+          align-items: stretch;
+        }
 
         > span {
           font-size: 12px;
@@ -50,6 +64,10 @@
       display: flex;
       flex-direction: row;
       padding: 10px;
+
+      @media (max-width: 512px) {
+        justify-content: center;
+      }
 
       > div:not(.Separator) {
         display: flex;

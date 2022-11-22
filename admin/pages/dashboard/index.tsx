@@ -1,6 +1,6 @@
 import styles from "./style.module.scss";
 import { ReactElement, useState } from "react";
-import { FormattedNumber, useIntl } from "react-intl";
+import { FormattedNumber, IntlShape, useIntl } from "react-intl";
 import Head from "next/head";
 import { AdminUserRole } from "@/shared/types";
 import { getDashboard, request } from "@/admin/api";
@@ -13,6 +13,24 @@ import BarChart from "@/admin/components/BarChart";
 import IranMap from "@/admin/components/IranMap";
 import DataLoader from "@/shared/components/DataLoader";
 import FilterSelect from "@/admin/components/FilterSelect";
+
+function forrmateTime(intl: IntlShape, time: string) {
+  if (time.includes("/")) {
+    const splitedTime = time.split("/");
+    return [
+      intl.formatNumber(parseInt(splitedTime[0]), {
+        minimumIntegerDigits: 2,
+      }),
+      intl.formatNumber(parseInt(splitedTime[1]), {
+        minimumIntegerDigits: 2,
+      }),
+    ].join("/");
+  } else if (!isNaN(parseInt(time))) {
+    return intl.formatNumber(parseInt(time));
+  } else {
+    return time;
+  }
+}
 
 export default function DashboardMain() {
   const intl = useIntl();
@@ -151,7 +169,7 @@ export default function DashboardMain() {
       <Head>
         <title>داشبورد</title>
       </Head>
-      <SectionHeader title="داشبورد" hideBackToSiteButton />
+      <SectionHeader title="داشبورد" isAdmin />
       <DataLoader
         load={() => getDashboard()}
         setData={(data) => {
@@ -204,13 +222,14 @@ export default function DashboardMain() {
                     <BarChart
                       data={salesData.chart.map(
                         ({ time, creditor, debtor }) => ({
-                          label: time,
+                          label: forrmateTime(intl, time),
                           value: creditor - debtor,
                           creditor,
                           debtor,
                         })
                       )}
                       setTooltipData={setSalesTooltipData}
+                      hideY
                     />
                     {salesTooltipData && (
                       <div
@@ -283,10 +302,11 @@ export default function DashboardMain() {
                   >
                     <BarChart
                       data={usersData.chart.map(({ time, count }) => ({
-                        label: time,
+                        label: forrmateTime(intl, time),
                         value: count,
                       }))}
                       setTooltipData={setUsersTooltipData}
+                      hideY
                     />
                     {usersTooltipData && (
                       <div
@@ -343,10 +363,11 @@ export default function DashboardMain() {
                   >
                     <BarChart
                       data={ordersData.chart.map(({ time, count }) => ({
-                        label: time,
+                        label: forrmateTime(intl, time),
                         value: count,
                       }))}
                       setTooltipData={setOrdersTooltipData}
+                      hideY
                     />
                     {ordersTooltipData && (
                       <div
@@ -438,10 +459,11 @@ export default function DashboardMain() {
                   >
                     <BarChart
                       data={usersOrdersData.chart.map(({ time, count }) => ({
-                        label: time,
+                        label: forrmateTime(intl, time),
                         value: count,
                       }))}
                       setTooltipData={setUsersOrdersTooltipData}
+                      hideY
                     />
                     {usersOrdersTooltipData && (
                       <div

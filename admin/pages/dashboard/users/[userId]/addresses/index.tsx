@@ -15,6 +15,7 @@ import Button from "@/shared/components/Button";
 import DataLoader from "@/shared/components/DataLoader";
 import AddressList from "@/shared/components/Dashboard/AddressList";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 
 export default function DashboardUserAddressList() {
@@ -22,9 +23,10 @@ export default function DashboardUserAddressList() {
   const userId = parseInt(router.query.userId as string); // TODO 404
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     addresses: Address[];
-  }>({ countOfItems: 0, addresses: [] });
+  }>({ totalCount: 0, pageSize: 0, addresses: [] });
 
   const [page, setPage] = useState(1);
 
@@ -38,8 +40,8 @@ export default function DashboardUserAddressList() {
       </Head>
       <SectionHeader
         title="کاربران"
-        description="کاربران را از این بخش اضافه و ویرایش کنید"
-        hideBackToSiteButton
+        description="- کاربران را از این بخش اضافه و ویرایش کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -72,6 +74,12 @@ export default function DashboardUserAddressList() {
           {!data.addresses.length && (
             <EmptyNote>این کاربر هیچ آدرسی ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WarningConfirmDialog
             open={pendingAddressDeleteRequest !== null}
             onClose={() => {

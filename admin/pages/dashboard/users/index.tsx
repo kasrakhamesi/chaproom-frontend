@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import Head from "next/head";
 import Link from "next/link";
-import { deleteUser, getUsers } from "@/admin/api";
+import { createUserAccessToken, deleteUser, getUsers } from "@/admin/api";
 import AddIcon from "@/shared/assets/icons/add.svg";
 import DashboardLayout from "@/admin/components/Layout";
 import SectionHeader from "@/shared/components/Dashboard/SectionHeader";
@@ -15,11 +15,12 @@ import DataLoader from "@/shared/components/DataLoader";
 import IconButton from "@/shared/components/IconButton";
 import Button from "@/shared/components/Button";
 import ButtonList from "@/shared/components/ButtonList";
+import Controls from "@/admin/components/Controls";
 import UserTable from "@/admin/components/UserTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import UserMarketingDetailsDialog from "@/admin/components/UserMarketingDetailsDialog";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
-import Controls from "@/admin/components/Controls";
 
 export default function DashboardUserList() {
   const router = useRouter();
@@ -32,7 +33,8 @@ export default function DashboardUserList() {
   >(null);
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     users: {
       id: number;
       name: string;
@@ -41,7 +43,7 @@ export default function DashboardUserList() {
       walletBalance: number;
       countOfOrders: number;
     }[];
-  }>({ countOfItems: 0, users: [] });
+  }>({ totalCount: 0, pageSize: 0, users: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -55,8 +57,8 @@ export default function DashboardUserList() {
       </Head>
       <SectionHeader
         title="کاربران"
-        description="کاربران را از این بخش اضافه و ویرایش کنید"
-        hideBackToSiteButton
+        description="- کاربران را از این بخش اضافه و ویرایش کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -95,7 +97,10 @@ export default function DashboardUserList() {
             <SearchInput
               inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -115,14 +120,37 @@ export default function DashboardUserList() {
               router.push(`/dashboard/users/${userId}/addresses`)
             }
             onDeleteUser={setPendingUserDeleteRequest}
-            onLoginAsUser={(userId) =>
-              router.push(`/dashboard/users/${userId}/edit`)
-            }
+            onLoginAsUser={(userId) => {
+              const toastId = toast.loading("لطفا صبر کنید ...");
+
+              createUserAccessToken(userId)
+                .then((token) => {
+                  toast.dismiss(toastId);
+                  window.open(
+                    `${
+                      process.env.MAIN_URL
+                    }/login/by-access-token?accessToken=${encodeURIComponent(
+                      token
+                    )}`
+                  );
+                })
+                .catch((message) =>
+                  toast.error(message, {
+                    id: toastId,
+                  })
+                );
+            }}
             onEditUser={(userId) =>
               router.push(`/dashboard/users/${userId}/edit`)
             }
           />
           {!data.users.length && <EmptyNote>هیچ کاربری وجود ندارید</EmptyNote>}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <UserMarketingDetailsDialog
             open={showUserMarketingDetails !== null}
             onClose={() => {

@@ -15,20 +15,22 @@ import IconButton from "@/shared/components/IconButton";
 import Button from "@/shared/components/Button";
 import Controls from "@/admin/components/Controls";
 import SearchInput from "@/admin/components/SearchInput";
+import Filters from "@/admin/components/Filters";
+import FilterSelect from "@/admin/components/FilterSelect";
 import DataLoader from "@/shared/components/DataLoader";
 import CustomerReportTable from "@/admin/components/CustomerReportTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
-import FilterSelect from "@/admin/components/FilterSelect";
-import Filters from "@/admin/components/Filters";
+import Pagination from "@/shared/components/Pagination";
 
 export default function DashboardCustomerReport() {
   const intl = useIntl();
   const router = useRouter();
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     reports: CustomerReport[];
-  }>({ countOfItems: 0, reports: [] });
+  }>({ totalCount: 0, pageSize: 0, reports: [] });
 
   const [search, setSearch] = useState("");
   const [paperSize, setPaperSize] = useState<"a4" | "a5" | "a3" | null>(null);
@@ -68,8 +70,8 @@ export default function DashboardCustomerReport() {
       </Head>
       <SectionHeader
         title="گزارش مشتریان"
-        description="گزارش مشتریان را از این بخش مشاهده کنید"
-        hideBackToSiteButton
+        description="- گزارش مشتریان را از این بخش مشاهده کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -105,7 +107,10 @@ export default function DashboardCustomerReport() {
             <SearchInput
               inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
           end={
@@ -114,6 +119,7 @@ export default function DashboardCustomerReport() {
                 setPaperSize(null);
                 setPaperColor(null);
                 setPaperSide(null);
+                setPage(1);
               }}
               rows={[
                 [
@@ -125,7 +131,10 @@ export default function DashboardCustomerReport() {
                       a3: "A3",
                     }}
                     value={paperSize}
-                    onChange={setPaperSize}
+                    onChange={(newValue) => {
+                      setPaperSize(newValue);
+                      setPage(1);
+                    }}
                     width={130}
                     maxWidth={130}
                   />,
@@ -137,7 +146,10 @@ export default function DashboardCustomerReport() {
                       normalColor: "رنگ معمولی",
                     }}
                     value={paperColor}
-                    onChange={setPaperColor}
+                    onChange={(newValue) => {
+                      setPaperColor(newValue);
+                      setPage(1);
+                    }}
                     width={130}
                     maxWidth={130}
                   />,
@@ -148,7 +160,10 @@ export default function DashboardCustomerReport() {
                       doubleSided: "دو رو",
                     }}
                     value={paperSide}
-                    onChange={setPaperSide}
+                    onChange={(newValue) => {
+                      setPaperSide(newValue);
+                      setPage(1);
+                    }}
                     width={130}
                     maxWidth={130}
                   />,
@@ -170,7 +185,10 @@ export default function DashboardCustomerReport() {
                       )} سفارش و بیشتر`,
                     }}
                     value={sortOrder}
-                    onChange={setSortOrder}
+                    onChange={(newValue) => {
+                      setSortOrder(newValue);
+                      setPage(1);
+                    }}
                     width={250}
                     maxWidth={250}
                   />,
@@ -202,6 +220,12 @@ export default function DashboardCustomerReport() {
           {!data.reports.length && (
             <EmptyNote>هیچ گزارشی وجود ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
         </DataLoader>
       </SectionContent>
     </>

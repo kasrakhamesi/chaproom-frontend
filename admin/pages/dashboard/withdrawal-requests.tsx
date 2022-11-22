@@ -18,14 +18,16 @@ import SearchInput from "@/admin/components/SearchInput";
 import DataLoader from "@/shared/components/DataLoader";
 import WithdrawalRequestTable from "@/admin/components/WithdrawalRequestTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import WithdrawalRequestDoneDialog from "@/admin/components/WithdrawalRequestDoneDialog";
 import WithdrawalRequestRejectDialog from "@/admin/components/WithdrawalRequestRejectDialog";
 
 export default function DashboardWithdrawalRequests() {
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     withdrawals: WithdrawalRequest[];
-  }>({ countOfItems: 0, withdrawals: [] });
+  }>({ totalCount: 0, pageSize: 0, withdrawals: [] });
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -51,8 +53,8 @@ export default function DashboardWithdrawalRequests() {
       </Head>
       <SectionHeader
         title="درخواست های برداشت"
-        description="درخواست های برداشت از این بخش را مدیریت کنید"
-        hideBackToSiteButton
+        description="- درخواست های برداشت از این بخش را مدیریت کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -70,7 +72,10 @@ export default function DashboardWithdrawalRequests() {
                 },
               ]}
               value={itemsStatus}
-              onChange={setItemsStatus}
+              onChange={(newValue) => {
+                setItemsStatus(newValue);
+                setPage(1);
+              }}
               nullable
             />
           }
@@ -81,7 +86,10 @@ export default function DashboardWithdrawalRequests() {
             <SearchInput
               inputProps={{ placeholder: "جستجو کاربر با نام یا موبایل" }}
               value={search}
-              setValue={setSearch}
+              setValue={(newValue) => {
+                setSearch(newValue);
+                setPage(1);
+              }}
             />
           }
         />
@@ -106,6 +114,12 @@ export default function DashboardWithdrawalRequests() {
           {!data.withdrawals.length && (
             <EmptyNote>هیچ درخواست برداشتی وجود ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <WithdrawalRequestDoneDialog
             open={pendingWithdrawalRequestDoneRequest !== null}
             onClose={() => setPendingWithdrawalRequestDoneRequest(null)}

@@ -53,7 +53,12 @@ export default function UserMarketingDetailsDialog({
   });
 
   return (
-    <Dialog open={open} onClose={onClose} title="اطلاعات بازاریابی">
+    <Dialog
+      open={open}
+      onClose={onClose}
+      title="اطلاعات بازاریابی"
+      fullScreenInMobile
+    >
       <DataLoader
         load={() => {
           if (userId !== null) return getUserMarketing(userId);

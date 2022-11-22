@@ -5,9 +5,15 @@ const withTM = require("next-transpile-modules")([path.resolve("../shared")]);
  * @type {import('next').NextConfig}
  */
 module.exports = withTM({
-  output: 'standalone',
+  output: "standalone",
   experimental: {
     externalDir: true,
+  },
+  env: {
+    MAIN_URL:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://chaproom.com",
   },
   webpack(config) {
     config.module.rules.push({

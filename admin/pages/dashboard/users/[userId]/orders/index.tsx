@@ -20,6 +20,7 @@ import MobileContentHeader from "@/shared/components/Dashboard/MobileContentHead
 import Button from "@/shared/components/Button";
 import OrderTable from "@/admin/components/OrderTable";
 import EmptyNote from "@/shared/components/Dashboard/EmptyNote";
+import Pagination from "@/shared/components/Pagination";
 import OrderCancelDialog from "@/admin/components/OrderCancelDialog";
 import WarningConfirmDialog from "@/shared/components/Dashboard/WarningConfirmDialog";
 import OrderSentDialog from "@/admin/components/OrderSentDialog";
@@ -29,11 +30,11 @@ export default function DashboardUserOrderList() {
   const userId = parseInt(router.query.userId as string); // TODO 404
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
+    pageSize: number;
     orders: Order[];
-  }>({ countOfItems: 0, orders: [] });
+  }>({ totalCount: 0, pageSize: 0, orders: [] });
 
-  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
   const [pendingOrderCancelRequest, setPendingOrderCancelRequest] = useState<
@@ -52,8 +53,8 @@ export default function DashboardUserOrderList() {
       </Head>
       <SectionHeader
         title="کاربران"
-        description="کاربران را از این بخش اضافه و ویرایش کنید"
-        hideBackToSiteButton
+        description="- کاربران را از این بخش اضافه و ویرایش کنید"
+        isAdmin
       />
       <SectionContent>
         <ContentHeader
@@ -69,9 +70,9 @@ export default function DashboardUserOrderList() {
         <MobileContentHeader backTo="/dashboard/users" title="همه سفارش ها" />
         <DataLoader
           load={() => {
-            if (router.isReady) return getUserOrders(userId, search, page);
+            if (router.isReady) return getUserOrders(userId, page);
           }}
-          deps={[router.isReady]}
+          deps={[router.isReady, page]}
           setData={setData}
         >
           <OrderTable
@@ -89,6 +90,12 @@ export default function DashboardUserOrderList() {
           {!data.orders.length && (
             <EmptyNote>این کاربر هیچ سفارشی ندارید</EmptyNote>
           )}
+          <Pagination
+            currentPage={page}
+            totalCount={data.totalCount}
+            pageSize={data.pageSize}
+            onPageChange={setPage}
+          />
           <OrderCancelDialog
             open={pendingOrderCancelRequest !== null}
             onClose={() => {

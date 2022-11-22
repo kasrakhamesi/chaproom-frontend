@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 import { Bar } from "react-chartjs-2";
 import { ChartJSOrUndefined } from "react-chartjs-2/dist/types";
-import { ChartArea, ChartData, ChartOptions } from "chart.js/auto";
+import { ChartArea, ChartData, ChartOptions, defaults } from "chart.js/auto";
 import "chart.js/auto";
 
 interface BaseData {
@@ -16,6 +16,7 @@ interface BarChartProps<DT extends BaseData> {
   setTooltipData?: (
     data: { item: DT; position: { left: number; top: number } } | null
   ) => void;
+  hideY?: boolean;
 }
 
 function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
@@ -30,6 +31,7 @@ function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
 export default function BarChart<DT extends BaseData>({
   data,
   setTooltipData,
+  hideY = false,
 }: BarChartProps<DT>) {
   const intl = useIntl();
 
@@ -57,6 +59,16 @@ export default function BarChart<DT extends BaseData>({
         backgroundColor: gradient,
       })),
     });
+
+    function fontLoadDoneHandler() {
+      chart.update();
+    }
+
+    document.fonts.addEventListener("loadingdone", fontLoadDoneHandler);
+
+    return () => {
+      document.fonts.removeEventListener("loadingdone", fontLoadDoneHandler);
+    };
   }, []);
 
   const options: ChartOptions<"bar"> = useMemo(() => {
@@ -95,18 +107,27 @@ export default function BarChart<DT extends BaseData>({
           },
           ticks: {
             color: "#9c9c9c",
+            font: {
+              family: "iransansx",
+            },
+            autoSkip: false,
           },
         },
         y: {
           grid: {
             display: false,
+            drawBorder: !hideY,
           },
           beginAtZero: true,
           ticks: {
+            display: !hideY,
+            font: {
+              family: "iransansx",
+            },
             callback: (tickValue) => {
               tickValue = tickValue as number;
               if (Math.floor(tickValue) === tickValue) {
-                return tickValue;
+                return intl.formatNumber(tickValue);
               }
             },
           },
@@ -115,5 +136,9 @@ export default function BarChart<DT extends BaseData>({
     };
   }, [setTooltipData]);
 
-  return <Bar ref={chartRef} data={chartData} options={options} />;
+  return (
+    <div className={styles.Container}>
+      <Bar ref={chartRef} data={chartData} options={options} />
+    </div>
+  );
 }
