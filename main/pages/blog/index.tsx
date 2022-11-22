@@ -23,11 +23,11 @@ export default function Blog() {
   );
 
   const [data, setData] = useState<{
-    countOfItems: number;
+    totalCount: number;
     pageSize: number;
     posts: Post[];
   }>({
-    countOfItems: 0,
+    totalCount: 0,
     pageSize: 0,
     posts: [],
   });

@@ -5,19 +5,19 @@ import Logo from "@/shared/assets/images/logo.svg";
 interface SectionHeaderProps {
   title: string;
   description?: string;
-  isAdmin?: boolean;
+  hideBackToSiteButton?: boolean;
 }
 
 export default function SectionHeader({
   title,
   description,
-  isAdmin = false,
+  hideBackToSiteButton = false,
 }: SectionHeaderProps) {
   return (
     <div className={styles.SectionHeader}>
       <div className={styles.TitleContainer}>
         <p className={styles.Title}>{title}</p>
-        {!isAdmin ? (
+        {!hideBackToSiteButton ? (
           <Link href="/">
             <a className={styles.BackToSiteButton}>
               بازگشت به سایت
