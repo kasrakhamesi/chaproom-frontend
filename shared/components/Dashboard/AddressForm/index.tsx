@@ -126,14 +126,18 @@ export default function AddressForm({
             <ContentSelect
               placeholder="استان"
               options={Object.keys(iranProvincesAndCities)}
-              varient={inputsVarient === "outlined" ? "outlined" : "inset-shadow"}
+              varient={
+                inputsVarient === "outlined" ? "outlined" : "inset-shadow"
+              }
               value={recipientDeliveryProvince}
               onChange={(newValue) => {
                 setRecipientDeliveryProvince(newValue);
                 setRecipientDeliveryCity(null);
               }}
             />
-            <ErrorList errors={formValidation.errors.recipientDeliveryProvince} />
+            <ErrorList
+              errors={formValidation.errors.recipientDeliveryProvince}
+            />
           </div>
           <div>
             <ContentSelect
@@ -141,16 +145,16 @@ export default function AddressForm({
               options={
                 iranProvincesAndCities[recipientDeliveryProvince || ""] || []
               }
-              varient={inputsVarient === "outlined" ? "outlined" : "inset-shadow"}
+              varient={
+                inputsVarient === "outlined" ? "outlined" : "inset-shadow"
+              }
               value={recipientDeliveryCity}
               onChange={(newValue) => setRecipientDeliveryCity(newValue)}
               readOnly={
                 !iranProvincesAndCities[recipientDeliveryProvince || ""]
               }
             />
-            <ErrorList
-              errors={formValidation.errors.recipientDeliveryCity}
-            />
+            <ErrorList errors={formValidation.errors.recipientDeliveryCity} />
           </div>
         </div>
         <TextArea

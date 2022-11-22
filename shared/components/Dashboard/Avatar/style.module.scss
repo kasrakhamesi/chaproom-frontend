@@ -1,3 +1,16 @@
 .Avatar {
   display: inline-block;
+  width: 54px;
+  height: 54px;
+
+  > * {
+    width: 54px;
+    height: 54px;
+    border-radius: 27px;
+    box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
+  }
+
+  > .DefaultAvatar {
+    background: linear-gradient(#27ddf8, #2578fa);
+  }
 }

@@ -22,12 +22,12 @@
   }
 
   &.Loading {
-    > svg  {
+    > svg {
       display: none;
     }
 
     &::after {
-      content: '';
+      content: "";
       display: block;
       border-radius: 50%;
       width: 20px;

@@ -18,10 +18,9 @@
   align-items: center;
   box-shadow: -3px -3px 6px #ffffffdb, 3px 3px 6px #00000029;
   font-size: 16px;
-  font-weight: bold;
   user-select: none;
   border: none;
-  font-weight: 300;
+
   &:not(:disabled) {
     cursor: pointer;
   }
@@ -79,13 +78,12 @@
     fill: #0077b5;
     background-color: transparent;
     box-shadow: none;
-    font-weight: 500;
-    font-size: 18px;
   }
 
   &.Gradient {
     color: #ffffff;
     fill: #ffffff;
+    font-weight: normal;
     background: linear-gradient(260deg, #26e0fa 0%, #5869e8 100%);
 
     &:disabled {
@@ -102,7 +100,6 @@
   &.ContentTitleOutlined {
     height: 34px;
     font-size: 14px;
-    font-weight: normal;
     color: #0077b5;
     fill: #0077b5;
     background-color: #eeeeee;
@@ -111,7 +108,7 @@
 
   &.ContentTitleNone {
     height: 34px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500; // Medium
     color: #0077b5;
     fill: #0077b5;

@@ -175,7 +175,16 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
         <div className={styles.Label}>وضعیت سفارش:</div>
         <div>
           <div>
-            <div>
+            <div
+              className={
+                {
+                  canceled: styles.Canceled,
+                  pending: styles.Pending,
+                  preparing: styles.Preparing,
+                  sent: styles.Sent,
+                }[order.status]
+              }
+            >
               {
                 {
                   canceled: "لغو شده",

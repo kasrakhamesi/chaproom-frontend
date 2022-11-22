@@ -7,7 +7,10 @@ interface InfoTooltipProps {
   message: string;
 }
 
-export default function InfoTooltip({ iconSize = 24, message }: InfoTooltipProps) {
+export default function InfoTooltip({
+  iconSize = 24,
+  message,
+}: InfoTooltipProps) {
   return (
     <Tooltip message={message}>
       <span className={styles.Info}>

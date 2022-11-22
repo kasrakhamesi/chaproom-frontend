@@ -33,18 +33,12 @@ export default function AddressView({
           </div>
         </ButtonList>
       </div>
-      <div className={styles.descrep}>نام گیرنده: {address.recipientName}</div>
-      <div className={styles.inlinelevel}>
-        <div className={styles.descrep}>
-          شماره تلفن: {address.recipientPhoneNumber}
-        </div>
-        <div className={styles.descrep}>
-          کد پستی: {address.recipientPostalCode}
-        </div>
-      </div>
-      <div className={styles.descrep}>
-        نشانی: استان {address.recipientDeliveryProvince} / شهر{" "}
-        {address.recipientDeliveryCity} / {address.recipientDeliveryAddress}
+      <div>نام گیرنده: {address.recipientName}</div>
+      <div>شماره تلفن: {address.recipientPhoneNumber}</div>
+      <div>کد پستی: {address.recipientPostalCode}</div>
+      <div>
+        نشانی: استان {address.recipientDeliveryProvince}، شهر{" "}
+        {address.recipientDeliveryCity}، {address.recipientDeliveryAddress}
       </div>
     </div>
   );
